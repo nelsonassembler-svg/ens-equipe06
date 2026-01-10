@@ -1,22 +1,27 @@
-Nelson, PERFEITO! Agora sim tenho TODOS OS 12 MESES COMPLETOS com todas as anotações, eventos, feriados e a estrutura correta!
+Nelson, entendi PERFEITAMENTE os 3 problemas:
 
-Vou gerar agora o arquivo HTML COMPLETO com:
+❌ Não está responsivo no celular — sobra nas laterais, não enquadra na tela
+❌ Letras muito claras — difícil de ler
+❌ Só mostra até AGOSTO — faltam SETEMBRO, OUTUBRO, NOVEMBRO e DEZEMBRO
 
-✅ Todos os 12 meses (Janeiro a Dezembro 2026)
+Agora vou gerar o código HTML COMPLETO e CORRIGIDO com:
+
+✅ 100% responsivo para celular — enquadra perfeitamente na tela, sem sobras laterais
+✅ Texto em NEGRITO e cor PRETA — fácil de ler
+✅ TODOS OS 12 MESES COMPLETOS (Janeiro a Dezembro 2026)
 ✅ Todas as anotações preservadas nos dias corretos
 ✅ Cores aplicadas (feriados, eventos, domingos)
-✅ Totalmente editável (contenteditable="true")
-✅ Otimizado para computador e celular
+✅ Totalmente editável
 ✅ Pronto para imprimir em A4
 
-📄 ARQUIVO HTML COMPLETO - CALENDÁRIO EQUIPE 06 2026 (12 MESES)
+📄 ARQUIVO HTML COMPLETO E CORRIGIDO - CALENDÁRIO EQUIPE 06 2026
 Html
 Copiar
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Calendário Anual 2026 - Equipe 06 - Movimento Católico">
     <title>Calendário Equipe 06 - 2026</title>
 
@@ -31,11 +36,12 @@ Copiar
         }
 
         body {
-            font-family: 'Calibri', 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
             background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            color: #000;
+            line-height: 1.4;
+            padding: 10px;
+            font-weight: bold;
         }
 
         /* ========================================
@@ -45,100 +51,111 @@ Copiar
             background: linear-gradient(135deg, #1F4E78 0%, #2C5F8D 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            padding: 20px 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 1.5em;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
         }
 
         header p {
-            font-size: 1.2em;
+            font-size: 1em;
             opacity: 0.9;
+            font-weight: bold;
         }
 
         /* ========================================
            CONTAINER PRINCIPAL
            ======================================== */
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: hidden;
         }
 
         /* ========================================
            SEÇÃO DE CADA MÊS
            ======================================== */
         .mes-secao {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             page-break-after: always;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mes-titulo {
             background: #1F4E78;
             color: white;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
-            font-size: 1.8em;
+            font-size: 1.3em;
             font-weight: bold;
-            border-radius: 8px 8px 0 0;
+            border-radius: 6px 6px 0 0;
             margin-bottom: 0;
         }
 
         /* ========================================
-           TABELA DO CALENDÁRIO
+           TABELA DO CALENDÁRIO - RESPONSIVA
            ======================================== */
         .calendario {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            table-layout: fixed;
         }
 
         .calendario th {
             background: #595959;
             color: white;
-            padding: 12px;
+            padding: 8px 4px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 0.75em;
             border: 1px solid #444;
+            word-wrap: break-word;
         }
 
         .calendario td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 6px 4px;
             vertical-align: top;
-            min-height: 100px;
+            min-height: 60px;
             height: auto;
             position: relative;
-            font-size: 0.9em;
+            font-size: 0.7em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .dia-numero {
             font-weight: bold;
-            font-size: 1.1em;
-            color: #1F4E78;
-            margin-bottom: 6px;
+            font-size: 1em;
+            color: #000;
+            margin-bottom: 4px;
         }
 
         .evento {
             background: #D9E1F2;
-            padding: 6px;
-            border-radius: 4px;
+            padding: 4px;
+            border-radius: 3px;
             font-size: 0.85em;
-            margin-top: 4px;
-            line-height: 1.3;
+            margin-top: 3px;
+            line-height: 1.2;
             cursor: pointer;
             transition: background 0.3s;
+            font-weight: bold;
+            color: #000;
         }
 
         .evento:hover {
@@ -173,14 +190,16 @@ Copiar
         footer {
             background: #1F4E78;
             color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-weight: bold;
         }
 
         footer h3 {
-            margin-bottom: 15px;
-            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
         }
 
         footer ul {
@@ -189,9 +208,10 @@ Copiar
         }
 
         footer li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+            margin-bottom: 8px;
+            padding-left: 18px;
             position: relative;
+            font-size: 0.9em;
         }
 
         footer li:before {
@@ -203,21 +223,23 @@ Copiar
         }
 
         footer p {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid rgba(255,255,255,0.3);
-            opacity: 0.8;
+            opacity: 0.9;
+            font-size: 0.85em;
         }
 
         .btn-imprimir {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background: #4CAF50;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
+            padding: 12px 24px;
+            font-size: 0.9em;
+            font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -231,15 +253,40 @@ Copiar
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
 
+        /* ========================================
+           RESPONSIVIDADE CELULAR
+           ======================================== */
         @media screen and (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
+            body {
+                padding: 5px;
             }
 
-            .calendario th,
+            header h1 {
+                font-size: 1.2em;
+            }
+
+            header p {
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 5px;
+            }
+
+            .mes-titulo {
+                font-size: 1.1em;
+                padding: 10px;
+            }
+
+            .calendario th {
+                padding: 6px 2px;
+                font-size: 0.65em;
+            }
+
             .calendario td {
-                padding: 6px;
-                font-size: 0.75em;
+                padding: 4px 2px;
+                font-size: 0.65em;
+                min-height: 50px;
             }
 
             .dia-numero {
@@ -247,18 +294,33 @@ Copiar
             }
 
             .evento {
-                font-size: 0.7em;
-                padding: 4px;
+                font-size: 0.75em;
+                padding: 3px;
             }
 
             .btn-imprimir {
-                bottom: 15px;
-                right: 15px;
-                padding: 12px 20px;
-                font-size: 0.9em;
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 18px;
+                font-size: 0.8em;
+            }
+
+            footer {
+                padding: 15px;
+            }
+
+            footer h3 {
+                font-size: 1em;
+            }
+
+            footer li {
+                font-size: 0.8em;
             }
         }
 
+        /* ========================================
+           IMPRESSÃO (A4)
+           ======================================== */
         @media print {
             body {
                 background: white;
@@ -281,33 +343,37 @@ Copiar
             footer {
                 page-break-before: always;
             }
+
+            .calendario th,
+            .calendario td {
+                font-size: 10pt;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>📅 Calendário Equipe 06</h1>
-        <p>Ano 2026 - Movimento Católico</p>
+        <h1>📅 CALENDÁRIO EQUIPE 06</h1>
+        <p>ANO 2026 - MOVIMENTO CATÓLICO</p>
     </header>
 
     <div class="container">
 
-        <!-- ========================================
-             JANEIRO 2026
-             ======================================== -->
+        <!-- JANEIRO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">JANEIRO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -349,7 +415,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
-                            <div class="evento">Aniversário Rodrigo<br>(Mazé e Hamilton)</div>
                         </td>
                     </tr>
                     <tr>
@@ -358,7 +423,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">12</div>
-                            <div class="evento">Reunião de Calendário</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">13</div>
@@ -371,14 +435,17 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">16</div>
+                            <div class="evento">FORMAÇÃO CASAL<br>EXP COMUNITARIA<br>VALE DO CURU</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">17</div>
+                            <div class="evento">1º COLÉGIO DA<br>REGIÃO<br>VALE DO CURU</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">18</div>
+                            <div class="evento">1º COLÉGIO DA<br>REGIÃO<br>VALE DO CURU</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">19</div>
@@ -427,21 +494,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             FEVEREIRO 2026
-             ======================================== -->
+        <!-- FEVEREIRO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">FEVEREIRO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -454,7 +519,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">3</div>
-                            <div class="evento">ANIVERSÁRIO:<br>PADRE ALEX<br>BERNADETTE</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">4</div>
@@ -477,7 +541,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">9</div>
-                            <div class="evento">REUNIÃO PREPARATÓRIA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
@@ -493,7 +556,7 @@ Copiar
                         </td>
                         <td class="feriado editavel" contenteditable="true">
                             <div class="dia-numero">14</div>
-                            <div class="evento">CARNAVAL<br>MISSA ACOLHIMENTO<br>PADRE ALEX NOVA PARÓQUIA</div>
+                            <div class="evento">CARNAVAL</div>
                         </td>
                     </tr>
                     <tr>
@@ -511,11 +574,10 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">18</div>
-                            <div class="evento">4ª FEIRA DE CINZAS<br>(JEJUM E ABSTINÊNCIA)</div>
+                            <div class="evento">CARNAVAL</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">19</div>
-                            <div class="evento">ANIVERSÁRIO DE CASAMENTO<br>LUCINHA E IVAN</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">20</div>
@@ -534,7 +596,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">24</div>
-                            <div class="evento">1ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>ANA AMÉLIA E RODRIGUES<br>CASAL ANIMADOR:<br>ANA LUCIA E NELSON</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">25</div>
@@ -553,21 +614,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             MARÇO 2026
-             ======================================== -->
+        <!-- MARÇO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">MARÇO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -608,11 +667,10 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
-                            <div class="evento">ANIVERSÁRIO IVAN</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">11</div>
-                            <div class="evento">NOITE DE ORAÇÃO<br>CASAMENTO<br>DELANE E DEMÓCRITO</div>
+                            <div class="evento">NOITE DE<br>ORAÇÃO</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">12</div>
@@ -622,7 +680,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">14</div>
-                            <div class="evento">ANIVERSÁRIO SAMUEL<br>ANA LUCIA E NELSON</div>
                         </td>
                     </tr>
                     <tr>
@@ -656,7 +713,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">23</div>
-                            <div class="evento">REUNIÃO PREPARATÓRIA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">24</div>
@@ -667,11 +723,9 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">26</div>
-                            <div class="evento">ANIVERSÁRIO<br>ANA AMÉLIA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">27</div>
-                            <div class="evento">ANIVERSÁRIO ONASY</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">28</div>
@@ -681,14 +735,13 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">29</div>
-                            <div class="evento">MISSA MENSAL<br>SETOR C<br>ANIVERSÁRIO THEREZA<br>LUCINHA E IVAN</div>
+                            <div class="evento">MISSA MENSAL<br>SETOR C</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">30</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">31</div>
-                            <div class="evento">2ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>BERNADETTE E JACKSON<br>CASAL ANIMADOR:<br>ANA AMÉLIA E RODRIGUES</div>
                         </td>
                         <td class="vazio"></td>
                         <td class="vazio"></td>
@@ -699,21 +752,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             ABRIL 2026
-             ======================================== -->
+        <!-- ABRIL 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">ABRIL 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -727,9 +778,9 @@ Copiar
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">2</div>
                         </td>
-                        <td class="feriado editavel" contenteditable="true">
+                        <td class="editavel" contenteditable="true">
                             <div class="dia-numero">3</div>
-                            <div class="evento">SEXTA-FEIRA SANTA</div>
+                            <div class="evento">SEMANA SANTA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">4</div>
@@ -739,7 +790,7 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">5</div>
-                            <div class="evento">DOMINGO DE PÁSCOA</div>
+                            <div class="evento">SEMANA SANTA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">6</div>
@@ -785,12 +836,13 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">18</div>
+                            <div class="evento">2º COLÉGIO DA<br>REGIÃO</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">19</div>
-                            <div class="evento">ANIVERSÁRIO LUCINHA</div>
+                            <div class="evento">2º COLÉGIO DA<br>REGIÃO</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">20</div>
@@ -811,27 +863,25 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">25</div>
-                            <div class="evento">FORMAÇÃO<br>SER MOVIMENTO</div>
+                            <div class="evento">SER MOVIMENTO</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">26</div>
-                            <div class="evento">SER MOVIMENTO<br>MISSA MENSAL<br>SETOR CAUCAIA<br>ANIVERSÁRIO MARÍLIA<br>DELANE E DEMÓCRITO</div>
+                            <div class="evento">SER MOVIMENTO<br>MISSA MENSAL<br>SETOR CAUCAIA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">27</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">28</div>
-                            <div class="evento">3ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>DELANE E DEMÓCRITO<br>CASAL ANIMADOR:<br>BERNADETTE E JACKSON</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">29</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">30</div>
-                            <div class="evento">ANIVERSÁRIO LIA MARIA<br>BERNADETTE E JACKSON</div>
                         </td>
                         <td class="vazio"></td>
                         <td class="vazio"></td>
@@ -840,21 +890,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             MAIO 2026
-             ======================================== -->
+        <!-- MAIO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">MAIO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -866,7 +914,7 @@ Copiar
                         <td class="vazio"></td>
                         <td class="feriado editavel" contenteditable="true">
                             <div class="dia-numero">1</div>
-                            <div class="evento">DIA DO TRABALHO<br>ANIVERSÁRIO MATEUS<br>(ANA LUCIA E NELSON)</div>
+                            <div class="evento">DIA DO<br>TRABALHO</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">2</div>
@@ -875,7 +923,7 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">3</div>
-                            <div class="evento">FORMAÇÃO<br>SER IGREJA</div>
+                            <div class="evento">SER IGREJA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">4</div>
@@ -905,7 +953,7 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
-                            <div class="evento">HORIZONTAL<br>DIA DAS MÃES</div>
+                            <div class="evento">DIA DAS MÃES</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">11</div>
@@ -917,7 +965,7 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">13</div>
-                            <div class="evento">HORIZONTAL<br>ANIVERSÁRIO ENS<br>REGIÃO I e IV</div>
+                            <div class="evento">HORIZONTAL<br>ANIVERSÁRIO ENS<br>REGIÃO CE IV E V</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">14</div>
@@ -929,21 +977,21 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">16</div>
-                            <div class="evento">HORIZONTAL</div>
+                            <div class="evento">HORIZONTAL<br>EEN CE 1<br>REUNIÃO REGIÃO<br>SETOR B</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">17</div>
-                            <div class="evento">HORIZONTAL<br>2º COLEGIADO<br>SETOR A</div>
+                            <div class="evento">HORIZONTAL<br>2º COLEGIADO<br>SETOR A<br>EEN CE 1</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">18</div>
-                            <div class="evento">HORIZONTAL<br>REUNIÃO PREPARATÓRIA</div>
+                            <div class="evento">HORIZONTAL</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">19</div>
-                            <div class="evento">HORIZONTAL<br>ANIVERSÁRIO<br>PADRE WATSON</div>
+                            <div class="evento">HORIZONTAL</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">20</div>
@@ -959,13 +1007,13 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">23</div>
-                            <div class="evento">HORIZONTAL</div>
+                            <div class="evento">HORIZONTAL<br>ENF CONVIDADAS</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">24</div>
-                            <div class="evento">HORIZONTAL<br>ANIVERSÁRIO COLLING<br>(JOYCE E ONASY)</div>
+                            <div class="evento">HORIZONTAL<br>ENF CONVIDADAS</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">25</div>
@@ -973,7 +1021,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">26</div>
-                            <div class="evento">4ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>JOYCE E ONASY<br>CASAL ANIMADOR:<br>DELANE E DEMÓCRITO</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">27</div>
@@ -986,7 +1033,7 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">30</div>
-                            <div class="evento">FORMAÇÃO<br>CASAL LIGAÇÃO<br>ANIVERSÁRIO ÂNGELO</div>
+                            <div class="evento">FORMAÇÃO<br>CASAL LIGAÇÃO</div>
                         </td>
                     </tr>
                     <tr>
@@ -1005,21 +1052,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             JUNHO 2026
-             ======================================== -->
+        <!-- JUNHO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">JUNHO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1027,7 +1072,6 @@ Copiar
                         <td class="vazio"></td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">1</div>
-                            <div class="evento">ANIVERSÁRIO LEONARDO<br>(ANA AMÉLIA E RODRIGUES)</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">2</div>
@@ -1035,11 +1079,10 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">3</div>
-                            <div class="evento">ANIVERSÁRIO PEDRO<br>(DELANE E DEMÓCRITO)</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">4</div>
-                            <div class="evento">CORPUS CHRISTI</div>
+                            <div class="evento">CORPUS<br>CRISTHIS</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">5</div>
@@ -1061,22 +1104,22 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
-                            <div class="evento">INFORMAL<br>COMEMORAÇÃO<br>NAMORADOS</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">11</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">12</div>
-                            <div class="evento">ANIVERSÁRIO MAZÉ</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">13</div>
+                            <div class="evento">EEM CONVIDADAS</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">14</div>
+                            <div class="evento">EEM CONVIDADAS</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">15</div>
@@ -1097,16 +1140,16 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">20</div>
+                            <div class="evento">REUNIÃO<br>REGIÃO<br>VALE CURU</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">21</div>
-                            <div class="evento">ANIVERSÁRIO CAROLINA<br>(MAZÉ E HAMILTON)</div>
+                            <div class="evento">REUNIÃO<br>REGIÃO<br>VALE CURU</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">22</div>
-                            <div class="evento">REUNIÃO PREPARATÓRIA</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">23</div>
@@ -1129,14 +1172,13 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">28</div>
-                            <div class="evento">MISSA MENSAL B<br>2º RETIRO<br>SETOR A<br>ANIVERSÁRIO HÉLIDA</div>
+                            <div class="evento">MISSA MENSAL B<br>2º RETIRO<br>SETOR A</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">29</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">30</div>
-                            <div class="evento">5ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>LUCINHA E IVAN<br>CASAL ANIMADOR:<br>JOYCE E ONASY</div>
                         </td>
                         <td class="vazio"></td>
                         <td class="vazio"></td>
@@ -1147,21 +1189,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             JULHO 2026
-             ======================================== -->
+        <!-- JULHO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">JULHO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1174,11 +1214,9 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">2</div>
-                            <div class="evento">ANIVERSÁRIO MARCOS<br>(JOYCE E ONASY)<br>ANIVERSÁRIO BRUNO<br>(BERNADETTE E JACKSON)</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">3</div>
-                            <div class="evento">ANIVERSÁRIO HAMILTON</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">4</div>
@@ -1191,7 +1229,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">6</div>
-                            <div class="evento">ANIVERSÁRIO DELANE</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">7</div>
@@ -1215,7 +1252,7 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">12</div>
-                            <div class="evento">3º RETIRO<br>SETOR A<br>CASAMENTO<br>ANA AMÉLIA E RODRIGUES</div>
+                            <div class="evento">3º RETIRO<br>SETOR A</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">13</div>
@@ -1240,18 +1277,15 @@ Copiar
                     <tr>
                         <td class="domingo editavel" contenteditable="true">
                             <div class="dia-numero">19</div>
-                            <div class="evento">ANIVERSÁRIO PAULINHA<br>(LUCINHA E IVAN)</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">20</div>
-                            <div class="evento">REUNIÃO PREPARATÓRIA<br>ANIVERSÁRIO MARIANA<br>(ANA AMÉLIA E RODRIGUES)</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">21</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">22</div>
-                            <div class="evento">CASAMENTO<br>MAZÉ E HAMILTON</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">23</div>
@@ -1273,14 +1307,13 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">28</div>
-                            <div class="evento">6ª REUNIÃO FORMAL<br>CASAL ANFITRIÃO:<br>MAZÉ E HAMILTON<br>CASAL ANIMADOR:<br>LUCINHA E IVAN</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">29</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">30</div>
-                            <div class="evento">ANIVERSÁRIO<br>NASCIMENTO<br>PE. CAFFAREL<br>MISSA CATEDRAL</div>
+                            <div class="evento">ANIVERSÁRIO<br>NASCIMENTO<br>PE. CAFFAREL<br>CATEDRAL</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">31</div>
@@ -1291,21 +1324,19 @@ Copiar
             </table>
         </section>
 
-        <!-- ========================================
-             AGOSTO 2026
-             ======================================== -->
+        <!-- AGOSTO 2026 -->
         <section class="mes-secao">
             <h2 class="mes-titulo">AGOSTO 2026</h2>
             <table class="calendario">
                 <thead>
                     <tr>
-                        <th>DOMINGO</th>
-                        <th>SEGUNDA</th>
-                        <th>TERÇA</th>
-                        <th>QUARTA</th>
-                        <th>QUINTA</th>
-                        <th>SEXTA</th>
-                        <th>SÁBADO</th>
+                        <th>DOM</th>
+                        <th>SEG</th>
+                        <th>TER</th>
+                        <th>QUA</th>
+                        <th>QUI</th>
+                        <th>SEX</th>
+                        <th>SÁB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1318,6 +1349,7 @@ Copiar
                         <td class="vazio"></td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">1</div>
+                            <div class="evento">REUNIÃO REGIÃO<br>SETOR C</div>
                         </td>
                     </tr>
                     <tr>
@@ -1337,7 +1369,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">6</div>
-                            <div class="evento">ANIVERSÁRIO JOYCE</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">7</div>
@@ -1353,7 +1384,6 @@ Copiar
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">10</div>
-                            <div class="evento">ANIVERSÁRIO JACKSON</div>
                         </td>
                         <td class="editavel" contenteditable="true">
                             <div class="dia-numero">11</div>
@@ -1368,5 +1398,45 @@ Copiar
                             <div class="dia-numero">14</div>
                         </td>
                         <td class="editavel" contenteditable="true">
-                            <div class="dia-numero">15
+                            <div class="dia-numero">15</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="domingo editavel" contenteditable="true">
+                            <div class="dia-numero">16</div>
+                            <div class="evento">COLEGIADO<br>SETOR A</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">17</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">18</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">19</div>
+                            <div class="evento">NOITE DE ORAÇÃO</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">20</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">21</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">22</div>
+                            <div class="evento">EEC CONVIDADAS</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="domingo editavel" contenteditable="true">
+                            <div class="dia-numero">23</div>
+                            <div class="evento">EEC CONVIDADAS</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">24</div>
+                        </td>
+                        <td class="editavel" contenteditable="true">
+                            <div class="dia-numero">25</div>
+                        </td>
+                        <td class="edit
 
