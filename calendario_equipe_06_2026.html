@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário Equipe 06 - 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Calibri', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1F4E78 0%, #2C5F8D 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .mes-secao {
+            margin-bottom: 40px;
+            page-break-after: always;
+        }
+
+        .mes-titulo {
+            background: #1F4E78;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+
+        .calendario {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        .calendario td,
+        .calendario th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            min-height: 80px;
+        }
+
+        .calendario th {
+            background: #595959;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+        }
+
+        .calendario td {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .btn-imprimir {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .btn-imprimir:hover {
+            background: #45a049;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .mes-titulo {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            .calendario td,
+            .calendario th {
+                padding: 5px;
+                font-size: 0.75em;
+            }
+
+            .btn-imprimir {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .mes-secao {
+                page-break-after: always;
+            }
+
+            .btn-imprimir {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📅 Calendário Equipe 06</h1>
+        <p>Ano 2026 - Movimento Católico</p>
+    </header>
+
+    <div class="container">
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">JANEIRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">JANEIRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold">1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">FERIADO DE ANO NOVO</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A9+1</td>
+                    <td style="font-weight: bold">=B9+1</td>
+                    <td style="font-weight: bold">=C9+1</td>
+                    <td style="font-weight: bold">=D9+1</td>
+                    <td style="font-weight: bold">=E9+1</td>
+                    <td style="font-weight: bold">=F9+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">Aniversário Rodrigo (Mazé e Hamilton)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G9+1</td>
+                    <td style="font-weight: bold">=A11+1</td>
+                    <td style="font-weight: bold">=B11+1</td>
+                    <td style="font-weight: bold">=C11+1</td>
+                    <td style="font-weight: bold">=D11+1</td>
+                    <td style="font-weight: bold">=E11+1</td>
+                    <td style="font-weight: bold; text-align: right">17</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO DE CALENDÁRIO &quot;CASAL ANFITRIÃO ANA LUCIA E NELSON&quot;</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: right">18</td>
+                    <td style="font-weight: bold; text-align: right">=A13+1</td>
+                    <td style="font-weight: bold; text-align: right">=B13+1</td>
+                    <td style="font-weight: bold; text-align: right">=C13+1</td>
+                    <td style="font-weight: bold; text-align: right">=D13+1</td>
+                    <td style="font-weight: bold; text-align: right">=E13+1</td>
+                    <td style="font-weight: bold; text-align: right">=F13+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G13+1</td>
+                    <td style="font-weight: bold">=A19+1</td>
+                    <td style="font-weight: bold">=B19+1</td>
+                    <td style="font-weight: bold">=C19+1</td>
+                    <td style="font-weight: bold">=D19+1</td>
+                    <td style="font-weight: bold; text-align: right">30</td>
+                    <td style="font-weight: bold; text-align: right">31</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR A</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">FEVEREIRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">FEVEREIRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>=A3+1</td>
+                    <td style="font-weight: bold">=B3+1</td>
+                    <td>=C3+1</td>
+                    <td>=D3+1</td>
+                    <td>=E3+1</td>
+                    <td>=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIOS: PADRE ALEX E BERNADETTE</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="color: #0070C0; font-weight: bold; text-align: center">EACRE</td>
+                </tr>
+                <tr>
+                    <td>=G3+1</td>
+                    <td>=A5+1</td>
+                    <td>=B5+1</td>
+                    <td>=C5+1</td>
+                    <td>=D5+1</td>
+                    <td>=E5+1</td>
+                    <td>=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #0070C0; font-weight: bold; text-align: center">EACRE</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">CARNAVAL</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA</td>
+                </tr>
+                <tr>
+                    <td>=G5+1</td>
+                    <td>=A8+1</td>
+                    <td>=B8+1</td>
+                    <td>=C8+1</td>
+                    <td style="font-weight: bold; text-align: center">=D8+1</td>
+                    <td>=E8+1</td>
+                    <td>=F8+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">CARNAVAL</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">CARNAVAL</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">CARNAVAL</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">4ª FEIRA DE CINZAS (JEJUN E ABSTINÊNCIA)</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DE CASAMENTO LUCINHA E IVAN</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td>=G8+1</td>
+                    <td>=A12+1</td>
+                    <td style="font-weight: bold">=B12+1</td>
+                    <td>=C12+1</td>
+                    <td>=D12+1</td>
+                    <td>=E12+1</td>
+                    <td>=F12+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR B</td>
+                    <td style="text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">1ª REUNIÃO FORMAL CASAL ANFITRIÃO: ANA AMÉLIA E ROGRIGUES CASAL ANIMADOR: ANA LUCIA E NELSON</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">MARÇO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">MARÇO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>=A3+1</td>
+                    <td>=B3+1</td>
+                    <td>=C3+1</td>
+                    <td>=D3+1</td>
+                    <td>=E3+1</td>
+                    <td>=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">PÓS EACRE SETOR A</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">1º REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">RETIRO DE CASAIS EM MISSÃO</td>
+                    <td style="font-weight: bold; text-align: center">RETIRO DE CASAIS EM MISSÃO</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td>=G3+1</td>
+                    <td>=A7+1</td>
+                    <td>=B7+1</td>
+                    <td>=C7+1</td>
+                    <td>=D7+1</td>
+                    <td>=E7+1</td>
+                    <td>=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">RETIRO DE CASAIS EM MISSÃO</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO IVAN</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">NOITE DE ORAÇÃO</td>
+                    <td style="text-align: center"></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERÁRIO SAMUEL ANA LUCIA E NELSON</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">CASAMENTO DELANE E DEMÓCRITO</td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td>=G7+1</td>
+                    <td>=A11+1</td>
+                    <td>=B11+1</td>
+                    <td>=C11+1</td>
+                    <td>=D11+1</td>
+                    <td>=E11+1</td>
+                    <td>=F11+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DIA DE SÃO JOSÉ</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td>=G11+1</td>
+                    <td style="font-weight: bold">=A15+1</td>
+                    <td>=B15+1</td>
+                    <td>=C15+1</td>
+                    <td style="font-weight: bold">=D15+1</td>
+                    <td style="font-weight: bold">=E15+1</td>
+                    <td>=F15+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ENCONTRO DOS JURÁSSICOS</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">FERIADO CARTA MAGMA</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ANA AMÉLIA</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ONASY</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">1º COLEGIADO  SETOR A</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td>=G15+1</td>
+                    <td>=A21+1</td>
+                    <td>=B21+1</td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR C</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">2ª REUNIÃO FORMAL CASAL ANFITRIÃO BENADETTE E JACKSON CASAL ANIMADOR ANA AMÉLIA E RODRIGUES</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO THEREZA LUCINHA E IVAN</td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">ABRIL 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">ABRIL 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>=E3+1</td>
+                    <td>=F3+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">SEXTA FEIRA  SANTA</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">SEMANA SANTA</td>
+                </tr>
+                <tr>
+                    <td>=G3+1</td>
+                    <td>=A5+1</td>
+                    <td>=B5+1</td>
+                    <td>=C5+1</td>
+                    <td>=D5+1</td>
+                    <td>=E5+1</td>
+                    <td>=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DOMINGO DDE PÁSCOA</td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">RETIRO SETORE A 01 - 04 - 08 - 22 - 15</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">RETIRO SETORE A 01 - 04 - 08 - 22 - 15</td>
+                </tr>
+                <tr>
+                    <td>=G5+1</td>
+                    <td>=A7+1</td>
+                    <td>=B7+1</td>
+                    <td>=C7+1</td>
+                    <td>=D7+1</td>
+                    <td>=E7+1</td>
+                    <td>=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">RETIRO SETORE A 01 - 04 - 08 - 22 - 15</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>=G7+1</td>
+                    <td>=A9+1</td>
+                    <td>=B9+1</td>
+                    <td>=C9+1</td>
+                    <td>=D9+1</td>
+                    <td>=E9+1</td>
+                    <td>=F9+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO LUCINHA</td>
+                    <td style="font-weight: bold; text-align: center">ENCONTRO SACERDOTES I e IV</td>
+                    <td style="font-weight: bold; text-align: center">ENCONTRO SACERDOTES I e IV</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">FORMAÇÃO SER MOVIMENTO</td>
+                </tr>
+                <tr>
+                    <td>=G9+1</td>
+                    <td>=A11+1</td>
+                    <td>=B11+1</td>
+                    <td>=C11+1</td>
+                    <td>=D11+1</td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">SER MOVIMENTO</td>
+                    <td style="text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">3ª REUNIÃO FORMAL CASAL ANFITRIÃO DELANE E DEMÓCRITO CASAL ANIMADOR BERNADETTE E JACKSOM</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO LIA MARIA BERNADETTI E JACSON</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR CAUCAIA</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO MARILIA (DELANE E DEMÓCRITO)</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">MAIO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">MAIO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DIA DO TRABALHO ANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">FORMAÇÃO SER IGREJA</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A8+1</td>
+                    <td style="font-weight: bold">=B8+1</td>
+                    <td style="font-weight: bold">=C8+1</td>
+                    <td style="font-weight: bold">=D8+1</td>
+                    <td style="font-weight: bold">=E8+1</td>
+                    <td style="font-weight: bold">=F8+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DIA DAS MAES</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="color: #0070C0; font-weight: bold; text-align: center">ANIVERSÁRIO ENS REGIÃO I e IV</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G8+1</td>
+                    <td style="font-weight: bold">=A12+1</td>
+                    <td style="font-weight: bold">=B12+1</td>
+                    <td style="font-weight: bold">=C12+1</td>
+                    <td style="font-weight: bold">=D12+1</td>
+                    <td style="font-weight: bold">=E12+1</td>
+                    <td style="font-weight: bold">=F12+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">2º COLEGIADO SETOR A</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO PADRE WATSON</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G12+1</td>
+                    <td style="font-weight: bold">=A18+1</td>
+                    <td style="font-weight: bold">=B18+1</td>
+                    <td style="font-weight: bold">=C18+1</td>
+                    <td style="font-weight: bold">=D18+1</td>
+                    <td style="font-weight: bold">=E18+1</td>
+                    <td style="font-weight: bold">=F18+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="font-weight: bold; text-align: center">4ª REUNIÃO FORMAL CASAL ANFITRIÃO JOYCE E ONASY - CASAL ANIMADOR DELANE E DEMÓCRITO</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">FORMAÇÃO CASAL LIGAÇÃO</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">ANIVERSÁRIO COLLING (JOYCE e ONASY)</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G18+1</td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR A</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">JUNHO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">JUNHO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-weight: bold">=A3+1</td>
+                    <td style="font-weight: bold">=B3+1</td>
+                    <td style="font-weight: bold">=C3+1</td>
+                    <td style="font-weight: bold">=D3+1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO PEDRO (DELANE E DEMÓCRITO)</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">CORPUS  CRISTHIS</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">SÃO JOÃO REGIÃO CE IV</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">INFORMAL COMEMORAÇÃO NAMORADOS</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO MAZÉ</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">NOITE DE ORAÇÃO</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">FORMAÇÃO EXPERIENCIA COMUNITÁRI</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td>=G7+1</td>
+                    <td>=A9+1</td>
+                    <td>=B9+1</td>
+                    <td>=C9+1</td>
+                    <td>=D9+1</td>
+                    <td>=E9+1</td>
+                    <td style="font-weight: bold">=F9+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTOS)</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">2º RETIRO SETOR A 02 - 09 - 16 - 20</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">2º RETIRO SETOR A 02 - 09 - 16 - 20</td>
+                </tr>
+                <tr>
+                    <td>=G9+1</td>
+                    <td>=A11+1</td>
+                    <td>=B11+1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL B</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">5ª REUNIÃO FORMAR - CASAL ANFITRIÃO LUCINHA E IVAN - CASAL ANIMADOR JOYCE E ONASY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">2º RETIRO SETOR A 02 - 09 - 16 - 20</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">JULHO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">JULHO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold">1</td>
+                    <td style="font-weight: bold">2</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO MARCOS (JOYCE ONASY)ANIVERSÁRIO BRUNO (BERNADETTE E JACKSON)</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO HAMILTON</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">FORMAÇÃO SER CRISTÃO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DELANE</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">3º RETIRO RETIRO SETOR A 06 - 05- 14 - 23</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">3º RETIRO RETIRO SETOR A 06 - 05- 14 - 23</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">3º RETIRO SETOR A 06/05/14/23</td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">46º ANO ENS REGIÃO CE I e IV</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">CASAMENTO ANA AMÉLIA E RODRIGUES</td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G7+1</td>
+                    <td style="font-weight: bold">=A10+1</td>
+                    <td style="font-weight: bold">=B10+1</td>
+                    <td style="font-weight: bold">=C10+1</td>
+                    <td style="font-weight: bold">=D10+1</td>
+                    <td style="font-weight: bold">=E10+1</td>
+                    <td style="font-weight: bold">=F10+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO PAULINHA (LUCINHA E IVAN)</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA - ANIVERSÁRIO MARIANA (ANA AMÉLIA E RIDRIGUES)</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">CASAMENTO MAZÉ E HAMILTON</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G10+1</td>
+                    <td style="font-weight: bold">=A12+1</td>
+                    <td style="font-weight: bold">=B12+1</td>
+                    <td style="font-weight: bold">=C12+1</td>
+                    <td style="font-weight: bold">=D12+1</td>
+                    <td style="font-weight: bold">=E12+1</td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR C</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">6ª REUNIÃO FORMAL - CASAL ANFITRIÃO MAZÉ E HAMILTON - CASAL ANIMADOR LUCINHA E IVAN</td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">ANIVERSARIO NASCIMENTO PADRE CAFFAREL</td>
+                    <td style="text-align: center"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">AGOSTO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold">AGOSTO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold">1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A4+1</td>
+                    <td style="font-weight: bold">=B4+1</td>
+                    <td style="font-weight: bold">=C4+1</td>
+                    <td style="font-weight: bold">=D4+1</td>
+                    <td style="font-weight: bold">=E4+1</td>
+                    <td style="font-weight: bold">=F4+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">FESTA DOS SACERDOTES</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO JOYCE</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">AE´S  REGIÃO CE I e IV</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G4+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DIA DOS PAIS</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO JACKSON</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>=G7+1</td>
+                    <td>=A9+1</td>
+                    <td>=B9+1</td>
+                    <td>=C9+1</td>
+                    <td>=D9+1</td>
+                    <td>=E9+1</td>
+                    <td>=F9+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">COLEGIADO SETOR A</td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td style="text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">NOITE DE ORAÇÃO</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ANA LUCIA</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DEMÓCRITO</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G9+1</td>
+                    <td style="font-weight: bold">=A11+1</td>
+                    <td style="font-weight: bold">=B11+1</td>
+                    <td style="font-weight: bold">=C11+1</td>
+                    <td style="font-weight: bold">=D11+1</td>
+                    <td style="font-weight: bold">=E11+1</td>
+                    <td style="font-weight: bold">=F11+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">7ª REUNIÃO FORMAL - CASAL ANFITRIÃO ANA LUCIA E NELSON - CASAL ANIMADOR MAZÉ E HAMILTON</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">MUTIRAO DO SETOR A</td>
+                </tr>
+                <tr>
+                    <td>=G11+1</td>
+                    <td>31</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR CAUCAIA</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">SETEMBRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold">SETEMBRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="text-align: center">DOMINGO</td>
+                    <td style="text-align: center">SEGUNDA</td>
+                    <td style="text-align: center">TERÇA</td>
+                    <td style="text-align: center">QUARTA</td>
+                    <td style="text-align: center">QUINTA</td>
+                    <td style="text-align: center">SEXTA</td>
+                    <td style="text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold">=B3+1</td>
+                    <td style="font-weight: bold">=C3+1</td>
+                    <td style="font-weight: bold">=D3+1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DE CASAMENTO ANA LUCIA E NELSON</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">INTEREQUIPES</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A6+1</td>
+                    <td style="font-weight: bold">=B6+1</td>
+                    <td>=C6+1</td>
+                    <td style="font-weight: bold">=D6+1</td>
+                    <td style="font-weight: bold">=E6+1</td>
+                    <td style="font-weight: bold">=F6+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">INDEPENDÊNCIA DO BRASIL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">4º RETIRO SETOR A - 07/11/12/21</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">4º RETIRO SETOR A - 07/11/12/21</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO IVAN JUNIOR (LUCINHA E IVAN)</td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G6+1</td>
+                    <td style="font-weight: bold">=A11+1</td>
+                    <td style="font-weight: bold">=B11+1</td>
+                    <td style="font-weight: bold">=C11+1</td>
+                    <td style="font-weight: bold">=D11+1</td>
+                    <td style="font-weight: bold">=E11+1</td>
+                    <td style="font-weight: bold">=F11+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">4º RETIRO SETOR A 07 - 11 - 12 - 21</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ROGRIGUES</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO CASAMENTO JOYSE E ONASY</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">JORNADA PADRE CAFFARER</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">JORNADA PADRE CAFFARER</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G11+1</td>
+                    <td style="font-weight: bold">=A15+1</td>
+                    <td style="font-weight: bold">=B15+1</td>
+                    <td style="font-weight: bold">=C15+1</td>
+                    <td style="font-weight: bold">=D15+1</td>
+                    <td style="font-weight: bold">=E15+1</td>
+                    <td style="font-weight: bold">=F15+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">JORNADA PADRE CAFFARER</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">HORIZONTAL</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)</td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G15+1</td>
+                    <td style="font-weight: bold">=A18+1</td>
+                    <td style="font-weight: bold">=B18+1</td>
+                    <td style="font-weight: bold">=C18+1</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">MISSA MENSAL SETOR A</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">8ª REUNIÃO FORMAL - CASAL ANFITRIÃO ANAMÉLIA E RODRIGUES - CASAL ANIMADOR ANA LUCIA E NELSON</td>
+                    <td style="text-align: center"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">OUTUBRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">OUTUBRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold">1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">INÍCIO DO DISCERNIMENTO DE CRE 2027</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">ELEIÇÕES 2026 1º TURNO</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DE CASAMENTO BERNADETTI E JACKON</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G7+1</td>
+                    <td style="font-weight: bold">=A9+1</td>
+                    <td style="font-weight: bold">=B9+1</td>
+                    <td style="font-weight: bold">=C9+1</td>
+                    <td style="font-weight: bold">=D9+1</td>
+                    <td style="font-weight: bold">=E9+1</td>
+                    <td style="font-weight: bold">=F9+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">REUNIÃO PREPARATÓRIA</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G9+1</td>
+                    <td style="font-weight: bold">=A11+1</td>
+                    <td style="font-weight: bold">=B11+1</td>
+                    <td style="font-weight: bold">=C11+1</td>
+                    <td style="font-weight: bold">=D11+1</td>
+                    <td style="font-weight: bold">=E11+1</td>
+                    <td style="font-weight: bold">=F11+1</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">ELEIÇÕES 2026 2º TURNO</td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="font-weight: bold; text-align: center">9ª REUNIÃO FORMAL - CASAL ANFITRIÃO BERNADETTE E JACKSON - CASAL ANIMADOR ANA AMÉLIA E RODRIGUES</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">FIM DO DISCERNIMENTO DE CRE 2027</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">NOVEMBRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="color: #002060; font-weight: bold; text-align: center">NOVEMBRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=H147+1</td>
+                    <td style="font-weight: bold">=A3+1</td>
+                    <td style="font-weight: bold">=B3+1</td>
+                    <td style="font-weight: bold">=C3+1</td>
+                    <td style="font-weight: bold">=D3+1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: center"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">DIA DE FINADOS</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">PRE-EACRE</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO DE CASAMENTO ÂNGELO E ÉLIDA (CASAL LIGAÇÃO)</td>
+                    <td style="text-align: center"></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">NOITE DE ORAÇÃO</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO NELSON</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">5º RETIRO SETOR A 03 - 10 13 - 19</td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">5º RETIRO SETOR A 03 - 10 13 - 19</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G7+1</td>
+                    <td style="font-weight: bold">=A9+1</td>
+                    <td style="font-weight: bold">=B9+1</td>
+                    <td style="font-weight: bold">=C9+1</td>
+                    <td style="font-weight: bold">=D9+1</td>
+                    <td style="font-weight: bold">=E9+1</td>
+                    <td style="font-weight: bold">=F9+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">5º RETIRO SETOR A 03 - 10 13 - 19</td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ORDENAÇÃO PADRE WATSON</td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO SÍLVIA (JOYCE E ONASY)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">29</td>
+                    <td style="text-align: right">30</td>
+                    <td style="text-align: right"></td>
+                    <td style="text-align: right"></td>
+                    <td style="text-align: right"></td>
+                    <td style="text-align: right"></td>
+                    <td style="text-align: right"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="mes-secao">
+            <h2 class="mes-titulo">DEZEMBRO 2026</h2>
+            <table class="calendario">
+                <tr>
+                    <th style="font-weight: bold; text-align: center">DEZEMBRO 2026</th>
+                    <th style="text-align: center"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                    <th style="background-color: #000000"></th>
+                </tr>
+                <tr>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">DOMINGO</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEGUNDA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">TERÇA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUARTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">QUINTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SEXTA</td>
+                    <td style="background-color: #FF0000; font-weight: bold; text-align: center">SÁBADO</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold">1</td>
+                    <td style="font-weight: bold">=C3+1</td>
+                    <td style="font-weight: bold">=D3+1</td>
+                    <td style="font-weight: bold">=E3+1</td>
+                    <td style="font-weight: bold">=F3+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO SETOR A</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold; text-align: center">CONFRATERNIZAÇÃO EQUIPE 06</td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G3+1</td>
+                    <td style="font-weight: bold">=A5+1</td>
+                    <td style="font-weight: bold">=B5+1</td>
+                    <td style="font-weight: bold">=C5+1</td>
+                    <td style="font-weight: bold">=D5+1</td>
+                    <td style="font-weight: bold">=E5+1</td>
+                    <td style="font-weight: bold">=F5+1</td>
+                </tr>
+                <tr>
+                    <td style="color: #FF0000; font-weight: bold; text-align: center">REUNIÃO DO SETOR A</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO LÚCIO (ANA AMÉLIA E RODRIGUES)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G5+1</td>
+                    <td style="font-weight: bold">=A7+1</td>
+                    <td style="font-weight: bold">=B7+1</td>
+                    <td style="font-weight: bold">=C7+1</td>
+                    <td style="font-weight: bold">=D7+1</td>
+                    <td style="font-weight: bold">=E7+1</td>
+                    <td style="font-weight: bold">=F7+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ANIVERSÁRIO JULIO CÉSAR (ANA AMÉLIA E RODRIGUES)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G7+1</td>
+                    <td style="font-weight: bold">=A9+1</td>
+                    <td style="font-weight: bold">=B9+1</td>
+                    <td style="font-weight: bold">=C9+1</td>
+                    <td style="font-weight: bold">=D9+1</td>
+                    <td style="font-weight: bold">=E9+1</td>
+                    <td style="font-weight: bold">=F9+1</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; text-align: center">ORDENAÇÃO PADRE ALEX</td>
+                    <td></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">NATAL</td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">NATAL</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">=G9+1</td>
+                    <td style="font-weight: bold">=A11+1</td>
+                    <td style="font-weight: bold">=B11+1</td>
+                    <td style="font-weight: bold">=C11+1</td>
+                    <td style="font-weight: bold">=D11+1</td>
+                    <td style="font-weight: bold"></td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                    <td style="background-color: #FFFFCC; font-weight: bold; text-align: center">REVEILLION</td>
+                    <td style="text-align: center"></td>
+                    <td style="text-align: center"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td style="background-color: #000000"></td>
+                    <td></td>
+                    <td style="background-color: #000000"></td>
+                </tr>
+            </table>
+        </section>
+
+    </div>
+
+    <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir</button>
+
+</body>
+</html>
