@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário Equipe 06 - 2026</title>
+    <title>Calendário 2026 - Equipe 06</title>
     <style>
         * {
             margin: 0;
@@ -19,11 +19,11 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             overflow: hidden;
         }
 
@@ -36,193 +36,97 @@
 
         header h1 {
             font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 10px;
-        }
-
-        .nav-months {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .nav-months button {
-            padding: 8px 15px;
-            border: none;
-            background: #667eea;
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-            transition: all 0.3s;
-        }
-
-        .nav-months button:hover,
-        .nav-months button.active {
-            background: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .month-container {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 0.5s;
-        }
-
-        .month-container.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .month-title {
-            text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: #667eea;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-bottom: 30px;
-        }
-
-        .day-header {
-            background: #667eea;
-            color: white;
-            padding: 10px 5px;
-            text-align: center;
-            font-weight: bold;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            border-radius: 5px;
-        }
-
-        .day-cell {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 8px;
-            min-height: 80px;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .day-cell:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .day-number {
-            font-weight: bold;
-            color: #495057;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             margin-bottom: 5px;
         }
 
-        .event {
-            background: #e7f3ff;
-            border-left: 3px solid #667eea;
-            padding: 4px;
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .meses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .mes-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .mes-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .mes-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .mes-body {
+            padding: 15px;
+        }
+
+        .evento-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.2s;
+        }
+
+        .evento-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .evento-dia {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .evento-titulo {
+            color: #495057;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .evento-tipo {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: white;
             margin-top: 5px;
-            font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-            border-radius: 3px;
-            line-height: 1.3;
         }
 
-        .event.feriado {
-            background: #ffe7e7;
-            border-left-color: #dc3545;
-        }
+        .tipo-aniversario { background: #e91e63; }
+        .tipo-casamento { background: #ff9800; }
+        .tipo-reuniao { background: #2196f3; }
+        .tipo-missa { background: #9c27b0; }
+        .tipo-feriado { background: #f44336; }
+        .tipo-outro { background: #607d8b; }
 
-        .event.aniversario {
-            background: #fff3cd;
-            border-left-color: #ffc107;
-        }
-
-        .event.reuniao {
-            background: #d4edda;
-            border-left-color: #28a745;
-        }
-
-        .event.missa {
-            background: #e7e7ff;
-            border-left-color: #6610f2;
-        }
-
-        .empty-cell {
-            background: transparent;
-            border: none;
-        }
-
-        /* Responsividade para mobile */
-        @media (max-width: 768px) {
-            body {
-                padding: 5px;
-            }
-
-            .container {
-                border-radius: 10px;
-            }
-
-            header {
-                padding: 15px 10px;
-            }
-
-            .nav-months {
-                padding: 10px;
-                gap: 5px;
-            }
-
-            .nav-months button {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-            }
-
-            .month-container {
-                padding: 10px;
-            }
-
-            .calendar-grid {
-                gap: 3px;
-            }
-
-            .day-cell {
-                min-height: 70px;
-                padding: 5px;
-            }
-
-            .day-header {
-                padding: 8px 2px;
-                font-size: 0.7rem;
-            }
-
-            .event {
-                padding: 3px;
-                margin-top: 3px;
-                font-size: 0.65rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .day-cell {
-                min-height: 60px;
-                padding: 3px;
-            }
-
-            .event {
-                font-size: 0.6rem;
-                padding: 2px;
-            }
+        .mes-vazio {
+            text-align: center;
+            color: #95a5a6;
+            padding: 30px;
+            font-style: italic;
         }
 
         footer {
@@ -232,152 +136,61 @@
             color: #6c757d;
             font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
+
+        .btn-voltar {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .meses-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .mes-header {
+                font-size: 1.1em;
+                padding: 12px;
+            }
+
+            .evento-item {
+                padding: 10px;
+            }
+
+            .evento-dia {
+                font-size: 1em;
+            }
+
+            .evento-titulo {
+                font-size: 0.85em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📅 Calendário Equipe 06</h1>
-            <p>Ano 2026</p>
+            <h1>📅 Calendário 2026</h1>
+            <p>Equipe 06 - Nossa Senhora da Paz</p>
         </header>
 
-        <div class="nav-months">
-            <button onclick="showMonth(0)" class="active">Janeiro</button>
-            <button onclick="showMonth(1)">Fevereiro</button>
-            <button onclick="showMonth(2)">Março</button>
-            <button onclick="showMonth(3)">Abril</button>
-            <button onclick="showMonth(4)">Maio</button>
-            <button onclick="showMonth(5)">Junho</button>
-            <button onclick="showMonth(6)">Julho</button>
-            <button onclick="showMonth(7)">Agosto</button>
-            <button onclick="showMonth(8)">Setembro</button>
-            <button onclick="showMonth(9)">Outubro</button>
-            <button onclick="showMonth(10)">Novembro</button>
-            <button onclick="showMonth(11)">Dezembro</button>
-        </div>
+        <a href="index.html" class="btn-voltar">← Voltar ao Sistema</a>
 
-        <div id="month-0" class="month-container active">
-            <h2 class="month-title">Janeiro 2026</h2>
-            <div class="calendar-grid">
-                <div class="day-header">DOM</div>
-                <div class="day-header">SEG</div>
-                <div class="day-header">TER</div>
-                <div class="day-header">QUA</div>
-                <div class="day-header">QUI</div>
-                <div class="day-header">SEX</div>
-                <div class="day-header">SÁB</div>
-
-                <div class="day-cell empty-cell"></div>
-                <div class="day-cell empty-cell"></div>
-                <div class="day-cell empty-cell"></div>
-                <div class="day-cell empty-cell"></div>
-                <div class="day-cell">
-                    <div class="day-number">1</div>
-                    <div class="event feriado">Feriado de Ano Novo</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">2</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">3</div>
-                </div>
-
-                <div class="day-cell">
-                    <div class="day-number">4</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">5</div>
-                    <div class="event reuniao">Reunião Setor A</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">6</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">7</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">8</div>
-                    <div class="event aniversario">Aniversário Rodrigo (Mazé e Hamilton)</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">9</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">10</div>
-                </div>
-
-                <div class="day-cell">
-                    <div class="day-number">11</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">12</div>
-                    <div class="event reuniao">Reunião de Calendário - Casal Anfitrião Ana Lucia e Nelson</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">13</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">14</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">15</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">16</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">17</div>
-                </div>
-
-                <div class="day-cell">
-                    <div class="day-number">18</div>
-                    <div class="event missa">Missa Mensal Setor A</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">19</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">20</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">21</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">22</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">23</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">24</div>
-                </div>
-
-                <div class="day-cell">
-                    <div class="day-number">25</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">26</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">27</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">28</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">29</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">30</div>
-                </div>
-                <div class="day-cell">
-                    <div class="day-number">31</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Adicione os outros meses seguindo o mesmo padrão -->
-        <!-- Por brevidade, vou criar a estrutura JavaScript que gera todos os meses -->
+        <div class="meses-grid" id="calendarioContainer"></div>
 
         <footer>
             <p>Calendário Equipe 06 - 2026 | Desenvolvido para visualização responsiva</p>
@@ -385,50 +198,129 @@
     </div>
 
     <script>
-        function showMonth(monthIndex) {
-            // Esconde todos os meses
-            const months = document.querySelectorAll('.month-container');
-            months.forEach(month => month.classList.remove('active'));
+        // Dados do calendário (extraídos do PDF)
+        const eventos2026 = {
+            1: [ // Janeiro
+                { dia: 1, titulo: 'Feriado de Ano Novo', tipo: 'feriado' },
+                { dia: 8, titulo: 'Aniversário Rodrigo (Mazé e Hamilton)', tipo: 'aniversario' },
+                { dia: 12, titulo: 'Reunião de Calendário - Casal Anfitrião Ana Lucia e Nelson', tipo: 'reuniao' },
+                { dia: 18, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            2: [ // Fevereiro
+                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
+                { dia: 16, titulo: 'Carnaval', tipo: 'feriado' },
+                { dia: 17, titulo: 'Carnaval', tipo: 'feriado' },
+                { dia: 18, titulo: 'Quarta-feira de Cinzas', tipo: 'feriado' }
+            ],
+            3: [ // Março
+                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
+                { dia: 26, titulo: 'Aniversário Ana Amélia (Ana Lucia e Nelson)', tipo: 'aniversario' }
+            ],
+            4: [ // Abril
+                { dia: 3, titulo: 'Sexta-feira Santa', tipo: 'feriado' },
+                { dia: 5, titulo: 'Páscoa', tipo: 'feriado' },
+                { dia: 13, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 19, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
+                { dia: 21, titulo: 'Tiradentes', tipo: 'feriado' }
+            ],
+            5: [ // Maio
+                { dia: 1, titulo: 'Dia do Trabalho', tipo: 'feriado' },
+                { dia: 11, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 17, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            6: [ // Junho
+                { dia: 4, titulo: 'Corpus Christi', tipo: 'feriado' },
+                { dia: 8, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 21, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            7: [ // Julho
+                { dia: 13, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 19, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            8: [ // Agosto
+                { dia: 10, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 16, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            9: [ // Setembro
+                { dia: 7, titulo: 'Independência do Brasil', tipo: 'feriado' },
+                { dia: 14, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 16, titulo: 'Aniversário Antônio (Ana Lucia e Nelson)', tipo: 'aniversario' },
+                { dia: 20, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            10: [ // Outubro
+                { dia: 12, titulo: 'Nossa Senhora Aparecida', tipo: 'feriado' },
+                { dia: 12, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 18, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
+            ],
+            11: [ // Novembro
+                { dia: 2, titulo: 'Finados', tipo: 'feriado' },
+                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 15, titulo: 'Proclamação da República', tipo: 'feriado' },
+                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
+                { dia: 20, titulo: 'Consciência Negra', tipo: 'feriado' }
+            ],
+            12: [ // Dezembro
+                { dia: 14, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
+                { dia: 20, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
+                { dia: 25, titulo: 'Natal', tipo: 'feriado' }
+            ]
+        };
 
-            // Remove active dos botões
-            const buttons = document.querySelectorAll('.nav-months button');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        const mesesNomes = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
 
-            // Mostra o mês selecionado
-            document.getElementById(`month-${monthIndex}`).classList.add('active');
-            buttons[monthIndex].classList.add('active');
+        const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
-            // Scroll para o topo
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function renderizarCalendario() {
+            const container = document.getElementById('calendarioContainer');
+            container.innerHTML = '';
+
+            for (let mes = 1; mes <= 12; mes++) {
+                const mesCard = document.createElement('div');
+                mesCard.className = 'mes-card';
+
+                const mesHeader = document.createElement('div');
+                mesHeader.className = 'mes-header';
+                mesHeader.textContent = mesesNomes[mes - 1] + ' 2026';
+
+                const mesBody = document.createElement('div');
+                mesBody.className = 'mes-body';
+
+                const eventosDoMes = eventos2026[mes] || [];
+
+                if (eventosDoMes.length === 0) {
+                    mesBody.innerHTML = '<div class="mes-vazio">Nenhum evento cadastrado</div>';
+                } else {
+                    eventosDoMes.sort((a, b) => a.dia - b.dia);
+
+                    eventosDoMes.forEach(evento => {
+                        const data = new Date(2026, mes - 1, evento.dia);
+                        const diaSemana = diasSemana[data.getDay()];
+
+                        const eventoDiv = document.createElement('div');
+                        eventoDiv.className = 'evento-item';
+
+                        eventoDiv.innerHTML = `
+                            <div class="evento-dia">${evento.dia} - ${diaSemana}</div>
+                            <div class="evento-titulo">${evento.titulo}</div>
+                            <span class="evento-tipo tipo-${evento.tipo}">${evento.tipo.toUpperCase()}</span>
+                        `;
+
+                        mesBody.appendChild(eventoDiv);
+                    });
+                }
+
+                mesCard.appendChild(mesHeader);
+                mesCard.appendChild(mesBody);
+                container.appendChild(mesCard);
+            }
         }
 
-        // Detecta swipe em mobile para navegar entre meses
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const activeMonth = document.querySelector('.month-container.active');
-            const currentIndex = parseInt(activeMonth.id.split('-')[1]);
-
-            if (touchEndX < touchStartX - 50 && currentIndex < 11) {
-                // Swipe left - próximo mês
-                showMonth(currentIndex + 1);
-            }
-
-            if (touchEndX > touchStartX + 50 && currentIndex > 0) {
-                // Swipe right - mês anterior
-                showMonth(currentIndex - 1);
-            }
-        }
+        renderizarCalendario();
     </script>
 </body>
 </html>
