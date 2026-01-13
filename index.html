@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENS - Equipe 06 - Nossa Senhora da Paz</title>
+    <title>ENS - Equipe 06</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #FFF5F5 0%, #EDE8E1 100%);
@@ -20,15 +20,10 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             border-radius: 15px;
             margin-bottom: 30px;
-            border: 1px solid #e9ecef;
             text-align: center;
         }
 
-        header h1 { 
-            font-size: 2.2em; 
-            margin-bottom: 10px; 
-            font-weight: 700; 
-        }
+        header h1 { font-size: 2em; margin-bottom: 10px; }
 
         .tabs {
             display: flex;
@@ -47,15 +42,8 @@
             transition: all 0.3s;
         }
 
-        .tab:hover { 
-            border-color: #B85555; 
-            transform: translateY(-2px); 
-        }
-
-        .tab.active { 
-            background: #D97B7B; 
-            color: white; 
-        }
+        .tab:hover { border-color: #B85555; transform: translateY(-2px); }
+        .tab.active { background: #D97B7B; color: white; border-color: #D97B7B; }
 
         .section { display: none; }
         .section.active { display: block; }
@@ -87,327 +75,461 @@
         }
 
         .btn-primary { background: #88AB75; color: white; }
-        .btn-primary:hover { background: #6B8E5F; transform: translateY(-2px); }
+        .btn-primary:hover { background: #6B8E5F; }
         .btn-secondary { background: #5F9EA0; color: white; }
-        .btn-danger { background: #E89A9A; color: white; }
+        .btn-danger { background: #D97B7B; color: white; }
 
-        /* CALENDÁRIO 2026 VISUAL */
-        .meses-grid-visual {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .mes-card-visual {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .mes-card-visual:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border-color: #667eea;
-        }
-
-        .mes-header-visual {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        .mes-body-visual {
-            padding: 15px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .evento-item-visual {
-            background: #f8f9fa;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            transition: all 0.2s;
-            font-size: 0.9em;
-        }
-
-        .evento-item-visual:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .evento-dia-visual {
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 3px;
-            font-size: 0.95em;
         }
 
-        .evento-titulo-visual {
-            color: #495057;
-            font-size: 0.85em;
-            line-height: 1.3;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .item-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #88AB75;
+        }
+
+        .item-card h3 { color: #2c3e50; margin-bottom: 10px; }
+        .item-card p { color: #666; margin: 5px 0; }
+
+        .lista-vazia {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-style: italic;
         }
 
         @media (max-width: 768px) {
             body { padding: 10px; }
-            header { padding: 15px; }
             header h1 { font-size: 1.5em; }
-            .tabs { gap: 8px; }
             .tab { padding: 12px 20px; font-size: 0.9em; }
-            .card { padding: 15px; }
-            .meses-grid-visual { grid-template-columns: 1fr; gap: 15px; }
-            .mes-body-visual { max-height: 300px; }
+            .card { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>📅 ENS - Equipe 06</h1>
-        <p>Nossa Senhora da Paz</p>
+        <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
+        <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
+        </p>
     </header>
 
     <div class="tabs">
-        <div class="tab active" onclick="mostrarSecao('calendario2026')">📆 Calendário 2026</div>
+        <div class="tab" onclick="abrirCalendario()">📆 Calendário 2026</div>
+        <div class="tab active" onclick="mostrarSecao('roteiro')">📋 Roteiro de Reunião</div>
+        <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
+        <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
+        <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
+        <div class="tab" onclick="mostrarSecao('backup')">💾 Backup</div>
     </div>
 
-    <!-- CALENDÁRIO 2026 -->
-    <div id="calendario2026Section" class="section active">
+    <!-- ROTEIRO DE REUNIÃO -->
+    <div id="roteiroSection" class="section active">
         <div class="card">
-            <h2>📅 Calendário 2026 - Equipe 06</h2>
+            <h2>📋 Roteiro de Reunião</h2>
+            
+            <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>📎 Upload de Arquivos:</strong> Adicione documentos Word ou PDF (máx 10MB)</p>
+            </div>
 
-            <div class="meses-grid-visual" id="calendarioContainer"></div>
+            <div style="margin-bottom: 20px;">
+                <input type="file" id="fileUpload" accept=".doc,.docx,.pdf" style="display: none;">
+                <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
+                    📤 Fazer Upload de Arquivo
+                </button>
+            </div>
+
+            <div id="arquivosLista"></div>
+        </div>
+    </div>
+
+    <!-- CASAIS -->
+    <div id="casaisSection" class="section">
+        <div class="card">
+            <h2>👥 Gestão de Casais</h2>
+            
+            <button class="btn btn-primary" onclick="mostrarFormCasal()">➕ Adicionar Casal</button>
+            
+            <div id="formCasal" style="display: none; background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <h3>Novo Casal</h3>
+                <div class="form-group">
+                    <label>Nome da Esposa:</label>
+                    <input type="text" id="nomeEsposa">
+                </div>
+                <div class="form-group">
+                    <label>Nome do Esposo:</label>
+                    <input type="text" id="nomeEsposo">
+                </div>
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <input type="tel" id="telefoneCasal">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="emailCasal">
+                </div>
+                <div class="form-group">
+                    <label>Endereço:</label>
+                    <textarea id="enderecoCasal" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="salvarCasal()">💾 Salvar</button>
+                <button class="btn btn-secondary" onclick="cancelarFormCasal()">❌ Cancelar</button>
+            </div>
+
+            <div id="casaisLista" style="margin-top: 30px;"></div>
+        </div>
+    </div>
+
+    <!-- CONSELHEIRO -->
+    <div id="conselheiroSection" class="section">
+        <div class="card">
+            <h2>✝️ Conselheiro Espiritual</h2>
+            
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" id="nomeConselheiro">
+            </div>
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="tel" id="telefoneConselheiro">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="emailConselheiro">
+            </div>
+            <div class="form-group">
+                <label>Paróquia:</label>
+                <input type="text" id="paroquiaConselheiro">
+            </div>
+            
+            <button class="btn btn-primary" onclick="salvarConselheiro()">💾 Salvar Dados</button>
+        </div>
+    </div>
+
+    <!-- FORMULÁRIOS -->
+    <div id="formulariosSection" class="section">
+        <div class="card">
+            <h2>📝 Formulários</h2>
+            
+            <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>📋 Formulários Oficiais:</strong> Vida de Equipe, Reunião Mensal e Reunião Preparatória</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 3em;">📊</div>
+                    <h3>Vida de Equipe</h3>
+                    <p style="color: #666; margin: 10px 0;">Formulário de acompanhamento</p>
+                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 3em;">📅</div>
+                    <h3>Reunião Mensal</h3>
+                    <p style="color: #666; margin: 10px 0;">Registro da reunião formal</p>
+                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 3em;">📋</div>
+                    <h3>Reunião Preparatória</h3>
+                    <p style="color: #666; margin: 10px 0;">Planejamento da reunião</p>
+                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACKUP -->
+    <div id="backupSection" class="section">
+        <div class="card">
+            <h2>💾 Backup e Restauração</h2>
+            
+            <div style="background: #FFF9E6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p><strong>⚠️ Importante:</strong> Faça backup regular dos seus dados!</p>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                <button class="btn btn-primary" onclick="exportarDados()">📤 Exportar Dados</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Importar Dados</button>
+                <button class="btn btn-danger" onclick="limparDados()">🗑️ Limpar Tudo</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importarDados(event)">
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <h3>📊 Estatísticas</h3>
+                <p><strong>Casais cadastrados:</strong> <span id="statCasais">0</span></p>
+                <p><strong>Arquivos no roteiro:</strong> <span id="statArquivos">0</span></p>
+                <p><strong>Último backup:</strong> <span id="statBackup">Nunca</span></p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Dados extraídos do PDF
-        const eventos2026 = {
-            'JANEIRO': [
-                { dia: 1, titulo: 'Feriado de Ano Novo' },
-                { dia: 5, titulo: 'Reunião Setor A' },
-                { dia: 8, titulo: 'Aniversário Rodrigo (Mazé e Hamilton)' },
-                { dia: 12, titulo: 'Reunião de Calendário - Casal Anfitrião Ana Lucia e Nelson' },
-                { dia: 18, titulo: 'Missa Mensal Setor A' }
-            ],
-            'FEVEREIRO': [
-                { dia: 1, titulo: 'Aniversários: Padre Alex e Bernadette' },
-                { dia: 2, titulo: 'EACRE' },
-                { dia: 8, titulo: 'Carnaval' },
-                { dia: 9, titulo: 'Missa Acolhimento Padre Alex Nova Paróquia / 1ª Reunião Formal - Casal Anfitrião: Ana Amélia e Rodrigues' },
-                { dia: 15, titulo: 'Missa Mensal Setor B' },
-                { dia: 16, titulo: 'Carnaval' },
-                { dia: 17, titulo: 'Carnaval' },
-                { dia: 18, titulo: '4ª Feira de Cinzas (Jejum e Abstinência)' },
-                { dia: 21, titulo: 'Casamento Lucinha e Ivan' },
-                { dia: 23, titulo: 'Reunião Preparatória / EACRE' }
-            ],
-            'MARÇO': [
-                { dia: 1, titulo: 'Encontro dos Jurássicos' },
-                { dia: 8, titulo: 'Feriado Carta Magna' },
-                { dia: 9, titulo: 'Reunião Preparatória' },
-                { dia: 14, titulo: 'Casamento Delane e Demócrito' },
-                { dia: 15, titulo: 'Missa Mensal Setor C' },
-                { dia: 19, titulo: 'Dia de São José' },
-                { dia: 20, titulo: 'Aniversário Thereza (Lucinha e Ivan)' },
-                { dia: 21, titulo: 'Retiro para Casais em Missão / Aniversário Ivan' },
-                { dia: 22, titulo: 'Retiro para Casais em Missão / Aniversário Samuel (Ana Lucia e Nelson)' },
-                { dia: 23, titulo: '2ª Reunião Formal - Casal Anfitrião: Bernadette e Jackson' },
-                { dia: 26, titulo: 'Aniversário Ana Amélia' },
-                { dia: 27, titulo: 'Aniversário Onasy' },
-                { dia: 28, titulo: 'Retiro para Casais em Missão' },
-                { dia: 29, titulo: 'Pós EACRE Setor A / Noite de Oração' },
-                { dia: 30, titulo: '1ª Reunião Setor A / 1º Colegiado Setor A' }
-            ],
-            'ABRIL': [
-                { dia: 3, titulo: 'Sexta-feira Santa' },
-                { dia: 4, titulo: 'Sábado de Aleluia' },
-                { dia: 5, titulo: 'Domingo de Páscoa' },
-                { dia: 6, titulo: 'Reunião Setor A' },
-                { dia: 8, titulo: 'Retiro Setor A 01-04-08-22-15' },
-                { dia: 9, titulo: 'Retiro Setor A 01-04-08-22-15' },
-                { dia: 12, titulo: 'Retiro Setor A 01-04-08-22-15' },
-                { dia: 20, titulo: 'Aniversário Lucinha' },
-                { dia: 21, titulo: 'Feriado Tiradentes' },
-                { dia: 22, titulo: 'Encontro Sacerdotes Região CE I e IV' },
-                { dia: 23, titulo: 'Encontro Sacerdotes Região CE I e IV' },
-                { dia: 24, titulo: 'Formação SER Movimento' },
-                { dia: 27, titulo: '3ª Reunião Formal - Casal Anfitrião: Delane e Demócrito' },
-                { dia: 28, titulo: 'Aniversário Marília (Delane e Demócrito)' },
-                { dia: 29, titulo: 'Aniversário Lia Maria (Bernadette e Jackson)' },
-                { dia: 30, titulo: 'Missa Mensal Setor Caucaia / SER Movimento' }
-            ],
-            'MAIO': [
-                { dia: 1, titulo: 'Dia do Trabalho / Aniversário Mateus (Ana Lucia e Nelson)' },
-                { dia: 4, titulo: 'Reunião Setor A / Horizontal' },
-                { dia: 10, titulo: 'Dia das Mães / Horizontal' },
-                { dia: 11, titulo: 'Formação SER Igreja / Horizontal' },
-                { dia: 17, titulo: 'Missa Mensal Setor A / Horizontal' },
-                { dia: 18, titulo: 'Formação Casal Ligação / Horizontal' },
-                { dia: 19, titulo: 'Aniversário Colling (Joyce e Onasy) / Horizontal' },
-                { dia: 23, titulo: 'Aniversário ENS Região I e IV / Horizontal' },
-                { dia: 24, titulo: 'Aniversário Ângelo (Casal Ligação) / Horizontal' },
-                { dia: 25, titulo: '4ª Reunião Formal - Casal Anfitrião: Joyce e Onasy / 2º Colegiado Setor A / Horizontal' },
-                { dia: 26, titulo: 'Reunião Preparatória / Horizontal' },
-                { dia: 29, titulo: 'Aniversário Padre Watson / Horizontal' }
-            ],
-            'JUNHO': [
-                { dia: 1, titulo: 'Aniversário Leonardo (Ana Amélia e Rodrigues)' },
-                { dia: 2, titulo: 'Reunião Setor A' },
-                { dia: 3, titulo: 'Aniversário Pedro (Delane e Demócrito)' },
-                { dia: 4, titulo: 'Corpus Christi' },
-                { dia: 5, titulo: 'São João Região CE IV' },
-                { dia: 7, titulo: 'Informal' },
-                { dia: 12, titulo: 'Aniversário Mazé' },
-                { dia: 13, titulo: 'Comemoração Namorados' },
-                { dia: 15, titulo: 'Noite de Oração' },
-                { dia: 21, titulo: 'Formação Experiência Comunitária' },
-                { dia: 22, titulo: '5ª Reunião Formal - Casal Anfitrião: Lucinha e Ivan' },
-                { dia: 23, titulo: 'Aniversário Carolina (Mazé e Hamilton)' },
-                { dia: 24, titulo: 'Reunião Preparatória' },
-                { dia: 26, titulo: '2º Retiro Setor A 02-09-16-20' },
-                { dia: 27, titulo: '2º Retiro Setor A 02-09-16-20' },
-                { dia: 28, titulo: '2º Retiro Setor A 02-09-16-20 / Missa Mensal B' }
-            ],
-            'JULHO': [
-                { dia: 1, titulo: 'Aniversário Marcos (Joyce e Onasy)' },
-                { dia: 2, titulo: 'Aniversário Bruno (Bernadette e Jackson)' },
-                { dia: 4, titulo: 'Aniversário Hamilton / Formação SER Cristão' },
-                { dia: 6, titulo: 'Aniversário Delane' },
-                { dia: 7, titulo: 'Reunião Setor A' },
-                { dia: 10, titulo: '3º Retiro Setor A 06-05-14-23' },
-                { dia: 11, titulo: '3º Retiro Setor A 06-05-14-23' },
-                { dia: 12, titulo: '3º Retiro Setor A 06-05-14-23' },
-                { dia: 15, titulo: '46º Ano ENS Região CE I e IV' },
-                { dia: 17, titulo: 'Casamento Ana Amélia e Rodrigues' },
-                { dia: 19, titulo: 'Aniversário Paulinha (Lucinha e Ivan)' },
-                { dia: 21, titulo: 'Reunião Preparatória / Aniversário Mariana (Ana Amélia e Rodrigues)' },
-                { dia: 24, titulo: 'Casamento Mazé e Hamilton' },
-                { dia: 26, titulo: 'Missa Mensal Setor C' },
-                { dia: 27, titulo: '6ª Reunião Formal - Casal Anfitrião: Mazé e Hamilton' },
-                { dia: 28, titulo: 'Aniversário Nascimento Padre Caffarel' }
-            ],
-            'AGOSTO': [
-                { dia: 2, titulo: 'Festa dos Sacerdotes' },
-                { dia: 4, titulo: 'Reunião Setor A' },
-                { dia: 6, titulo: 'Aniversário Joyce' },
-                { dia: 8, titulo: 'AE´s Região CE I e IV' },
-                { dia: 9, titulo: 'Dia dos Pais' },
-                { dia: 14, titulo: 'Aniversário Jackson' },
-                { dia: 17, titulo: '3º Colegiado Setor A' },
-                { dia: 19, titulo: 'Reunião Preparatória' },
-                { dia: 20, titulo: 'Noite de Oração' },
-                { dia: 21, titulo: 'Aniversário Ana Lucia' },
-                { dia: 22, titulo: 'Aniversário Demócrito' },
-                { dia: 24, titulo: '7ª Reunião Formal - Casal Anfitrião: Ana Lucia e Nelson' },
-                { dia: 29, titulo: 'Mutirão Setor A' },
-                { dia: 30, titulo: 'Missa Mensal Setor Caucaia' }
-            ],
-            'SETEMBRO': [
-                { dia: 6, titulo: 'Aniversário Ivan Junior (Lucinha e Ivan)' },
-                { dia: 7, titulo: 'Independência do Brasil / 4º Retiro Setor A 07-11-12-21' },
-                { dia: 8, titulo: 'Reunião Setor A' },
-                { dia: 12, titulo: 'Casamento Ana Lucia e Nelson / 4º Retiro Setor A 07-11-12-21' },
-                { dia: 13, titulo: 'Horizontal' },
-                { dia: 16, titulo: 'Aniversário Rodrigues / Horizontal' },
-                { dia: 17, titulo: 'Casamento Joyce e Onasy / Horizontal' },
-                { dia: 18, titulo: '4º Retiro Setor A 07-11-12-21 / Horizontal' },
-                { dia: 19, titulo: 'Jornada Padre Caffarel / Horizontal' },
-                { dia: 20, titulo: 'Jornada Padre Caffarel / Horizontal' },
-                { dia: 21, titulo: 'Reunião Preparatória / Horizontal' },
-                { dia: 23, titulo: 'Aniversário Émerson (Joyce e Onasy) / Horizontal' },
-                { dia: 26, titulo: 'Jornada Padre Caffarel' },
-                { dia: 27, titulo: 'Missa Mensal Setor A / Interequipes' },
-                { dia: 28, titulo: '8ª Reunião Formal - Casal Anfitrião: Ana Amélia e Rodrigues' }
-            ],
-            'OUTUBRO': [
-                { dia: 1, titulo: 'Início do Discernimento de CRE 2027' },
-                { dia: 4, titulo: 'Eleições 2026 1º Turno' },
-                { dia: 6, titulo: 'Reunião Setor A' },
-                { dia: 12, titulo: 'Nossa Senhora Aparecida / Casamento Bernadette e Jackson' },
-                { dia: 21, titulo: 'Reunião Preparatória' },
-                { dia: 25, titulo: 'Eleições 2026 2º Turno' },
-                { dia: 26, titulo: '9ª Reunião Formal - Casal Anfitrião: Bernadette e Jackson' },
-                { dia: 31, titulo: 'Fim do Discernimento de CRE 2027' }
-            ],
-            'NOVEMBRO': [
-                { dia: 2, titulo: 'Dia de Finados' },
-                { dia: 3, titulo: 'Reunião Setor A' },
-                { dia: 15, titulo: 'Proclamação da República / Pré-EACRE' },
-                { dia: 18, titulo: 'Casamento Ângelo e Élida (Casal Ligação)' },
-                { dia: 19, titulo: 'Noite de Oração' },
-                { dia: 20, titulo: 'Consciência Negra / Aniversário Nelson / 5º Retiro Setor A 03-10-13-19' },
-                { dia: 21, titulo: '5º Retiro Setor A 03-10-13-19' },
-                { dia: 22, titulo: '5º Retiro Setor A 03-10-13-19' },
-                { dia: 23, titulo: 'Ordenação Padre Watson' },
-                { dia: 26, titulo: 'Aniversário Sílvia (Joyce e Onasy)' }
-            ],
-            'DEZEMBRO': [
-                { dia: 1, titulo: 'Reunião Setor A' },
-                { dia: 5, titulo: 'Confraternização Equipe 06' },
-                { dia: 7, titulo: 'Reunião do Setor A' },
-                { dia: 11, titulo: 'Aniversário Lúcio (Ana Amélia e Rodrigues)' },
-                { dia: 14, titulo: 'Aniversário Júlio César (Ana Amélia e Rodrigues)' },
-                { dia: 21, titulo: 'Ordenação Padre Alex' },
-                { dia: 25, titulo: 'Natal' },
-                { dia: 26, titulo: 'Natal' },
-                { dia: 31, titulo: 'Reveillon' }
-            ]
-        };
-
-        function renderizarCalendario() {
-            const container = document.getElementById('calendarioContainer');
-            container.innerHTML = '';
-
-            Object.keys(eventos2026).forEach(mes => {
-                const mesCard = document.createElement('div');
-                mesCard.className = 'mes-card-visual';
-
-                const mesHeader = document.createElement('div');
-                mesHeader.className = 'mes-header-visual';
-                mesHeader.textContent = mes + ' 2026';
-
-                const mesBody = document.createElement('div');
-                mesBody.className = 'mes-body-visual';
-
-                const eventosDoMes = eventos2026[mes];
-                eventosDoMes.sort((a, b) => a.dia - b.dia);
-
-                eventosDoMes.forEach(evento => {
-                    const eventoDiv = document.createElement('div');
-                    eventoDiv.className = 'evento-item-visual';
-
-                    eventoDiv.innerHTML = `
-                        <div class="evento-dia-visual">Dia ${evento.dia}</div>
-                        <div class="evento-titulo-visual">${evento.titulo}</div>
-                    `;
-
-                    mesBody.appendChild(eventoDiv);
-                });
-
-                mesCard.appendChild(mesHeader);
-                mesCard.appendChild(mesBody);
-                container.appendChild(mesCard);
-            });
-        }
-
-        function mostrarSecao(nome) {
+        // Funções de navegação
+        function mostrarSecao(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-            document.getElementById(nome + 'Section').classList.add('active');
+            
+            document.getElementById(id + 'Section').classList.add('active');
             event.target.classList.add('active');
+            
+            if (id === 'roteiro') carregarArquivos();
+            if (id === 'casais') carregarCasais();
+            if (id === 'conselheiro') carregarConselheiro();
+            if (id === 'backup') atualizarEstatisticas();
         }
 
-        renderizarCalendario();
+        function abrirCalendario() {
+            window.open('calendario_equipe_06_2026.html', '_blank');
+        }
+
+        // LocalStorage
+        function salvar(chave, dados) {
+            localStorage.setItem(chave, JSON.stringify(dados));
+        }
+
+        function carregar(chave) {
+            const dados = localStorage.getItem(chave);
+            return dados ? JSON.parse(dados) : null;
+        }
+
+        // ROTEIRO DE REUNIÃO
+        document.getElementById('fileUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            if (file.size > 10 * 1024 * 1024) {
+                alert('❌ Arquivo muito grande! Máximo 10MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const arquivos = carregar('arquivos') || [];
+                arquivos.push({
+                    nome: file.name,
+                    tipo: file.type,
+                    tamanho: (file.size / 1024 / 1024).toFixed(2) + ' MB',
+                    data: new Date().toLocaleDateString('pt-BR'),
+                    conteudo: event.target.result
+                });
+                salvar('arquivos', arquivos);
+                carregarArquivos();
+                alert('✅ Arquivo enviado com sucesso!');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function carregarArquivos() {
+            const arquivos = carregar('arquivos') || [];
+            const lista = document.getElementById('arquivosLista');
+            
+            if (arquivos.length === 0) {
+                lista.innerHTML = '<div class="lista-vazia">📭 Nenhum arquivo enviado</div>';
+                return;
+            }
+
+            lista.innerHTML = arquivos.map((arq, idx) => `
+                <div class="item-card">
+                    <h3>${arq.nome}</h3>
+                    <p>📅 Data: ${arq.data} | 📦 Tamanho: ${arq.tamanho}</p>
+                    <button class="btn btn-secondary" onclick="baixarArquivo(${idx})">⬇️ Baixar</button>
+                    <button class="btn btn-danger" onclick="excluirArquivo(${idx})">🗑️ Excluir</button>
+                </div>
+            `).join('');
+        }
+
+        function baixarArquivo(idx) {
+            const arquivos = carregar('arquivos');
+            const arq = arquivos[idx];
+            const link = document.createElement('a');
+            link.href = arq.conteudo;
+            link.download = arq.nome;
+            link.click();
+        }
+
+        function excluirArquivo(idx) {
+            if (!confirm('Excluir este arquivo?')) return;
+            const arquivos = carregar('arquivos');
+            arquivos.splice(idx, 1);
+            salvar('arquivos', arquivos);
+            carregarArquivos();
+        }
+
+        // CASAIS
+        function mostrarFormCasal() {
+            document.getElementById('formCasal').style.display = 'block';
+        }
+
+        function cancelarFormCasal() {
+            document.getElementById('formCasal').style.display = 'none';
+            limparFormCasal();
+        }
+
+        function limparFormCasal() {
+            document.getElementById('nomeEsposa').value = '';
+            document.getElementById('nomeEsposo').value = '';
+            document.getElementById('telefoneCasal').value = '';
+            document.getElementById('emailCasal').value = '';
+            document.getElementById('enderecoCasal').value = '';
+        }
+
+        function salvarCasal() {
+            const casal = {
+                esposa: document.getElementById('nomeEsposa').value,
+                esposo: document.getElementById('nomeEsposo').value,
+                telefone: document.getElementById('telefoneCasal').value,
+                email: document.getElementById('emailCasal').value,
+                endereco: document.getElementById('enderecoCasal').value
+            };
+
+            if (!casal.esposa || !casal.esposo) {
+                alert('❌ Preencha os nomes do casal!');
+                return;
+            }
+
+            const casais = carregar('casais') || [];
+            casais.push(casal);
+            salvar('casais', casais);
+            
+            alert('✅ Casal salvo com sucesso!');
+            cancelarFormCasal();
+            carregarCasais();
+        }
+
+        function carregarCasais() {
+            const casais = carregar('casais') || [];
+            const lista = document.getElementById('casaisLista');
+            
+            if (casais.length === 0) {
+                lista.innerHTML = '<div class="lista-vazia">👥 Nenhum casal cadastrado</div>';
+                return;
+            }
+
+            lista.innerHTML = casais.map((casal, idx) => `
+                <div class="item-card">
+                    <h3>${casal.esposa} e ${casal.esposo}</h3>
+                    <p>📞 ${casal.telefone || 'Não informado'}</p>
+                    <p>✉️ ${casal.email || 'Não informado'}</p>
+                    <p>📍 ${casal.endereco || 'Não informado'}</p>
+                    <button class="btn btn-danger" onclick="excluirCasal(${idx})">🗑️ Excluir</button>
+                </div>
+            `).join('');
+        }
+
+        function excluirCasal(idx) {
+            if (!confirm('Excluir este casal?')) return;
+            const casais = carregar('casais');
+            casais.splice(idx, 1);
+            salvar('casais', casais);
+            carregarCasais();
+        }
+
+        // CONSELHEIRO
+        function carregarConselheiro() {
+            const cons = carregar('conselheiro');
+            if (cons) {
+                document.getElementById('nomeConselheiro').value = cons.nome || '';
+                document.getElementById('telefoneConselheiro').value = cons.telefone || '';
+                document.getElementById('emailConselheiro').value = cons.email || '';
+                document.getElementById('paroquiaConselheiro').value = cons.paroquia || '';
+            }
+        }
+
+        function salvarConselheiro() {
+            const cons = {
+                nome: document.getElementById('nomeConselheiro').value,
+                telefone: document.getElementById('telefoneConselheiro').value,
+                email: document.getElementById('emailConselheiro').value,
+                paroquia: document.getElementById('paroquiaConselheiro').value
+            };
+            salvar('conselheiro', cons);
+            alert('✅ Dados salvos com sucesso!');
+        }
+
+        // BACKUP
+        function exportarDados() {
+            const dados = {
+                casais: carregar('casais') || [],
+                arquivos: carregar('arquivos') || [],
+                conselheiro: carregar('conselheiro') || {},
+                data: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'backup_equipe06_' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+            
+            salvar('ultimoBackup', new Date().toLocaleString('pt-BR'));
+            alert('✅ Backup exportado com sucesso!');
+        }
+
+        function importarDados(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dados = JSON.parse(e.target.result);
+                    
+                    if (confirm('⚠️ Isso vai substituir todos os dados atuais. Continuar?')) {
+                        salvar('casais', dados.casais || []);
+                        salvar('arquivos', dados.arquivos || []);
+                        salvar('conselheiro', dados.conselheiro || {});
+                        alert('✅ Dados importados com sucesso!');
+                        location.reload();
+                    }
+                } catch (err) {
+                    alert('❌ Arquivo inválido!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function limparDados() {
+            if (!confirm('⚠️ ATENÇÃO: Isso vai apagar TODOS os dados! Continuar?')) return;
+            if (!confirm('Tem certeza absoluta? Esta ação não pode ser desfeita!')) return;
+            
+            localStorage.clear();
+            alert('✅ Todos os dados foram apagados!');
+            location.reload();
+        }
+
+        function atualizarEstatisticas() {
+            const casais = carregar('casais') || [];
+            const arquivos = carregar('arquivos') || [];
+            const ultimoBackup = carregar('ultimoBackup') || 'Nunca';
+            
+            document.getElementById('statCasais').textContent = casais.length;
+            document.getElementById('statArquivos').textContent = arquivos.length;
+            document.getElementById('statBackup').textContent = ultimoBackup;
+        }
+
+        // Carregar ao iniciar
+        window.addEventListener('load', () => {
+            carregarArquivos();
+        });
     </script>
 </body>
 </html>
