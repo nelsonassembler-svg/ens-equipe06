@@ -88,12 +88,33 @@
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 2px solid #ecf0f1;
             border-radius: 8px;
             font-size: 1em;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #88AB75;
+        }
+
+        .form-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
 
         .item-card {
@@ -114,11 +135,16 @@
             font-style: italic;
         }
 
+        #formCasal, #campoMissao {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             body { padding: 10px; }
             header h1 { font-size: 1.5em; }
             .tab { padding: 12px 20px; font-size: 0.9em; }
             .card { padding: 20px; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -167,30 +193,93 @@
             
             <button class="btn btn-primary" onclick="mostrarFormCasal()">➕ Adicionar Casal</button>
             
-            <div id="formCasal" style="display: none; background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                <h3>Novo Casal</h3>
-                <div class="form-group">
-                    <label>Nome da Esposa:</label>
-                    <input type="text" id="nomeEsposa">
+            <div id="formCasal" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">📝 Cadastro de Casal</h3>
+                
+                <!-- Dados do Casal -->
+                <div class="form-section">
+                    <h3>👫 Dados do Casal</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Número nas ENS:</label>
+                            <input type="text" id="numeroENS">
+                        </div>
+                        <div class="form-group">
+                            <label>Data de Aniversário de Casamento:</label>
+                            <input type="date" id="aniverCasamento">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Está em Missão:</label>
+                            <select id="emMissao" onchange="toggleMissao()">
+                                <option value="Não">Não</option>
+                                <option value="Sim">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="campoMissao">
+                            <label>Qual Missão:</label>
+                            <input type="text" id="qualMissao">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Nome do Esposo:</label>
-                    <input type="text" id="nomeEsposo">
+
+                <!-- Dados da Esposa -->
+                <div class="form-section">
+                    <h3>👰 Dados da Esposa</h3>
+                    <div class="form-group">
+                        <label>Nome da Esposa:</label>
+                        <input type="text" id="nomeEsposa">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Data de Aniversário:</label>
+                            <input type="date" id="aniverEsposa">
+                        </div>
+                        <div class="form-group">
+                            <label>Celular:</label>
+                            <input type="tel" id="celularEsposa" placeholder="(85) 99999-9999">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <input type="email" id="emailEsposa">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Telefone:</label>
-                    <input type="tel" id="telefoneCasal">
+
+                <!-- Dados do Esposo -->
+                <div class="form-section">
+                    <h3>🤵 Dados do Esposo</h3>
+                    <div class="form-group">
+                        <label>Nome do Esposo:</label>
+                        <input type="text" id="nomeEsposo">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Data de Aniversário:</label>
+                            <input type="date" id="aniverEsposo">
+                        </div>
+                        <div class="form-group">
+                            <label>Celular:</label>
+                            <input type="tel" id="celularEsposo" placeholder="(85) 99999-9999">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <input type="email" id="emailEsposo">
+                    </div>
                 </div>
+
+                <!-- Observações -->
                 <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="emailCasal">
+                    <label>Observações:</label>
+                    <textarea id="observacoesCasal" rows="4" placeholder="Informações adicionais..."></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Endereço:</label>
-                    <textarea id="enderecoCasal" rows="3"></textarea>
+
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="salvarCasal()">💾 Salvar Casal</button>
+                    <button class="btn btn-secondary" onclick="cancelarFormCasal()">❌ Cancelar</button>
                 </div>
-                <button class="btn btn-primary" onclick="salvarCasal()">💾 Salvar</button>
-                <button class="btn btn-secondary" onclick="cancelarFormCasal()">❌ Cancelar</button>
             </div>
 
             <div id="casaisLista" style="margin-top: 30px;"></div>
@@ -202,21 +291,46 @@
         <div class="card">
             <h2>✝️ Conselheiro Espiritual</h2>
             
-            <div class="form-group">
-                <label>Nome:</label>
-                <input type="text" id="nomeConselheiro">
-            </div>
-            <div class="form-group">
-                <label>Telefone:</label>
-                <input type="tel" id="telefoneConselheiro">
-            </div>
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" id="emailConselheiro">
-            </div>
-            <div class="form-group">
-                <label>Paróquia:</label>
-                <input type="text" id="paroquiaConselheiro">
+            <div class="form-section">
+                <h3>Dados do Conselheiro</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número nas ENS:</label>
+                        <input type="text" id="numeroENSConselheiro">
+                    </div>
+                    <div class="form-group">
+                        <label>Nome do Conselheiro:</label>
+                        <input type="text" id="nomeConselheiro">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data de Aniversário do Conselheiro:</label>
+                        <input type="date" id="aniverConselheiro">
+                    </div>
+                    <div class="form-group">
+                        <label>Data de Aniversário de Ordenação:</label>
+                        <input type="date" id="aniverOrdenacao">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Celular do Conselheiro:</label>
+                        <input type="tel" id="celularConselheiro" placeholder="(85) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <input type="email" id="emailConselheiro">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Paróquia:</label>
+                    <input type="text" id="paroquiaConselheiro">
+                </div>
+                <div class="form-group">
+                    <label>Observações:</label>
+                    <textarea id="observacoesConselheiro" rows="4" placeholder="Informações adicionais..."></textarea>
+                </div>
             </div>
             
             <button class="btn btn-primary" onclick="salvarConselheiro()">💾 Salvar Dados</button>
@@ -311,6 +425,13 @@
             return dados ? JSON.parse(dados) : null;
         }
 
+        // Toggle Missão
+        function toggleMissao() {
+            const select = document.getElementById('emMissao');
+            const campo = document.getElementById('campoMissao');
+            campo.style.display = select.value === 'Sim' ? 'block' : 'none';
+        }
+
         // ROTEIRO DE REUNIÃO
         document.getElementById('fileUpload').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -377,6 +498,7 @@
         // CASAIS
         function mostrarFormCasal() {
             document.getElementById('formCasal').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('formCasal').offsetTop, behavior: 'smooth' });
         }
 
         function cancelarFormCasal() {
@@ -385,23 +507,44 @@
         }
 
         function limparFormCasal() {
+            document.getElementById('numeroENS').value = '';
+            document.getElementById('aniverCasamento').value = '';
+            document.getElementById('emMissao').value = 'Não';
+            document.getElementById('qualMissao').value = '';
             document.getElementById('nomeEsposa').value = '';
+            document.getElementById('aniverEsposa').value = '';
+            document.getElementById('celularEsposa').value = '';
+            document.getElementById('emailEsposa').value = '';
             document.getElementById('nomeEsposo').value = '';
-            document.getElementById('telefoneCasal').value = '';
-            document.getElementById('emailCasal').value = '';
-            document.getElementById('enderecoCasal').value = '';
+            document.getElementById('aniverEsposo').value = '';
+            document.getElementById('celularEsposo').value = '';
+            document.getElementById('emailEsposo').value = '';
+            document.getElementById('observacoesCasal').value = '';
+            toggleMissao();
         }
 
         function salvarCasal() {
             const casal = {
-                esposa: document.getElementById('nomeEsposa').value,
-                esposo: document.getElementById('nomeEsposo').value,
-                telefone: document.getElementById('telefoneCasal').value,
-                email: document.getElementById('emailCasal').value,
-                endereco: document.getElementById('enderecoCasal').value
+                numeroENS: document.getElementById('numeroENS').value,
+                aniverCasamento: document.getElementById('aniverCasamento').value,
+                emMissao: document.getElementById('emMissao').value,
+                qualMissao: document.getElementById('qualMissao').value,
+                esposa: {
+                    nome: document.getElementById('nomeEsposa').value,
+                    aniversario: document.getElementById('aniverEsposa').value,
+                    celular: document.getElementById('celularEsposa').value,
+                    email: document.getElementById('emailEsposa').value
+                },
+                esposo: {
+                    nome: document.getElementById('nomeEsposo').value,
+                    aniversario: document.getElementById('aniverEsposo').value,
+                    celular: document.getElementById('celularEsposo').value,
+                    email: document.getElementById('emailEsposo').value
+                },
+                observacoes: document.getElementById('observacoesCasal').value
             };
 
-            if (!casal.esposa || !casal.esposo) {
+            if (!casal.esposa.nome || !casal.esposo.nome) {
                 alert('❌ Preencha os nomes do casal!');
                 return;
             }
@@ -426,11 +569,22 @@
 
             lista.innerHTML = casais.map((casal, idx) => `
                 <div class="item-card">
-                    <h3>${casal.esposa} e ${casal.esposo}</h3>
-                    <p>📞 ${casal.telefone || 'Não informado'}</p>
-                    <p>✉️ ${casal.email || 'Não informado'}</p>
-                    <p>📍 ${casal.endereco || 'Não informado'}</p>
-                    <button class="btn btn-danger" onclick="excluirCasal(${idx})">🗑️ Excluir</button>
+                    <h3>${casal.esposa.nome} e ${casal.esposo.nome}</h3>
+                    <p><strong>Nº ENS:</strong> ${casal.numeroENS || 'Não informado'}</p>
+                    <p><strong>Aniversário de Casamento:</strong> ${casal.aniverCasamento ? new Date(casal.aniverCasamento + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
+                    <p><strong>Em Missão:</strong> ${casal.emMissao} ${casal.emMissao === 'Sim' ? '- ' + casal.qualMissao : ''}</p>
+                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                    <p><strong>👰 ${casal.esposa.nome}</strong></p>
+                    <p>📅 ${casal.esposa.aniversario ? new Date(casal.esposa.aniversario + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
+                    <p>📱 ${casal.esposa.celular || 'Não informado'}</p>
+                    <p>✉️ ${casal.esposa.email || 'Não informado'}</p>
+                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                    <p><strong>🤵 ${casal.esposo.nome}</strong></p>
+                    <p>📅 ${casal.esposo.aniversario ? new Date(casal.esposo.aniversario + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
+                    <p>📱 ${casal.esposo.celular || 'Não informado'}</p>
+                    <p>✉️ ${casal.esposo.email || 'Não informado'}</p>
+                    ${casal.observacoes ? '<hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;"><p><strong>Obs:</strong> ' + casal.observacoes + '</p>' : ''}
+                    <button class="btn btn-danger" onclick="excluirCasal(${idx})" style="margin-top: 10px;">🗑️ Excluir</button>
                 </div>
             `).join('');
         }
@@ -447,19 +601,27 @@
         function carregarConselheiro() {
             const cons = carregar('conselheiro');
             if (cons) {
+                document.getElementById('numeroENSConselheiro').value = cons.numeroENS || '';
                 document.getElementById('nomeConselheiro').value = cons.nome || '';
-                document.getElementById('telefoneConselheiro').value = cons.telefone || '';
+                document.getElementById('aniverConselheiro').value = cons.aniversario || '';
+                document.getElementById('aniverOrdenacao').value = cons.ordenacao || '';
+                document.getElementById('celularConselheiro').value = cons.celular || '';
                 document.getElementById('emailConselheiro').value = cons.email || '';
                 document.getElementById('paroquiaConselheiro').value = cons.paroquia || '';
+                document.getElementById('observacoesConselheiro').value = cons.observacoes || '';
             }
         }
 
         function salvarConselheiro() {
             const cons = {
+                numeroENS: document.getElementById('numeroENSConselheiro').value,
                 nome: document.getElementById('nomeConselheiro').value,
-                telefone: document.getElementById('telefoneConselheiro').value,
+                aniversario: document.getElementById('aniverConselheiro').value,
+                ordenacao: document.getElementById('aniverOrdenacao').value,
+                celular: document.getElementById('celularConselheiro').value,
                 email: document.getElementById('emailConselheiro').value,
-                paroquia: document.getElementById('paroquiaConselheiro').value
+                paroquia: document.getElementById('paroquiaConselheiro').value,
+                observacoes: document.getElementById('observacoesConselheiro').value
             };
             salvar('conselheiro', cons);
             alert('✅ Dados salvos com sucesso!');
@@ -482,6 +644,7 @@
             
             salvar('ultimoBackup', new Date().toLocaleString('pt-BR'));
             alert('✅ Backup exportado com sucesso!');
+            atualizarEstatisticas();
         }
 
         function importarDados(event) {
