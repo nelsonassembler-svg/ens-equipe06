@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENS - Equipe 06</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF5F5 0%, #EDE8E1 100%);
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+            color: #2c3e50;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 2em; margin-bottom: 10px; }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            border: 2px solid #FED7D7;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .tab:hover { border-color: #B85555; transform: translateY(-2px); }
+        .tab.active { background: #D97B7B; color: white; }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #B85555;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E8B4B8;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            header h1 { font-size: 1.5em; }
+            .tab { padding: 12px 20px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
+        <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
+        </p>
+    </header>
+
+    <div class="tabs">
+        <div class="tab active" onclick="abrirCalendario()">📆 Calendário 2026</div>
+        <div class="tab" onclick="alert('Em desenvolvimento')">📋 Roteiro de Reunião</div>
+        <div class="tab" onclick="alert('Em desenvolvimento')">👥 Casais</div>
+        <div class="tab" onclick="alert('Em desenvolvimento')">✝️ Conselheiro</div>
+        <div class="tab" onclick="alert('Em desenvolvimento')">📝 Formulários</div>
+        <div class="tab" onclick="alert('Em desenvolvimento')">💾 Backup</div>
+    </div>
+
+    <div class="card">
+        <h2>📋 Bem-vindo ao App da Equipe 06!</h2>
+        
+        <p style="margin: 20px 0; line-height: 1.6;">
+            Este é o aplicativo oficial da <strong>Equipe 06 - Nossa Senhora da Paz</strong>, 
+            do Movimento de Casais por uma Espiritualidade Conjugal (ENS).
+        </p>
+
+        <div style="background: #E8F5E9; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #4CAF50;">
+            <h3 style="color: #1B5E20; margin-bottom: 10px;">✨ Recursos Disponíveis:</h3>
+            <ul style="line-height: 2; margin-left: 20px; color: #2c3e50;">
+                <li>📆 <strong>Calendário 2026</strong> - Visualize todos os eventos do ano</li>
+                <li>📋 <strong>Roteiro de Reunião</strong> - Upload e gerenciamento de documentos</li>
+                <li>📝 <strong>Formulários</strong> - Vida de Equipe, Reunião Mensal e Preparatória</li>
+                <li>👥 <strong>Gestão de Casais</strong> - Dados completos dos membros</li>
+                <li>✝️ <strong>Conselheiro Espiritual</strong> - Informações do SE</li>
+                <li>💾 <strong>Backup</strong> - Exportar e importar dados</li>
+            </ul>
+        </div>
+
+        <div style="background: #FFF9E6; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #F59E0B;">
+            <h3 style="color: #856404; margin-bottom: 10px;">🚀 Como Começar:</h3>
+            <p style="line-height: 1.8; color: #2c3e50;">
+                <strong>1.</strong> Clique em <strong>"📆 Calendário 2026"</strong> para visualizar o calendário completo<br>
+                <strong>2.</strong> As demais funcionalidades estão em desenvolvimento<br>
+                <strong>3.</strong> O app funciona 100% offline após o primeiro carregamento
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <p style="font-size: 1.1em; color: #2c3e50; margin-bottom: 15px;">
+                <strong>📱 Adicione à Tela Inicial</strong>
+            </p>
+            <p style="font-size: 0.9em; color: #666; line-height: 1.6;">
+                <strong>Android:</strong> Menu (⋮) → "Adicionar à tela inicial"<br>
+                <strong>iPhone:</strong> Compartilhar → "Adicionar à Tela de Início"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function abrirCalendario() {
+            window.open('calendario_equipe_06_2026.html', '_blank');
+        }
+    </script>
+</body>
+</html>
