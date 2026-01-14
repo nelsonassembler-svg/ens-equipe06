@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário 2026 - Equipe 06</title>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: Arial, sans-serif;
             background: #f5f5f5;
@@ -26,16 +22,6 @@
             border-radius: 15px;
             margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .premium-badge {
-            background: #ffd700;
-            color: #333;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
         }
 
         .calendario {
@@ -59,17 +45,6 @@
             border-radius: 10px;
             margin-bottom: 15px;
             border-left: 4px solid #88AB75;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .evento:hover {
-            transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .evento.editavel:hover {
-            border-left-color: #ffd700;
         }
 
         .evento-data {
@@ -80,6 +55,7 @@
 
         .evento-descricao {
             color: #666;
+            white-space: pre-line;
         }
 
         .btn {
@@ -92,47 +68,7 @@
             transition: all 0.3s;
         }
 
-        .btn-primary { background: #88AB75; color: white; }
         .btn-secondary { background: #5F9EA0; color: white; }
-        .btn-danger { background: #D97B7B; color: white; }
-
-        /* Modal de Edição */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.show { display: flex; }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .modal-content h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-        }
 
         footer {
             background: white;
@@ -152,57 +88,709 @@
     <header>
         <h1>📅 Calendário 2026</h1>
         <p>Equipe 06 - Nossa Senhora da Paz</p>
-        <div id="userStatus"></div>
     </header>
 
+    <!-- JANEIRO -->
     <div class="calendario">
         <h2>Janeiro 2026</h2>
-        <div class="evento" data-id="1" data-data="12/01/2026" onclick="editarEvento(this)">
-            <div class="evento-data">12/01/2026 (Segunda)</div>
+        <div class="evento">
+            <div class="evento-data">01/01/2026 (Quinta)</div>
+            <div class="evento-descricao">FERIADO DE ANO NOVO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">05/01/2026 (Segunda)</div>
             <div class="evento-descricao">REUNIÃO SETOR A</div>
         </div>
-        <div class="evento" data-id="2" data-data="18/01/2026" onclick="editarEvento(this)">
-            <div class="evento-data">18/01/2026 (Domingo)</div>
-            <div class="evento-descricao">REUNIÃO DE CALENDÁRIO - Casal Anfitrião: Ana Lucia e Nelson</div>
+        <div class="evento">
+            <div class="evento-data">08/01/2026 (Quinta)</div>
+            <div class="evento-descricao">Aniversário Rodrigo (Mazé e Hamilton)</div>
         </div>
-        <div class="evento" data-id="3" data-data="25/01/2026" onclick="editarEvento(this)">
-            <div class="evento-data">25/01/2026 (Domingo)</div>
+        <div class="evento">
+            <div class="evento-data">12/01/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO DE CALENDÁRIO
+CASAL ANFITRIÃO ANA LUCIA E NELSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">18/01/2026 (Domingo)</div>
             <div class="evento-descricao">MISSA MENSAL SETOR A</div>
         </div>
     </div>
 
+    <!-- FEVEREIRO -->
     <div class="calendario">
         <h2>Fevereiro 2026</h2>
-        <div class="evento" data-id="4" data-data="15/02/2026" onclick="editarEvento(this)">
-            <div class="evento-data">15/02/2026 (Domingo)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        <div class="evento">
+            <div class="evento-data">01/02/2026 (Domingo)</div>
+            <div class="evento-descricao">ANIVERSÁRIOS: PADRE ALEX E BERNADETTE</div>
         </div>
-        <div class="evento" data-id="5" data-data="22/02/2026" onclick="editarEvento(this)">
-            <div class="evento-data">22/02/2026 (Domingo)</div>
+        <div class="evento">
+            <div class="evento-data">02/02/2026 (Segunda)</div>
+            <div class="evento-descricao">EACRE</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">08/02/2026 (Domingo)</div>
+            <div class="evento-descricao">CARNAVAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">09/02/2026 (Segunda)</div>
+            <div class="evento-descricao">MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA
+1ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES
+CASAL ANIMADOR: ANA LUCIA E NELSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">15/02/2026 (Domingo)</div>
             <div class="evento-descricao">MISSA MENSAL SETOR B</div>
         </div>
-        <div class="evento" data-id="6" data-data="24/02/2026" onclick="editarEvento(this)">
-            <div class="evento-data">24/02/2026 (Terça)</div>
-            <div class="evento-descricao">1ª REUNIÃO FORMAL - Casal Anfitrião: Ana Amélia e Rodrigues</div>
+        <div class="evento">
+            <div class="evento-data">16/02/2026 (Segunda)</div>
+            <div class="evento-descricao">CARNAVAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">17/02/2026 (Terça)</div>
+            <div class="evento-descricao">CARNAVAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">18/02/2026 (Quarta)</div>
+            <div class="evento-descricao">4ª FEIRA DE CINZAS (JEJUM E ABSTINÊNCIA)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/02/2026 (Sábado)</div>
+            <div class="evento-descricao">CASAMENTO LUCINHA E IVAN</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/02/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
+EACRE</div>
         </div>
     </div>
 
-    <button class="btn btn-secondary" onclick="window.history.back()">← Voltar</button>
-
-    <!-- Modal de Edição -->
-    <div id="modalEdicao" class="modal">
-        <div class="modal-content">
-            <h3>✏️ Editar Evento</h3>
-            <label>Data (DD/MM/AAAA):</label>
-            <input type="text" id="editData" placeholder="14/01/2026">
-            <label>Descrição:</label>
-            <input type="text" id="editDescricao" placeholder="Descrição do evento">
-            <div style="margin-top: 20px;">
-                <button class="btn btn-primary" onclick="salvarEdicao()">💾 Salvar</button>
-                <button class="btn btn-secondary" onclick="fecharModal()">❌ Cancelar</button>
-            </div>
+    <!-- MARÇO -->
+    <div class="calendario">
+        <h2>Março 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/03/2026 (Domingo)</div>
+            <div class="evento-descricao">ENCONTRO DOS JURÁSSICOS</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">08/03/2026 (Domingo)</div>
+            <div class="evento-descricao">FERIADO CARTA MAGNA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">09/03/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">14/03/2026 (Sábado)</div>
+            <div class="evento-descricao">CASAMENTO DELANE E DEMÓCRITO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">15/03/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR C</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/03/2026 (Quinta)</div>
+            <div class="evento-descricao">DIA DE SÃO JOSÉ</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">20/03/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO THEREZA (LUCINHA E IVAN)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/03/2026 (Sábado)</div>
+            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO
+ANIVERSÁRIO IVAN</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">22/03/2026 (Domingo)</div>
+            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO
+ANIVERSÁRIO SAMUEL (ANA LUCIA E NELSON)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/03/2026 (Segunda)</div>
+            <div class="evento-descricao">2ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: BERNADETTE E JACKSON
+CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/03/2026 (Quinta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ANA AMÉLIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">27/03/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ONASY</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">28/03/2026 (Sábado)</div>
+            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">29/03/2026 (Domingo)</div>
+            <div class="evento-descricao">PÓS EACRE SETOR A
+NOITE DE ORAÇÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">30/03/2026 (Segunda)</div>
+            <div class="evento-descricao">1ª REUNIÃO SETOR A
+1º COLEGIADO SETOR A</div>
         </div>
     </div>
+
+    <!-- ABRIL -->
+    <div class="calendario">
+        <h2>Abril 2026</h2>
+        <div class="evento">
+            <div class="evento-data">03/04/2026 (Sexta)</div>
+            <div class="evento-descricao">SEXTA FEIRA SANTA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/04/2026 (Sábado)</div>
+            <div class="evento-descricao">SÁBADO DE ALELUIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">05/04/2026 (Domingo)</div>
+            <div class="evento-descricao">DOMINGO DE PÁSCOA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">06/04/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">08/04/2026 (Quarta)</div>
+            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">09/04/2026 (Quinta)</div>
+            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">12/04/2026 (Domingo)</div>
+            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">20/04/2026 (Segunda)</div>
+            <div class="evento-descricao">ANIVERSÁRIO LUCINHA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/04/2026 (Terça)</div>
+            <div class="evento-descricao">FERIADO TIRADENTES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">22/04/2026 (Quarta)</div>
+            <div class="evento-descricao">ENCONTRO SACERDOTES REGIÃO CE I e IV</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/04/2026 (Quinta)</div>
+            <div class="evento-descricao">ENCONTRO SACERDOTES REGIÃO CE I e IV</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">24/04/2026 (Sexta)</div>
+            <div class="evento-descricao">FORMAÇÃO SER MOVIMENTO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">27/04/2026 (Segunda)</div>
+            <div class="evento-descricao">3ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: DELANE E DEMÓCRITO
+CASAL ANIMADOR: BERNADETTE E JACKSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">28/04/2026 (Terça)</div>
+            <div class="evento-descricao">ANIVERSÁRIO MARÍLIA (DELANE E DEMÓCRITO)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">29/04/2026 (Quarta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO LIA MARIA (BERNADETTE E JACKSON)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">30/04/2026 (Quinta)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR CAUCAIA
+SER MOVIMENTO</div>
+        </div>
+    </div>
+
+    <!-- MAIO -->
+    <div class="calendario">
+        <h2>Maio 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/05/2026 (Sexta)</div>
+            <div class="evento-descricao">DIA DO TRABALHO
+ANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/05/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">10/05/2026 (Domingo)</div>
+            <div class="evento-descricao">DIA DAS MÃES
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">11/05/2026 (Segunda)</div>
+            <div class="evento-descricao">FORMAÇÃO SER IGREJA
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">17/05/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR A
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">18/05/2026 (Segunda)</div>
+            <div class="evento-descricao">FORMAÇÃO CASAL LIGAÇÃO
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/05/2026 (Terça)</div>
+            <div class="evento-descricao">ANIVERSÁRIO COLLING (JOYCE E ONASY)
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/05/2026 (Sábado)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ENS REGIÃO I e IV
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">24/05/2026 (Domingo)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">25/05/2026 (Segunda)</div>
+            <div class="evento-descricao">4ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: JOYCE E ONASY
+CASAL ANIMADOR: DELANE E DEMÓCRITO
+2º COLEGIADO SETOR A
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/05/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">29/05/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO PADRE WATSON
+HORIZONTAL</div>
+        </div>
+    </div>
+
+    <!-- JUNHO -->
+    <div class="calendario">
+        <h2>Junho 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/06/2026 (Segunda)</div>
+            <div class="evento-descricao">ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">02/06/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">03/06/2026 (Quarta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO PEDRO (DELANE E DEMÓCRITO)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/06/2026 (Quinta)</div>
+            <div class="evento-descricao">CORPUS CHRISTI</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">05/06/2026 (Sexta)</div>
+            <div class="evento-descricao">SÃO JOÃO REGIÃO CE IV</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">07/06/2026 (Domingo)</div>
+            <div class="evento-descricao">INFORMAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">12/06/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO MAZÉ</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">13/06/2026 (Sábado)</div>
+            <div class="evento-descricao">COMEMORAÇÃO NAMORADOS</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">15/06/2026 (Segunda)</div>
+            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/06/2026 (Domingo)</div>
+            <div class="evento-descricao">FORMAÇÃO EXPERIÊNCIA COMUNITÁRIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">22/06/2026 (Segunda)</div>
+            <div class="evento-descricao">5ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: LUCINHA E IVAN
+CASAL ANIMADOR: JOYCE E ONASY</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/06/2026 (Terça)</div>
+            <div class="evento-descricao">ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTON)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">24/06/2026 (Quarta)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/06/2026 (Sexta)</div>
+            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">27/06/2026 (Sábado)</div>
+            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">28/06/2026 (Domingo)</div>
+            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20
+MISSA MENSAL B</div>
+        </div>
+    </div>
+
+    <!-- JULHO -->
+    <div class="calendario">
+        <h2>Julho 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/07/2026 (Quarta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO MARCOS (JOYCE E ONASY)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">02/07/2026 (Quinta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO BRUNO (BERNADETTE E JACKSON)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/07/2026 (Sábado)</div>
+            <div class="evento-descricao">ANIVERSÁRIO HAMILTON
+FORMAÇÃO SER CRISTÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">06/07/2026 (Segunda)</div>
+            <div class="evento-descricao">ANIVERSÁRIO DELANE</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">07/07/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">10/07/2026 (Sexta)</div>
+            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">11/07/2026 (Sábado)</div>
+            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">12/07/2026 (Domingo)</div>
+            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">15/07/2026 (Quarta)</div>
+            <div class="evento-descricao">46º ANO ENS REGIÃO CE I e IV</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">17/07/2026 (Sexta)</div>
+            <div class="evento-descricao">CASAMENTO ANA AMÉLIA E RODRIGUES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/07/2026 (Domingo)</div>
+            <div class="evento-descricao">ANIVERSÁRIO PAULINHA (LUCINHA E IVAN)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/07/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
+ANIVERSÁRIO MARIANA (ANA AMÉLIA E RODRIGUES)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">24/07/2026 (Sexta)</div>
+            <div class="evento-descricao">CASAMENTO MAZÉ E HAMILTON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/07/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR C</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">27/07/2026 (Segunda)</div>
+            <div class="evento-descricao">6ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: MAZÉ E HAMILTON
+CASAL ANIMADOR: LUCINHA E IVAN</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">28/07/2026 (Terça)</div>
+            <div class="evento-descricao">ANIVERSÁRIO NASCIMENTO PADRE CAFFAREL</div>
+        </div>
+    </div>
+
+    <!-- AGOSTO -->
+    <div class="calendario">
+        <h2>Agosto 2026</h2>
+        <div class="evento">
+            <div class="evento-data">02/08/2026 (Domingo)</div>
+            <div class="evento-descricao">FESTA DOS SACERDOTES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/08/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">06/08/2026 (Quinta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO JOYCE</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">08/08/2026 (Sábado)</div>
+            <div class="evento-descricao">AE´S REGIÃO CE I e IV</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">09/08/2026 (Domingo)</div>
+            <div class="evento-descricao">DIA DOS PAIS</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">14/08/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO JACKSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">17/08/2026 (Segunda)</div>
+            <div class="evento-descricao">3º COLEGIADO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/08/2026 (Quarta)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">20/08/2026 (Quinta)</div>
+            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/08/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ANA LUCIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">22/08/2026 (Sábado)</div>
+            <div class="evento-descricao">ANIVERSÁRIO DEMÓCRITO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">24/08/2026 (Segunda)</div>
+            <div class="evento-descricao">7ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: ANA LUCIA E NELSON
+CASAL ANIMADOR: MAZÉ E HAMILTON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">29/08/2026 (Sábado)</div>
+            <div class="evento-descricao">MUTIRÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">30/08/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR CAUCAIA</div>
+        </div>
+    </div>
+
+    <!-- SETEMBRO -->
+    <div class="calendario">
+        <h2>Setembro 2026</h2>
+        <div class="evento">
+            <div class="evento-data">06/09/2026 (Domingo)</div>
+            <div class="evento-descricao">ANIVERSÁRIO IVAN JUNIOR (LUCINHA E IVAN)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">07/09/2026 (Segunda)</div>
+            <div class="evento-descricao">INDEPENDÊNCIA DO BRASIL
+4º RETIRO SETOR A 07-11-12-21</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">08/09/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">12/09/2026 (Sábado)</div>
+            <div class="evento-descricao">CASAMENTO ANA LUCIA E NELSON
+4º RETIRO SETOR A 07-11-12-21</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">13/09/2026 (Domingo)</div>
+            <div class="evento-descricao">HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">16/09/2026 (Quarta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO RODRIGUES
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">17/09/2026 (Quinta)</div>
+            <div class="evento-descricao">CASAMENTO JOYCE E ONASY
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">18/09/2026 (Sexta)</div>
+            <div class="evento-descricao">4º RETIRO SETOR A 07-11-12-21
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/09/2026 (Sábado)</div>
+            <div class="evento-descricao">JORNADA PADRE CAFFAREL
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">20/09/2026 (Domingo)</div>
+            <div class="evento-descricao">JORNADA PADRE CAFFAREL
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/09/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/09/2026 (Quarta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)
+HORIZONTAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/09/2026 (Sábado)</div>
+            <div class="evento-descricao">JORNADA PADRE CAFFAREL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">27/09/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR A
+INTEREQUIPES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">28/09/2026 (Segunda)</div>
+            <div class="evento-descricao">8ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES
+CASAL ANIMADOR: ANA LUCIA E NELSON</div>
+        </div>
+    </div>
+
+    <!-- OUTUBRO -->
+    <div class="calendario">
+        <h2>Outubro 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/10/2026 (Quinta)</div>
+            <div class="evento-descricao">INÍCIO DO DISCERNIMENTO DE CRE 2027</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">04/10/2026 (Domingo)</div>
+            <div class="evento-descricao">ELEIÇÕES 2026 1º TURNO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">06/10/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">12/10/2026 (Segunda)</div>
+            <div class="evento-descricao">NOSSA SENHORA APARECIDA
+CASAMENTO BERNADETTE E JACKSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/10/2026 (Quarta)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">25/10/2026 (Domingo)</div>
+            <div class="evento-descricao">ELEIÇÕES 2026 2º TURNO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/10/2026 (Segunda)</div>
+            <div class="evento-descricao">9ª REUNIÃO FORMAL
+CASAL ANFITRIÃO: BERNADETTE E JACKSON
+CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">31/10/2026 (Sábado)</div>
+            <div class="evento-descricao">FIM DO DISCERNIMENTO DE CRE 2027</div>
+        </div>
+    </div>
+
+    <!-- NOVEMBRO -->
+    <div class="calendario">
+        <h2>Novembro 2026</h2>
+        <div class="evento">
+            <div class="evento-data">02/11/2026 (Segunda)</div>
+            <div class="evento-descricao">DIA DE FINADOS</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">03/11/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">15/11/2026 (Domingo)</div>
+            <div class="evento-descricao">PROCLAMAÇÃO DA REPÚBLICA
+PRÉ-EACRE</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">18/11/2026 (Quarta)</div>
+            <div class="evento-descricao">CASAMENTO ÂNGELO E ÉLIDA (CASAL LIGAÇÃO)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">19/11/2026 (Quinta)</div>
+            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">20/11/2026 (Sexta)</div>
+            <div class="evento-descricao">CONSCIÊNCIA NEGRA
+ANIVERSÁRIO NELSON
+5º RETIRO SETOR A 03-10-13-19</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/11/2026 (Sábado)</div>
+            <div class="evento-descricao">5º RETIRO SETOR A 03-10-13-19</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">22/11/2026 (Domingo)</div>
+            <div class="evento-descricao">5º RETIRO SETOR A 03-10-13-19</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">23/11/2026 (Segunda)</div>
+            <div class="evento-descricao">ORDENAÇÃO PADRE WATSON</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/11/2026 (Quinta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO SÍLVIA (JOYCE E ONASY)</div>
+        </div>
+    </div>
+
+    <!-- DEZEMBRO -->
+    <div class="calendario">
+        <h2>Dezembro 2026</h2>
+        <div class="evento">
+            <div class="evento-data">01/12/2026 (Terça)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">05/12/2026 (Sábado)</div>
+            <div class="evento-descricao">CONFRATERNIZAÇÃO EQUIPE 06</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">07/12/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO DO SETOR A</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">11/12/2026 (Sexta)</div>
+            <div class="evento-descricao">ANIVERSÁRIO LÚCIO (ANA AMÉLIA E RODRIGUES)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">14/12/2026 (Segunda)</div>
+            <div class="evento-descricao">ANIVERSÁRIO JÚLIO CÉSAR (ANA AMÉLIA E RODRIGUES)</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">21/12/2026 (Segunda)</div>
+            <div class="evento-descricao">ORDENAÇÃO PADRE ALEX</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">25/12/2026 (Sexta)</div>
+            <div class="evento-descricao">NATAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">26/12/2026 (Sábado)</div>
+            <div class="evento-descricao">NATAL</div>
+        </div>
+        <div class="evento">
+            <div class="evento-data">31/12/2026 (Quinta)</div>
+            <div class="evento-descricao">REVEILLON</div>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="window.close()">← Voltar</button>
 
     <footer>
         <p style="font-weight: bold;">Desenvolvido por:</p>
@@ -210,113 +798,5 @@
         <p><a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none;">📧 nelsonassembrer@gmail.com</a></p>
         <p style="color: #666; font-size: 0.9em;">© 2026 - Todos os direitos reservados</p>
     </footer>
-
-    <script>
-        // Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyCsqAHzIXVlAdYjSCGvNyRVE1IiIHEcEPc",
-            authDomain: "ens-equipe06.firebaseapp.com",
-            projectId: "ens-equipe06",
-            storageBucket: "ens-equipe06.firebasestorage.app",
-            messagingSenderId: "602404779314",
-            appId: "1:602404779314:web:e8db2bbd6971264060532b"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        const EMAIL_PREMIUM = "nelsontcmagalhaes@gmail.com";
-        let isPremium = false;
-        let eventoAtual = null;
-
-        // Verificar usuário
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                isPremium = user.email === EMAIL_PREMIUM;
-                
-                if (isPremium) {
-                    document.getElementById('userStatus').innerHTML = '<span class="premium-badge">⭐ PREMIUM - Clique nos eventos para editar</span>';
-                    document.querySelectorAll('.evento').forEach(e => e.classList.add('editavel'));
-                } else {
-                    document.getElementById('userStatus').innerHTML = '<span class="premium-badge">👁️ VISUALIZADOR</span>';
-                }
-            } else {
-                document.getElementById('userStatus').innerHTML = '<span class="premium-badge">👁️ VISITANTE</span>';
-            }
-        });
-
-        // Editar evento
-        function editarEvento(elemento) {
-            if (!isPremium) {
-                alert('⛔ Apenas o usuário Premium pode editar eventos');
-                return;
-            }
-
-            eventoAtual = elemento;
-            const data = elemento.querySelector('.evento-data').textContent.split(' ')[0];
-            const descricao = elemento.querySelector('.evento-descricao').textContent;
-
-            document.getElementById('editData').value = data;
-            document.getElementById('editDescricao').value = descricao;
-            document.getElementById('modalEdicao').classList.add('show');
-        }
-
-        // Salvar edição
-        function salvarEdicao() {
-            if (!eventoAtual) return;
-
-            const novaData = document.getElementById('editData').value;
-            const novaDescricao = document.getElementById('editDescricao').value;
-
-            // Validar data
-            if (!/^\d{2}\/\d{2}\/\d{4}$/.test(novaData)) {
-                alert('❌ Data inválida! Use o formato DD/MM/AAAA');
-                return;
-            }
-
-            // Obter dia da semana
-            const [dia, mes, ano] = novaData.split('/');
-            const data = new Date(ano, mes - 1, dia);
-            const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-            const diaSemana = diasSemana[data.getDay()];
-
-            // Atualizar no DOM
-            eventoAtual.querySelector('.evento-data').textContent = `${novaData} (${diaSemana})`;
-            eventoAtual.querySelector('.evento-descricao').textContent = novaDescricao;
-
-            // Salvar no localStorage
-            const eventos = JSON.parse(localStorage.getItem('calendario_eventos') || '{}');
-            eventos[eventoAtual.dataset.id] = { data: novaData, descricao: novaDescricao };
-            localStorage.setItem('calendario_eventos', JSON.stringify(eventos));
-
-            alert('✅ Evento atualizado com sucesso!');
-            fecharModal();
-        }
-
-        // Fechar modal
-        function fecharModal() {
-            document.getElementById('modalEdicao').classList.remove('show');
-            eventoAtual = null;
-        }
-
-        // Carregar eventos salvos
-        window.addEventListener('load', () => {
-            const eventos = JSON.parse(localStorage.getItem('calendario_eventos') || '{}');
-            
-            Object.keys(eventos).forEach(id => {
-                const elemento = document.querySelector(`[data-id="${id}"]`);
-                if (elemento) {
-                    const evento = eventos[id];
-                    const [dia, mes, ano] = evento.data.split('/');
-                    const data = new Date(ano, mes - 1, dia);
-                    const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-                    const diaSemana = diasSemana[data.getDay()];
-                    
-                    elemento.querySelector('.evento-data').textContent = `${evento.data} (${diaSemana})`;
-                    elemento.querySelector('.evento-descricao').textContent = evento.descricao;
-                }
-            });
-        });
-    </script>
 </body>
 </html>
