@@ -6,7 +6,7 @@
     <title>ENS - Equipe 06</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #FFF5F5 0%, #EDE8E1 100%);
@@ -183,7 +183,12 @@
         <div id="calendarioSection" class="section active">
             <div class="card">
                 <h2>📆 Calendário 2026</h2>
-                <iframe src="calendario_equipe_06_2026.html" style="width: 100%; height: 800px; border: none; border-radius: 10px;"></iframe>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Clique no botão abaixo para abrir o calendário completo e editável em nova aba.
+                </p>
+                <button class="btn btn-primary" onclick="abrirCalendario()" style="font-size: 1.1em; padding: 15px 30px;">
+                    📅 Abrir Calendário Editável
+                </button>
             </div>
         </div>
 
@@ -270,13 +275,13 @@
             e.preventDefault();
             const nome = document.getElementById('nomeLogin').value.trim();
             isPremium = nome.toLowerCase().includes('nelson');
-            
+
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('appPrincipal').style.display = 'block';
-            
+
             const badge = isPremium ? '⭐ PREMIUM' : '👁️ VISUALIZADOR';
             document.getElementById('userInfo').innerHTML = `${nome} <span style="background: #ffd700; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold;">${badge}</span>`;
-            
+
             if (!isPremium) document.getElementById('tabBackup').style.display = 'none';
             carregarArquivos();
         }
@@ -293,10 +298,14 @@
             if (id === 'roteiro') carregarArquivos();
         }
 
+        function abrirCalendario() {
+            window.open('calendario-2026.html', '_blank');
+        }
+
         function carregarArquivos() {
             const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
             const lista = document.getElementById('arquivosLista');
-            
+
             if (arquivos.length === 0) {
                 lista.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Sem roteiros</div>';
                 return;
@@ -367,4 +376,3 @@
     </script>
 </body>
 </html>
-inde
