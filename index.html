@@ -24,7 +24,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffcccb 0%, #ff9999 100%);
             z-index: 9999;
         }
 
@@ -60,13 +60,13 @@
 
         .login-form input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #ff6b6b;
         }
 
         .btn-login {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -78,7 +78,7 @@
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
         .user-badge {
@@ -247,7 +247,7 @@
             <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
             <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
             <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
-            <div class="tab" onclick="mostrarSecao('backup')">💾 Backup</div>
+            <div class="tab" id="tabBackup" onclick="mostrarSecao('backup')">💾 Backup</div>
         </div>
 
         <!-- ROTEIRO DE REUNIÃO -->
@@ -256,17 +256,7 @@
                 <h2>📋 Roteiro de Reunião</h2>
                 
                 <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>📎 Upload de Arquivos:</strong> Adicione documentos Word ou PDF (máx 10MB)</p>
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        Os arquivos ficam salvos e podem ser visualizados ou baixados a qualquer momento
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <input type="file" id="fileUpload" accept=".doc,.docx,.pdf" style="display: none;">
-                    <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
-                        📤 Fazer Upload de Arquivo
-                    </button>
+                    <p><strong>📄 Roteiro Atual:</strong> Clique em "Visualizar" para ver o documento</p>
                 </div>
 
                 <div id="arquivosLista"></div>
@@ -382,8 +372,8 @@
             Nelson Tomaz Catunda Magalhães
         </p>
         <p style="margin-bottom: 15px;">
-            <a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none; font-weight: bold;">
-                📧 nelsonassembrer@gmail.com
+            <a href="/cdn-cgi/l/email-protection#8de3e8e1fee2e3ecfefee8e0efffe8ffcdeae0ece4e1a3eee2e0" style="color: #5F9EA0; text-decoration: none; font-weight: bold;">
+                📧 <span class="__cf_email__" data-cfemail="a2ccc7ced1cdccc3d1d1c7cfc0d0c7d0e2c5cfc3cbce8cc1cdcf">[email&#160;protected]</span>
             </a>
         </p>
         <p style="color: #666; font-size: 0.9em;">
@@ -392,7 +382,7 @@
     </footer>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -467,6 +457,11 @@
                 
                 const badge = isPremium ? '<span class="user-badge">⭐ PREMIUM</span>' : '<span class="user-badge">👁️ VISUALIZADOR</span>';
                 document.getElementById('userInfo').innerHTML = user.email + badge;
+                
+                // Esconder aba Backup para não-Premium
+                if (!isPremium) {
+                    document.getElementById('tabBackup').style.display = 'none';
+                }
                 
                 carregarArquivos();
             } else {
@@ -675,12 +670,4 @@
             document.getElementById('statBackup').textContent = ultimoBackup;
         }
 
-        // ========================================
-        // CARREGAR AO INICIAR
-        // ========================================
-        window.addEventListener('load', () => {
-            carregarArquivos();
-        });
-    </script>
-</body>
-</html>
+  
