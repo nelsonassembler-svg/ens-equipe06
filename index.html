@@ -1,1 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENS - Equipe 06</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF5F5 0%, #EDE8E1 100%);
+            padding: 20px;
+        }
+
+        /* LOGIN */
+        #loginScreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #ffcccb 0%, #ff9999 100%);
+            z-index: 9999;
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-card h1 { color: #2c3e50; margin-bottom: 10px; font-size: 2em; }
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* APP */
+        header {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+            color: #2c3e50;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            border: 2px solid #FED7D7;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .tab:hover { border-color: #B85555; transform: translateY(-2px); }
+        .tab.active { background: #D97B7B; color: white; }
+
+        .section { display: none; }
+        .section.active { display: block; }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #B85555;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #E8B4B8;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn-primary { background: #88AB75; color: white; }
+        .btn-secondary { background: #5F9EA0; color: white; }
+        .btn-danger { background: #D97B7B; color: white; }
+
+        .item-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #88AB75;
+        }
+
+        #visualizadorPDF iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <h1>🔐 Login</h1>
+            <p>Equipe 06 - Nossa Senhora da Paz</p>
+            <form class="login-form" onsubmit="login(event)">
+                <input type="text" id="nomeLogin" placeholder="Digite seu nome" required>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+                Digite <strong>Nelson</strong> para modo Premium
+            </p>
+        </div>
+    </div>
+
+    <!-- APP -->
+    <div id="appPrincipal" style="display: none;">
+        <header>
+            <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
+            <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
+            </p>
+            <div style="margin-top: 15px;">
+                <span id="userInfo"></span>
+                <button onclick="sair()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; margin-left: 10px;">🚪 Sair</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" onclick="mostrarSecao('calendario')">📆 Calendário 2026</div>
+            <div class="tab" onclick="mostrarSecao('roteiro')">📋 Roteiro</div>
+            <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
+            <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
+            <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
+            <div class="tab" id="tabBackup" onclick="mostrarSecao('backup')">💾 Backup</div>
+        </div>
+
+        <!-- CALENDÁRIO -->
+        <div id="calendarioSection" class="section active">
+            <div class="card">
+                <h2>📆 Calendário 2026</h2>
+                <iframe src="calendario_equipe_06_2026.html" style="width: 100%; height: 800px; border: none; border-radius: 10px;"></iframe>
+            </div>
+        </div>
+
+        <!-- ROTEIRO -->
+        <div id="roteiroSection" class="section">
+            <div class="card">
+                <h2>📋 Roteiro de Reunião</h2>
+                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>📄 Visualize o roteiro</strong></p>
+                </div>
+                <div id="arquivosLista"></div>
+                <div id="visualizadorPDF" style="display: none; margin-top: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">📄 <span id="nomePDFAtual"></span></h3>
+                    <button class="btn btn-secondary" onclick="fecharVisualizador()">❌ Fechar</button>
+                    <button class="btn btn-primary" onclick="baixarPDFAtual()">⬇️ Baixar</button>
+                    <iframe id="pdfFrame"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASAIS -->
+        <div id="casaisSection" class="section">
+            <div class="card">
+                <h2>👥 Gestão de Casais</h2>
+                <p style="text-align: center; padding: 40px; color: #999;">Em desenvolvimento</p>
+            </div>
+        </div>
+
+        <!-- CONSELHEIRO -->
+        <div id="conselheiroSection" class="section">
+            <div class="card">
+                <h2>✝️ Conselheiro Espiritual</h2>
+                <p style="text-align: center; padding: 40px; color: #999;">Em desenvolvimento</p>
+            </div>
+        </div>
+
+        <!-- FORMULÁRIOS -->
+        <div id="formulariosSection" class="section">
+            <div class="card">
+                <h2>📝 Formulários</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📊</div>
+                        <h3>Vida de Equipe</h3>
+                        <p style="color: #666;">Em desenvolvimento</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📅</div>
+                        <h3>Reunião Mensal</h3>
+                        <p style="color: #666;">Em desenvolvimento</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📋</div>
+                        <h3>Reunião Preparatória</h3>
+                        <p style="color: #666;">Em desenvolvimento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACKUP -->
+        <div id="backupSection" class="section">
+            <div class="card">
+                <h2>💾 Backup</h2>
+                <button class="btn btn-primary" onclick="exportar()">📤 Exportar</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Importar</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importar(event)">
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: white; text-align: center; padding: 30px; margin-top: 50px; border-radius: 15px;">
+        <p style="font-weight: bold; font-size: 1.1em;">Desenvolvido por:</p>
+        <p style="font-size: 1.2em; color: #1F4E78; font-weight: bold;">Nelson Tomaz Catunda Magalhães</p>
+        <p><a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none;">📧 nelsonassembrer@gmail.com</a></p>
+        <p style="color: #666;">© 2026 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        let isPremium = false;
+        let pdfAtual = null;
+
+        function login(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeLogin').value.trim();
+            isPremium = nome.toLowerCase().includes('nelson');
+            
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('appPrincipal').style.display = 'block';
+            
+            const badge = isPremium ? '⭐ PREMIUM' : '👁️ VISUALIZADOR';
+            document.getElementById('userInfo').innerHTML = `${nome} <span style="background: #ffd700; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold;">${badge}</span>`;
+            
+            if (!isPremium) document.getElementById('tabBackup').style.display = 'none';
+            carregarArquivos();
+        }
+
+        function sair() {
+            if (confirm('Sair?')) location.reload();
+        }
+
+        function mostrarSecao(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id + 'Section').classList.add('active');
+            event.target.classList.add('active');
+            if (id === 'roteiro') carregarArquivos();
+        }
+
+        function carregarArquivos() {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            const lista = document.getElementById('arquivosLista');
+            
+            if (arquivos.length === 0) {
+                lista.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Sem roteiros</div>';
+                return;
+            }
+
+            lista.innerHTML = arquivos.map((arq, i) => `
+                <div class="item-card">
+                    <h3>${arq.nome}</h3>
+                    <p>📅 ${arq.data} | 📦 ${arq.tamanho}</p>
+                    <button class="btn btn-secondary" onclick="verPDF(${i})">👁️ Ver</button>
+                    <button class="btn btn-secondary" onclick="baixarPDF(${i})">⬇️ Baixar</button>
+                </div>
+            `).join('');
+        }
+
+        function verPDF(i) {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            pdfAtual = arquivos[i];
+            document.getElementById('nomePDFAtual').textContent = pdfAtual.nome;
+            document.getElementById('pdfFrame').src = pdfAtual.conteudo;
+            document.getElementById('visualizadorPDF').style.display = 'block';
+        }
+
+        function fecharVisualizador() {
+            document.getElementById('visualizadorPDF').style.display = 'none';
+        }
+
+        function baixarPDFAtual() {
+            if (!pdfAtual) return;
+            const link = document.createElement('a');
+            link.href = pdfAtual.conteudo;
+            link.download = pdfAtual.nome;
+            link.click();
+        }
+
+        function baixarPDF(i) {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            const link = document.createElement('a');
+            link.href = arquivos[i].conteudo;
+            link.download = arquivos[i].nome;
+            link.click();
+        }
+
+        function exportar() {
+            const dados = { arquivos: JSON.parse(localStorage.getItem('arquivos') || '[]') };
+            const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'backup.json';
+            link.click();
+            alert('✅ Exportado!');
+        }
+
+        function importar(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const dados = JSON.parse(evt.target.result);
+                    localStorage.setItem('arquivos', JSON.stringify(dados.arquivos || []));
+                    alert('✅ Importado!');
+                    location.reload();
+                } catch { alert('❌ Erro!'); }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
 inde
