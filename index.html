@@ -13,6 +13,95 @@
             padding: 20px;
         }
 
+        /* LOGIN SCREEN */
+        #loginScreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-card h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .login-card p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .user-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #ffd700;
+            color: #333;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .btn-logout {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
         header {
             background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
             color: #2c3e50;
@@ -79,44 +168,6 @@
         .btn-secondary { background: #5F9EA0; color: white; }
         .btn-danger { background: #D97B7B; color: white; }
 
-        .form-group { margin-bottom: 15px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ecf0f1;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .form-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #88AB75;
-        }
-
-        .form-section h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
         .item-card {
             background: #f8f9fa;
             padding: 20px;
@@ -135,8 +186,18 @@
             font-style: italic;
         }
 
-        #formCasal, #campoMissao {
-            display: none;
+        #visualizadorPDF {
+            margin-top: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #visualizadorPDF iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
         }
 
         @media (max-width: 768px) {
@@ -144,260 +205,279 @@
             header h1 { font-size: 1.5em; }
             .tab { padding: 12px 20px; font-size: 0.9em; }
             .card { padding: 20px; }
-            .form-row { grid-template-columns: 1fr; }
+            .login-card { padding: 30px 20px; }
+            #visualizadorPDF iframe { height: 400px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
-        <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">
-            <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
-        </p>
-    </header>
-
-    <div class="tabs">
-        <div class="tab" onclick="abrirCalendario()">📆 Calendário 2026</div>
-        <div class="tab active" onclick="mostrarSecao('roteiro')">📋 Roteiro de Reunião</div>
-        <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
-        <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
-        <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
-        <div class="tab" onclick="mostrarSecao('backup')">💾 Backup</div>
-    </div>
-
-    <!-- ROTEIRO DE REUNIÃO -->
-    <div id="roteiroSection" class="section active">
-        <div class="card">
-            <h2>📋 Roteiro de Reunião</h2>
-            
-            <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <p><strong>📎 Upload de Arquivos:</strong> Adicione documentos Word ou PDF (máx 10MB)</p>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <input type="file" id="fileUpload" accept=".doc,.docx,.pdf" style="display: none;">
-                <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
-                    📤 Fazer Upload de Arquivo
-                </button>
-            </div>
-
-            <div id="arquivosLista"></div>
+    <!-- TELA DE LOGIN -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <h1>🔐 Login</h1>
+            <p>Equipe 06 - Nossa Senhora da Paz</p>
+            <form class="login-form" onsubmit="fazerLogin(event)">
+                <input type="email" id="emailLogin" placeholder="E-mail" required>
+                <input type="password" id="senhaLogin" placeholder="Senha" required>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #999;">
+                Primeira vez? Use seu e-mail e crie uma senha.
+            </p>
         </div>
     </div>
 
-    <!-- CASAIS -->
-    <div id="casaisSection" class="section">
-        <div class="card">
-            <h2>👥 Gestão de Casais</h2>
-            
-            <button class="btn btn-primary" onclick="mostrarFormCasal()">➕ Adicionar Casal</button>
-            
-            <div id="formCasal" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                <h3 style="color: #2c3e50; margin-bottom: 20px;">📝 Cadastro de Casal</h3>
+    <!-- APP PRINCIPAL -->
+    <div id="appPrincipal" style="display: none;">
+        <header>
+            <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
+            <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
+            </p>
+            <div style="margin-top: 15px;">
+                <span id="userInfo"></span>
+                <button class="btn-logout" onclick="fazerLogout()">🚪 Sair</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab" onclick="abrirCalendario()">📆 Calendário 2026</div>
+            <div class="tab active" onclick="mostrarSecao('roteiro')">📋 Roteiro de Reunião</div>
+            <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
+            <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
+            <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
+            <div class="tab" onclick="mostrarSecao('backup')">💾 Backup</div>
+        </div>
+
+        <!-- ROTEIRO DE REUNIÃO -->
+        <div id="roteiroSection" class="section active">
+            <div class="card">
+                <h2>📋 Roteiro de Reunião</h2>
                 
-                <!-- Dados do Casal -->
-                <div class="form-section">
-                    <h3>👫 Dados do Casal</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Número nas ENS:</label>
-                            <input type="text" id="numeroENS">
-                        </div>
-                        <div class="form-group">
-                            <label>Data de Aniversário de Casamento:</label>
-                            <input type="date" id="aniverCasamento">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Está em Missão:</label>
-                            <select id="emMissao" onchange="toggleMissao()">
-                                <option value="Não">Não</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="campoMissao">
-                            <label>Qual Missão:</label>
-                            <input type="text" id="qualMissao">
-                        </div>
-                    </div>
+                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>📎 Upload de Arquivos:</strong> Adicione documentos Word ou PDF (máx 10MB)</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        Os arquivos ficam salvos e podem ser visualizados ou baixados a qualquer momento
+                    </p>
                 </div>
 
-                <!-- Dados da Esposa -->
-                <div class="form-section">
-                    <h3>👰 Dados da Esposa</h3>
-                    <div class="form-group">
-                        <label>Nome da Esposa:</label>
-                        <input type="text" id="nomeEsposa">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Data de Aniversário:</label>
-                            <input type="date" id="aniverEsposa">
-                        </div>
-                        <div class="form-group">
-                            <label>Celular:</label>
-                            <input type="tel" id="celularEsposa" placeholder="(85) 99999-9999">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail:</label>
-                        <input type="email" id="emailEsposa">
-                    </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="file" id="fileUpload" accept=".doc,.docx,.pdf" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('fileUpload').click()">
+                        📤 Fazer Upload de Arquivo
+                    </button>
                 </div>
 
-                <!-- Dados do Esposo -->
-                <div class="form-section">
-                    <h3>🤵 Dados do Esposo</h3>
-                    <div class="form-group">
-                        <label>Nome do Esposo:</label>
-                        <input type="text" id="nomeEsposo">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Data de Aniversário:</label>
-                            <input type="date" id="aniverEsposo">
-                        </div>
-                        <div class="form-group">
-                            <label>Celular:</label>
-                            <input type="tel" id="celularEsposo" placeholder="(85) 99999-9999">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail:</label>
-                        <input type="email" id="emailEsposo">
-                    </div>
-                </div>
+                <div id="arquivosLista"></div>
 
-                <!-- Observações -->
-                <div class="form-group">
-                    <label>Observações:</label>
-                    <textarea id="observacoesCasal" rows="4" placeholder="Informações adicionais..."></textarea>
-                </div>
-
-                <div style="margin-top: 20px;">
-                    <button class="btn btn-primary" onclick="salvarCasal()">💾 Salvar Casal</button>
-                    <button class="btn btn-secondary" onclick="cancelarFormCasal()">❌ Cancelar</button>
+                <!-- VISUALIZADOR DE PDF -->
+                <div id="visualizadorPDF" style="display: none;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">
+                        📄 Visualizando: <span id="nomePDFAtual"></span>
+                    </h3>
+                    <div style="margin-bottom: 15px;">
+                        <button class="btn btn-secondary" onclick="fecharVisualizador()">❌ Fechar</button>
+                        <button class="btn btn-primary" onclick="baixarPDFAtual()">⬇️ Baixar</button>
+                    </div>
+                    <iframe id="pdfFrame"></iframe>
                 </div>
             </div>
-
-            <div id="casaisLista" style="margin-top: 30px;"></div>
         </div>
-    </div>
 
-    <!-- CONSELHEIRO -->
-    <div id="conselheiroSection" class="section">
-        <div class="card">
-            <h2>✝️ Conselheiro Espiritual</h2>
-            
-            <div class="form-section">
-                <h3>Dados do Conselheiro</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Número nas ENS:</label>
-                        <input type="text" id="numeroENSConselheiro">
-                    </div>
-                    <div class="form-group">
-                        <label>Nome do Conselheiro:</label>
-                        <input type="text" id="nomeConselheiro">
-                    </div>
+        <!-- CASAIS -->
+        <div id="casaisSection" class="section">
+            <div class="card">
+                <h2>👥 Gestão de Casais</h2>
+                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>👫 Cadastre os casais da equipe</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        Em desenvolvimento - Em breve!
+                    </p>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Data de Aniversário do Conselheiro:</label>
-                        <input type="date" id="aniverConselheiro">
-                    </div>
-                    <div class="form-group">
-                        <label>Data de Aniversário de Ordenação:</label>
-                        <input type="date" id="aniverOrdenacao">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Celular do Conselheiro:</label>
-                        <input type="tel" id="celularConselheiro" placeholder="(85) 99999-9999">
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail:</label>
-                        <input type="email" id="emailConselheiro">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Paróquia:</label>
-                    <input type="text" id="paroquiaConselheiro">
-                </div>
-                <div class="form-group">
-                    <label>Observações:</label>
-                    <textarea id="observacoesConselheiro" rows="4" placeholder="Informações adicionais..."></textarea>
-                </div>
+                <div class="lista-vazia">👥 Funcionalidade em desenvolvimento</div>
             </div>
-            
-            <button class="btn btn-primary" onclick="salvarConselheiro()">💾 Salvar Dados</button>
         </div>
-    </div>
 
-    <!-- FORMULÁRIOS -->
-    <div id="formulariosSection" class="section">
-        <div class="card">
-            <h2>📝 Formulários</h2>
-            
-            <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <p><strong>📋 Formulários Oficiais:</strong> Vida de Equipe, Reunião Mensal e Reunião Preparatória</p>
+        <!-- CONSELHEIRO -->
+        <div id="conselheiroSection" class="section">
+            <div class="card">
+                <h2>✝️ Conselheiro Espiritual</h2>
+                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>✝️ Dados do Conselheiro Espiritual</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        Em desenvolvimento - Em breve!
+                    </p>
+                </div>
+                <div class="lista-vazia">✝️ Funcionalidade em desenvolvimento</div>
             </div>
+        </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 3em;">📊</div>
-                    <h3>Vida de Equipe</h3>
-                    <p style="color: #666; margin: 10px 0;">Formulário de acompanhamento</p>
-                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+        <!-- FORMULÁRIOS -->
+        <div id="formulariosSection" class="section">
+            <div class="card">
+                <h2>📝 Formulários</h2>
+                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>📋 Formulários Oficiais ENS</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                        Vida de Equipe, Reunião Mensal e Reunião Preparatória
+                    </p>
                 </div>
-
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 3em;">📅</div>
-                    <h3>Reunião Mensal</h3>
-                    <p style="color: #666; margin: 10px 0;">Registro da reunião formal</p>
-                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📊</div>
+                        <h3>Vida de Equipe</h3>
+                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📅</div>
+                        <h3>Reunião Mensal</h3>
+                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 3em;">📋</div>
+                        <h3>Reunião Preparatória</h3>
+                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 3em;">📋</div>
-                    <h3>Reunião Preparatória</h3>
-                    <p style="color: #666; margin: 10px 0;">Planejamento da reunião</p>
-                    <button class="btn btn-primary" onclick="alert('Formulário em desenvolvimento')">Preencher</button>
+        <!-- BACKUP -->
+        <div id="backupSection" class="section">
+            <div class="card">
+                <h2>💾 Backup e Restauração</h2>
+                <div style="background: #FFF9E6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p><strong>⚠️ Importante:</strong> Faça backup regular dos seus dados!</p>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                    <button class="btn btn-primary" onclick="exportarDados()">📤 Exportar Dados</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Importar Dados</button>
+                    <button class="btn btn-danger" onclick="limparDados()">🗑️ Limpar Tudo</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importarDados(event)">
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3>📊 Estatísticas</h3>
+                    <p><strong>Arquivos no roteiro:</strong> <span id="statArquivos">0</span></p>
+                    <p><strong>Último backup:</strong> <span id="statBackup">Nunca</span></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- BACKUP -->
-    <div id="backupSection" class="section">
-        <div class="card">
-            <h2>💾 Backup e Restauração</h2>
-            
-            <div style="background: #FFF9E6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <p><strong>⚠️ Importante:</strong> Faça backup regular dos seus dados!</p>
-            </div>
+    <!-- RODAPÉ -->
+    <footer style="
+        background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+        color: #2c3e50;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 50px;
+        border-radius: 15px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    ">
+        <p style="font-weight: bold; font-size: 1.1em; margin-bottom: 10px;">
+            Desenvolvido por:
+        </p>
+        <p style="font-size: 1.2em; color: #1F4E78; font-weight: bold; margin-bottom: 5px;">
+            Nelson Tomaz Catunda Magalhães
+        </p>
+        <p style="margin-bottom: 15px;">
+            <a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none; font-weight: bold;">
+                📧 nelsonassembrer@gmail.com
+            </a>
+        </p>
+        <p style="color: #666; font-size: 0.9em;">
+            © 2026 - Todos os direitos reservados
+        </p>
+    </footer>
 
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
-                <button class="btn btn-primary" onclick="exportarDados()">📤 Exportar Dados</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Importar Dados</button>
-                <button class="btn btn-danger" onclick="limparDados()">🗑️ Limpar Tudo</button>
-                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importarDados(event)">
-            </div>
-
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <h3>📊 Estatísticas</h3>
-                <p><strong>Casais cadastrados:</strong> <span id="statCasais">0</span></p>
-                <p><strong>Arquivos no roteiro:</strong> <span id="statArquivos">0</span></p>
-                <p><strong>Último backup:</strong> <span id="statBackup">Nunca</span></p>
-            </div>
-        </div>
-    </div>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // Funções de navegação
+        // ========================================
+        // CONFIGURAÇÃO FIREBASE - SUAS CREDENCIAIS
+        // ========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCsqAHzIXVlAdYjSCGvNyRVE1IiIHEcEPc",
+            authDomain: "ens-equipe06.firebaseapp.com",
+            projectId: "ens-equipe06",
+            storageBucket: "ens-equipe06.firebasestorage.app",
+            messagingSenderId: "602404779314",
+            appId: "1:602404779314:web:e8db2bbd6971264060532b"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // ========================================
+        // VARIÁVEIS GLOBAIS
+        // ========================================
+        const EMAIL_PREMIUM = "nelsontcmagalhaes@gmail.com";
+        let usuarioAtual = null;
+        let isPremium = false;
+        let pdfAtualData = null;
+
+        // ========================================
+        // AUTENTICAÇÃO
+        // ========================================
+        function fazerLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailLogin').value;
+            const senha = document.getElementById('senhaLogin').value;
+
+            auth.signInWithEmailAndPassword(email, senha)
+                .then(() => {
+                    console.log('Login realizado com sucesso');
+                })
+                .catch((error) => {
+                    if (error.code === 'auth/user-not-found') {
+                        auth.createUserWithEmailAndPassword(email, senha)
+                            .then(() => {
+                                console.log('Conta criada com sucesso');
+                            })
+                            .catch((err) => {
+                                alert('❌ Erro ao criar conta: ' + err.message);
+                            });
+                    } else {
+                        alert('❌ Erro no login: ' + error.message);
+                    }
+                });
+        }
+
+        function fazerLogout() {
+            if (confirm('Deseja realmente sair?')) {
+                auth.signOut();
+            }
+        }
+
+        // ========================================
+        // OBSERVER DE AUTENTICAÇÃO
+        // ========================================
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                usuarioAtual = user;
+                isPremium = user.email === EMAIL_PREMIUM;
+                
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('appPrincipal').style.display = 'block';
+                
+                const badge = isPremium ? '<span class="user-badge">⭐ PREMIUM</span>' : '<span class="user-badge">👁️ VISUALIZADOR</span>';
+                document.getElementById('userInfo').innerHTML = user.email + badge;
+                
+                carregarArquivos();
+            } else {
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('appPrincipal').style.display = 'none';
+            }
+        });
+
+        // ========================================
+        // NAVEGAÇÃO
+        // ========================================
         function mostrarSecao(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -406,8 +486,6 @@
             event.target.classList.add('active');
             
             if (id === 'roteiro') carregarArquivos();
-            if (id === 'casais') carregarCasais();
-            if (id === 'conselheiro') carregarConselheiro();
             if (id === 'backup') atualizarEstatisticas();
         }
 
@@ -415,24 +493,9 @@
             window.open('calendario_equipe_06_2026.html', '_blank');
         }
 
-        // LocalStorage
-        function salvar(chave, dados) {
-            localStorage.setItem(chave, JSON.stringify(dados));
-        }
-
-        function carregar(chave) {
-            const dados = localStorage.getItem(chave);
-            return dados ? JSON.parse(dados) : null;
-        }
-
-        // Toggle Missão
-        function toggleMissao() {
-            const select = document.getElementById('emMissao');
-            const campo = document.getElementById('campoMissao');
-            campo.style.display = select.value === 'Sim' ? 'block' : 'none';
-        }
-
-        // ROTEIRO DE REUNIÃO
+        // ========================================
+        // UPLOAD DE ARQUIVOS
+        // ========================================
         document.getElementById('fileUpload').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -444,27 +507,42 @@
 
             const reader = new FileReader();
             reader.onload = function(event) {
-                const arquivos = carregar('arquivos') || [];
-                arquivos.push({
+                const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+                
+                const novoArquivo = {
                     nome: file.name,
                     tipo: file.type,
                     tamanho: (file.size / 1024 / 1024).toFixed(2) + ' MB',
                     data: new Date().toLocaleDateString('pt-BR'),
                     conteudo: event.target.result
-                });
-                salvar('arquivos', arquivos);
+                };
+
+                arquivos.push(novoArquivo);
+                localStorage.setItem('arquivos', JSON.stringify(arquivos));
+                
                 carregarArquivos();
                 alert('✅ Arquivo enviado com sucesso!');
+                
+                if (file.name.toLowerCase().endsWith('.pdf')) {
+                    if (confirm('📄 Deseja visualizar o PDF agora?')) {
+                        mostrarPDF(novoArquivo);
+                    }
+                }
             };
             reader.readAsDataURL(file);
+            
+            e.target.value = '';
         });
 
+        // ========================================
+        // LISTAR ARQUIVOS
+        // ========================================
         function carregarArquivos() {
-            const arquivos = carregar('arquivos') || [];
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
             const lista = document.getElementById('arquivosLista');
             
             if (arquivos.length === 0) {
-                lista.innerHTML = '<div class="lista-vazia">📭 Nenhum arquivo enviado</div>';
+                lista.innerHTML = '<div class="lista-vazia">📭 Nenhum roteiro enviado</div>';
                 return;
             }
 
@@ -472,14 +550,53 @@
                 <div class="item-card">
                     <h3>${arq.nome}</h3>
                     <p>📅 Data: ${arq.data} | 📦 Tamanho: ${arq.tamanho}</p>
-                    <button class="btn btn-secondary" onclick="baixarArquivo(${idx})">⬇️ Baixar</button>
-                    <button class="btn btn-danger" onclick="excluirArquivo(${idx})">🗑️ Excluir</button>
+                    <div style="margin-top: 10px;">
+                        ${arq.nome.toLowerCase().endsWith('.pdf') ? 
+                            `<button class="btn btn-secondary" onclick='mostrarPDFIdx(${idx})'>👁️ Visualizar</button>` : ''}
+                        <button class="btn btn-secondary" onclick="baixarArquivoIdx(${idx})">⬇️ Baixar</button>
+                        <button class="btn btn-danger" onclick="excluirArquivoIdx(${idx})">🗑️ Excluir</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function baixarArquivo(idx) {
-            const arquivos = carregar('arquivos');
+        // ========================================
+        // VISUALIZADOR DE PDF
+        // ========================================
+        function mostrarPDFIdx(idx) {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            mostrarPDF(arquivos[idx]);
+        }
+
+        function mostrarPDF(arquivo) {
+            pdfAtualData = arquivo;
+            document.getElementById('nomePDFAtual').textContent = arquivo.nome;
+            document.getElementById('pdfFrame').src = arquivo.conteudo;
+            document.getElementById('visualizadorPDF').style.display = 'block';
+            
+            document.getElementById('visualizadorPDF').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function fecharVisualizador() {
+            document.getElementById('visualizadorPDF').style.display = 'none';
+            document.getElementById('pdfFrame').src = '';
+            pdfAtualData = null;
+        }
+
+        function baixarPDFAtual() {
+            if (!pdfAtualData) return;
+            
+            const link = document.createElement('a');
+            link.href = pdfAtualData.conteudo;
+            link.download = pdfAtualData.nome;
+            link.click();
+        }
+
+        // ========================================
+        // GERENCIAR ARQUIVOS
+        // ========================================
+        function baixarArquivoIdx(idx) {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
             const arq = arquivos[idx];
             const link = document.createElement('a');
             link.href = arq.conteudo;
@@ -487,152 +604,23 @@
             link.click();
         }
 
-        function excluirArquivo(idx) {
+        function excluirArquivoIdx(idx) {
             if (!confirm('Excluir este arquivo?')) return;
-            const arquivos = carregar('arquivos');
+            
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
             arquivos.splice(idx, 1);
-            salvar('arquivos', arquivos);
+            localStorage.setItem('arquivos', JSON.stringify(arquivos));
+            
             carregarArquivos();
+            fecharVisualizador();
         }
 
-        // CASAIS
-        function mostrarFormCasal() {
-            document.getElementById('formCasal').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('formCasal').offsetTop, behavior: 'smooth' });
-        }
-
-        function cancelarFormCasal() {
-            document.getElementById('formCasal').style.display = 'none';
-            limparFormCasal();
-        }
-
-        function limparFormCasal() {
-            document.getElementById('numeroENS').value = '';
-            document.getElementById('aniverCasamento').value = '';
-            document.getElementById('emMissao').value = 'Não';
-            document.getElementById('qualMissao').value = '';
-            document.getElementById('nomeEsposa').value = '';
-            document.getElementById('aniverEsposa').value = '';
-            document.getElementById('celularEsposa').value = '';
-            document.getElementById('emailEsposa').value = '';
-            document.getElementById('nomeEsposo').value = '';
-            document.getElementById('aniverEsposo').value = '';
-            document.getElementById('celularEsposo').value = '';
-            document.getElementById('emailEsposo').value = '';
-            document.getElementById('observacoesCasal').value = '';
-            toggleMissao();
-        }
-
-        function salvarCasal() {
-            const casal = {
-                numeroENS: document.getElementById('numeroENS').value,
-                aniverCasamento: document.getElementById('aniverCasamento').value,
-                emMissao: document.getElementById('emMissao').value,
-                qualMissao: document.getElementById('qualMissao').value,
-                esposa: {
-                    nome: document.getElementById('nomeEsposa').value,
-                    aniversario: document.getElementById('aniverEsposa').value,
-                    celular: document.getElementById('celularEsposa').value,
-                    email: document.getElementById('emailEsposa').value
-                },
-                esposo: {
-                    nome: document.getElementById('nomeEsposo').value,
-                    aniversario: document.getElementById('aniverEsposo').value,
-                    celular: document.getElementById('celularEsposo').value,
-                    email: document.getElementById('emailEsposo').value
-                },
-                observacoes: document.getElementById('observacoesCasal').value
-            };
-
-            if (!casal.esposa.nome || !casal.esposo.nome) {
-                alert('❌ Preencha os nomes do casal!');
-                return;
-            }
-
-            const casais = carregar('casais') || [];
-            casais.push(casal);
-            salvar('casais', casais);
-            
-            alert('✅ Casal salvo com sucesso!');
-            cancelarFormCasal();
-            carregarCasais();
-        }
-
-        function carregarCasais() {
-            const casais = carregar('casais') || [];
-            const lista = document.getElementById('casaisLista');
-            
-            if (casais.length === 0) {
-                lista.innerHTML = '<div class="lista-vazia">👥 Nenhum casal cadastrado</div>';
-                return;
-            }
-
-            lista.innerHTML = casais.map((casal, idx) => `
-                <div class="item-card">
-                    <h3>${casal.esposa.nome} e ${casal.esposo.nome}</h3>
-                    <p><strong>Nº ENS:</strong> ${casal.numeroENS || 'Não informado'}</p>
-                    <p><strong>Aniversário de Casamento:</strong> ${casal.aniverCasamento ? new Date(casal.aniverCasamento + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
-                    <p><strong>Em Missão:</strong> ${casal.emMissao} ${casal.emMissao === 'Sim' ? '- ' + casal.qualMissao : ''}</p>
-                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
-                    <p><strong>👰 ${casal.esposa.nome}</strong></p>
-                    <p>📅 ${casal.esposa.aniversario ? new Date(casal.esposa.aniversario + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
-                    <p>📱 ${casal.esposa.celular || 'Não informado'}</p>
-                    <p>✉️ ${casal.esposa.email || 'Não informado'}</p>
-                    <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
-                    <p><strong>🤵 ${casal.esposo.nome}</strong></p>
-                    <p>📅 ${casal.esposo.aniversario ? new Date(casal.esposo.aniversario + 'T00:00').toLocaleDateString('pt-BR') : 'Não informado'}</p>
-                    <p>📱 ${casal.esposo.celular || 'Não informado'}</p>
-                    <p>✉️ ${casal.esposo.email || 'Não informado'}</p>
-                    ${casal.observacoes ? '<hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;"><p><strong>Obs:</strong> ' + casal.observacoes + '</p>' : ''}
-                    <button class="btn btn-danger" onclick="excluirCasal(${idx})" style="margin-top: 10px;">🗑️ Excluir</button>
-                </div>
-            `).join('');
-        }
-
-        function excluirCasal(idx) {
-            if (!confirm('Excluir este casal?')) return;
-            const casais = carregar('casais');
-            casais.splice(idx, 1);
-            salvar('casais', casais);
-            carregarCasais();
-        }
-
-        // CONSELHEIRO
-        function carregarConselheiro() {
-            const cons = carregar('conselheiro');
-            if (cons) {
-                document.getElementById('numeroENSConselheiro').value = cons.numeroENS || '';
-                document.getElementById('nomeConselheiro').value = cons.nome || '';
-                document.getElementById('aniverConselheiro').value = cons.aniversario || '';
-                document.getElementById('aniverOrdenacao').value = cons.ordenacao || '';
-                document.getElementById('celularConselheiro').value = cons.celular || '';
-                document.getElementById('emailConselheiro').value = cons.email || '';
-                document.getElementById('paroquiaConselheiro').value = cons.paroquia || '';
-                document.getElementById('observacoesConselheiro').value = cons.observacoes || '';
-            }
-        }
-
-        function salvarConselheiro() {
-            const cons = {
-                numeroENS: document.getElementById('numeroENSConselheiro').value,
-                nome: document.getElementById('nomeConselheiro').value,
-                aniversario: document.getElementById('aniverConselheiro').value,
-                ordenacao: document.getElementById('aniverOrdenacao').value,
-                celular: document.getElementById('celularConselheiro').value,
-                email: document.getElementById('emailConselheiro').value,
-                paroquia: document.getElementById('paroquiaConselheiro').value,
-                observacoes: document.getElementById('observacoesConselheiro').value
-            };
-            salvar('conselheiro', cons);
-            alert('✅ Dados salvos com sucesso!');
-        }
-
+        // ========================================
         // BACKUP
+        // ========================================
         function exportarDados() {
             const dados = {
-                casais: carregar('casais') || [],
-                arquivos: carregar('arquivos') || [],
-                conselheiro: carregar('conselheiro') || {},
+                arquivos: JSON.parse(localStorage.getItem('arquivos') || '[]'),
                 data: new Date().toISOString()
             };
 
@@ -642,7 +630,7 @@
             link.download = 'backup_equipe06_' + new Date().toISOString().split('T')[0] + '.json';
             link.click();
             
-            salvar('ultimoBackup', new Date().toLocaleString('pt-BR'));
+            localStorage.setItem('ultimoBackup', new Date().toLocaleString('pt-BR'));
             alert('✅ Backup exportado com sucesso!');
             atualizarEstatisticas();
         }
@@ -657,9 +645,7 @@
                     const dados = JSON.parse(e.target.result);
                     
                     if (confirm('⚠️ Isso vai substituir todos os dados atuais. Continuar?')) {
-                        salvar('casais', dados.casais || []);
-                        salvar('arquivos', dados.arquivos || []);
-                        salvar('conselheiro', dados.conselheiro || {});
+                        localStorage.setItem('arquivos', JSON.stringify(dados.arquivos || []));
                         alert('✅ Dados importados com sucesso!');
                         location.reload();
                     }
@@ -668,6 +654,8 @@
                 }
             };
             reader.readAsText(file);
+            
+            event.target.value = '';
         }
 
         function limparDados() {
@@ -680,16 +668,16 @@
         }
 
         function atualizarEstatisticas() {
-            const casais = carregar('casais') || [];
-            const arquivos = carregar('arquivos') || [];
-            const ultimoBackup = carregar('ultimoBackup') || 'Nunca';
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            const ultimoBackup = localStorage.getItem('ultimoBackup') || 'Nunca';
             
-            document.getElementById('statCasais').textContent = casais.length;
             document.getElementById('statArquivos').textContent = arquivos.length;
             document.getElementById('statBackup').textContent = ultimoBackup;
         }
 
-        // Carregar ao iniciar
+        // ========================================
+        // CARREGAR AO INICIAR
+        // ========================================
         window.addEventListener('load', () => {
             carregarArquivos();
         });
