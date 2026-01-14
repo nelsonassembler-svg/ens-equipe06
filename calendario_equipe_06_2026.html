@@ -4,323 +4,319 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário 2026 - Equipe 06</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 10px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #D97B7B 0%, #B85555 100%);
             color: white;
-            padding: 20px;
             text-align: center;
-        }
-
-        header h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-            opacity: 0.95;
-        }
-
-        .meses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
             padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .mes-card {
+        .premium-badge {
+            background: #ffd700;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .calendario {
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            overflow: hidden;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .calendario h2 {
+            color: #B85555;
+            border-bottom: 3px solid #E8B4B8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .evento {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #88AB75;
+            cursor: pointer;
             transition: all 0.3s;
+        }
+
+        .evento:hover {
+            transform: translateX(5px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .mes-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border-color: #667eea;
+        .evento.editavel:hover {
+            border-left-color: #ffd700;
         }
 
-        .mes-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            font-size: 1.3em;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .mes-body {
-            padding: 15px;
-        }
-
-        .evento-item {
-            background: #f8f9fa;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            transition: all 0.2s;
-        }
-
-        .evento-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .evento-dia {
-            font-size: 1.1em;
+        .evento-data {
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 5px;
         }
 
-        .evento-titulo {
-            color: #495057;
-            font-size: 0.95em;
-            line-height: 1.4;
+        .evento-descricao {
+            color: #666;
         }
 
-        .evento-tipo {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            color: white;
-            margin-top: 5px;
-        }
-
-        .tipo-aniversario { background: #e91e63; }
-        .tipo-casamento { background: #ff9800; }
-        .tipo-reuniao { background: #2196f3; }
-        .tipo-missa { background: #9c27b0; }
-        .tipo-feriado { background: #f44336; }
-        .tipo-outro { background: #607d8b; }
-
-        .mes-vazio {
-            text-align: center;
-            color: #95a5a6;
-            padding: 30px;
-            font-style: italic;
-        }
-
-        footer {
-            background: #f8f9fa;
-            padding: 15px;
-            text-align: center;
-            color: #6c757d;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-        }
-
-        .btn-voltar {
-            display: inline-block;
-            margin: 20px;
+        .btn {
             padding: 12px 24px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 8px;
+            cursor: pointer;
             font-weight: bold;
+            margin: 5px;
             transition: all 0.3s;
         }
 
-        .btn-voltar:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .btn-primary { background: #88AB75; color: white; }
+        .btn-secondary { background: #5F9EA0; color: white; }
+        .btn-danger { background: #D97B7B; color: white; }
+
+        /* Modal de Edição */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show { display: flex; }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        footer {
+            background: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) {
-            .meses-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                padding: 15px;
-            }
-
-            .mes-header {
-                font-size: 1.1em;
-                padding: 12px;
-            }
-
-            .evento-item {
-                padding: 10px;
-            }
-
-            .evento-dia {
-                font-size: 1em;
-            }
-
-            .evento-titulo {
-                font-size: 0.85em;
-            }
+            body { padding: 10px; }
+            .calendario { padding: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📅 Calendário 2026</h1>
-            <p>Equipe 06 - Nossa Senhora da Paz</p>
-        </header>
+    <header>
+        <h1>📅 Calendário 2026</h1>
+        <p>Equipe 06 - Nossa Senhora da Paz</p>
+        <div id="userStatus"></div>
+    </header>
 
-        <a href="index.html" class="btn-voltar">← Voltar ao Sistema</a>
-
-        <div class="meses-grid" id="calendarioContainer"></div>
-
-        <footer>
-            <p>Calendário Equipe 06 - 2026 | Desenvolvido para visualização responsiva</p>
-        </footer>
+    <div class="calendario">
+        <h2>Janeiro 2026</h2>
+        <div class="evento" data-id="1" data-data="12/01/2026" onclick="editarEvento(this)">
+            <div class="evento-data">12/01/2026 (Segunda)</div>
+            <div class="evento-descricao">REUNIÃO SETOR A</div>
+        </div>
+        <div class="evento" data-id="2" data-data="18/01/2026" onclick="editarEvento(this)">
+            <div class="evento-data">18/01/2026 (Domingo)</div>
+            <div class="evento-descricao">REUNIÃO DE CALENDÁRIO - Casal Anfitrião: Ana Lucia e Nelson</div>
+        </div>
+        <div class="evento" data-id="3" data-data="25/01/2026" onclick="editarEvento(this)">
+            <div class="evento-data">25/01/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR A</div>
+        </div>
     </div>
 
+    <div class="calendario">
+        <h2>Fevereiro 2026</h2>
+        <div class="evento" data-id="4" data-data="15/02/2026" onclick="editarEvento(this)">
+            <div class="evento-data">15/02/2026 (Domingo)</div>
+            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
+        </div>
+        <div class="evento" data-id="5" data-data="22/02/2026" onclick="editarEvento(this)">
+            <div class="evento-data">22/02/2026 (Domingo)</div>
+            <div class="evento-descricao">MISSA MENSAL SETOR B</div>
+        </div>
+        <div class="evento" data-id="6" data-data="24/02/2026" onclick="editarEvento(this)">
+            <div class="evento-data">24/02/2026 (Terça)</div>
+            <div class="evento-descricao">1ª REUNIÃO FORMAL - Casal Anfitrião: Ana Amélia e Rodrigues</div>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="window.history.back()">← Voltar</button>
+
+    <!-- Modal de Edição -->
+    <div id="modalEdicao" class="modal">
+        <div class="modal-content">
+            <h3>✏️ Editar Evento</h3>
+            <label>Data (DD/MM/AAAA):</label>
+            <input type="text" id="editData" placeholder="14/01/2026">
+            <label>Descrição:</label>
+            <input type="text" id="editDescricao" placeholder="Descrição do evento">
+            <div style="margin-top: 20px;">
+                <button class="btn btn-primary" onclick="salvarEdicao()">💾 Salvar</button>
+                <button class="btn btn-secondary" onclick="fecharModal()">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-weight: bold;">Desenvolvido por:</p>
+        <p style="font-size: 1.1em; color: #1F4E78;">Nelson Tomaz Catunda Magalhães</p>
+        <p><a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none;">📧 nelsonassembrer@gmail.com</a></p>
+        <p style="color: #666; font-size: 0.9em;">© 2026 - Todos os direitos reservados</p>
+    </footer>
+
     <script>
-        // Dados do calendário (extraídos do PDF)
-        const eventos2026 = {
-            1: [ // Janeiro
-                { dia: 1, titulo: 'Feriado de Ano Novo', tipo: 'feriado' },
-                { dia: 8, titulo: 'Aniversário Rodrigo (Mazé e Hamilton)', tipo: 'aniversario' },
-                { dia: 12, titulo: 'Reunião de Calendário - Casal Anfitrião Ana Lucia e Nelson', tipo: 'reuniao' },
-                { dia: 18, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            2: [ // Fevereiro
-                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
-                { dia: 16, titulo: 'Carnaval', tipo: 'feriado' },
-                { dia: 17, titulo: 'Carnaval', tipo: 'feriado' },
-                { dia: 18, titulo: 'Quarta-feira de Cinzas', tipo: 'feriado' }
-            ],
-            3: [ // Março
-                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
-                { dia: 26, titulo: 'Aniversário Ana Amélia (Ana Lucia e Nelson)', tipo: 'aniversario' }
-            ],
-            4: [ // Abril
-                { dia: 3, titulo: 'Sexta-feira Santa', tipo: 'feriado' },
-                { dia: 5, titulo: 'Páscoa', tipo: 'feriado' },
-                { dia: 13, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 19, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
-                { dia: 21, titulo: 'Tiradentes', tipo: 'feriado' }
-            ],
-            5: [ // Maio
-                { dia: 1, titulo: 'Dia do Trabalho', tipo: 'feriado' },
-                { dia: 11, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 17, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            6: [ // Junho
-                { dia: 4, titulo: 'Corpus Christi', tipo: 'feriado' },
-                { dia: 8, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 21, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            7: [ // Julho
-                { dia: 13, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 19, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            8: [ // Agosto
-                { dia: 10, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 16, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            9: [ // Setembro
-                { dia: 7, titulo: 'Independência do Brasil', tipo: 'feriado' },
-                { dia: 14, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 16, titulo: 'Aniversário Antônio (Ana Lucia e Nelson)', tipo: 'aniversario' },
-                { dia: 20, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            10: [ // Outubro
-                { dia: 12, titulo: 'Nossa Senhora Aparecida', tipo: 'feriado' },
-                { dia: 12, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 18, titulo: 'Missa Mensal Setor A', tipo: 'missa' }
-            ],
-            11: [ // Novembro
-                { dia: 2, titulo: 'Finados', tipo: 'feriado' },
-                { dia: 9, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 15, titulo: 'Proclamação da República', tipo: 'feriado' },
-                { dia: 15, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
-                { dia: 20, titulo: 'Consciência Negra', tipo: 'feriado' }
-            ],
-            12: [ // Dezembro
-                { dia: 14, titulo: 'Reunião Formal - Casal Anfitrião Mazé e Hamilton', tipo: 'reuniao' },
-                { dia: 20, titulo: 'Missa Mensal Setor A', tipo: 'missa' },
-                { dia: 25, titulo: 'Natal', tipo: 'feriado' }
-            ]
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCsqAHzIXVlAdYjSCGvNyRVE1IiIHEcEPc",
+            authDomain: "ens-equipe06.firebaseapp.com",
+            projectId: "ens-equipe06",
+            storageBucket: "ens-equipe06.firebasestorage.app",
+            messagingSenderId: "602404779314",
+            appId: "1:602404779314:web:e8db2bbd6971264060532b"
         };
 
-        const mesesNomes = [
-            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-        ];
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-        const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+        const EMAIL_PREMIUM = "nelsontcmagalhaes@gmail.com";
+        let isPremium = false;
+        let eventoAtual = null;
 
-        function renderizarCalendario() {
-            const container = document.getElementById('calendarioContainer');
-            container.innerHTML = '';
-
-            for (let mes = 1; mes <= 12; mes++) {
-                const mesCard = document.createElement('div');
-                mesCard.className = 'mes-card';
-
-                const mesHeader = document.createElement('div');
-                mesHeader.className = 'mes-header';
-                mesHeader.textContent = mesesNomes[mes - 1] + ' 2026';
-
-                const mesBody = document.createElement('div');
-                mesBody.className = 'mes-body';
-
-                const eventosDoMes = eventos2026[mes] || [];
-
-                if (eventosDoMes.length === 0) {
-                    mesBody.innerHTML = '<div class="mes-vazio">Nenhum evento cadastrado</div>';
+        // Verificar usuário
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                isPremium = user.email === EMAIL_PREMIUM;
+                
+                if (isPremium) {
+                    document.getElementById('userStatus').innerHTML = '<span class="premium-badge">⭐ PREMIUM - Clique nos eventos para editar</span>';
+                    document.querySelectorAll('.evento').forEach(e => e.classList.add('editavel'));
                 } else {
-                    eventosDoMes.sort((a, b) => a.dia - b.dia);
-
-                    eventosDoMes.forEach(evento => {
-                        const data = new Date(2026, mes - 1, evento.dia);
-                        const diaSemana = diasSemana[data.getDay()];
-
-                        const eventoDiv = document.createElement('div');
-                        eventoDiv.className = 'evento-item';
-
-                        eventoDiv.innerHTML = `
-                            <div class="evento-dia">${evento.dia} - ${diaSemana}</div>
-                            <div class="evento-titulo">${evento.titulo}</div>
-                            <span class="evento-tipo tipo-${evento.tipo}">${evento.tipo.toUpperCase()}</span>
-                        `;
-
-                        mesBody.appendChild(eventoDiv);
-                    });
+                    document.getElementById('userStatus').innerHTML = '<span class="premium-badge">👁️ VISUALIZADOR</span>';
                 }
-
-                mesCard.appendChild(mesHeader);
-                mesCard.appendChild(mesBody);
-                container.appendChild(mesCard);
+            } else {
+                document.getElementById('userStatus').innerHTML = '<span class="premium-badge">👁️ VISITANTE</span>';
             }
+        });
+
+        // Editar evento
+        function editarEvento(elemento) {
+            if (!isPremium) {
+                alert('⛔ Apenas o usuário Premium pode editar eventos');
+                return;
+            }
+
+            eventoAtual = elemento;
+            const data = elemento.querySelector('.evento-data').textContent.split(' ')[0];
+            const descricao = elemento.querySelector('.evento-descricao').textContent;
+
+            document.getElementById('editData').value = data;
+            document.getElementById('editDescricao').value = descricao;
+            document.getElementById('modalEdicao').classList.add('show');
         }
 
-        renderizarCalendario();
+        // Salvar edição
+        function salvarEdicao() {
+            if (!eventoAtual) return;
+
+            const novaData = document.getElementById('editData').value;
+            const novaDescricao = document.getElementById('editDescricao').value;
+
+            // Validar data
+            if (!/^\d{2}\/\d{2}\/\d{4}$/.test(novaData)) {
+                alert('❌ Data inválida! Use o formato DD/MM/AAAA');
+                return;
+            }
+
+            // Obter dia da semana
+            const [dia, mes, ano] = novaData.split('/');
+            const data = new Date(ano, mes - 1, dia);
+            const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            const diaSemana = diasSemana[data.getDay()];
+
+            // Atualizar no DOM
+            eventoAtual.querySelector('.evento-data').textContent = `${novaData} (${diaSemana})`;
+            eventoAtual.querySelector('.evento-descricao').textContent = novaDescricao;
+
+            // Salvar no localStorage
+            const eventos = JSON.parse(localStorage.getItem('calendario_eventos') || '{}');
+            eventos[eventoAtual.dataset.id] = { data: novaData, descricao: novaDescricao };
+            localStorage.setItem('calendario_eventos', JSON.stringify(eventos));
+
+            alert('✅ Evento atualizado com sucesso!');
+            fecharModal();
+        }
+
+        // Fechar modal
+        function fecharModal() {
+            document.getElementById('modalEdicao').classList.remove('show');
+            eventoAtual = null;
+        }
+
+        // Carregar eventos salvos
+        window.addEventListener('load', () => {
+            const eventos = JSON.parse(localStorage.getItem('calendario_eventos') || '{}');
+            
+            Object.keys(eventos).forEach(id => {
+                const elemento = document.querySelector(`[data-id="${id}"]`);
+                if (elemento) {
+                    const evento = eventos[id];
+                    const [dia, mes, ano] = evento.data.split('/');
+                    const data = new Date(ano, mes - 1, dia);
+                    const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+                    const diaSemana = diasSemana[data.getDay()];
+                    
+                    elemento.querySelector('.evento-data').textContent = `${evento.data} (${diaSemana})`;
+                    elemento.querySelector('.evento-descricao').textContent = evento.descricao;
+                }
+            });
+        });
     </script>
 </body>
 </html>
