@@ -3,103 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENS - Equipe 06</title>
+    <title>ENS - Equipe 06 - Nossa Senhora da Paz</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #FFF5F5 0%, #EDE8E1 100%);
             padding: 20px;
-        }
-
-        /* LOGIN SCREEN */
-        #loginScreen {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #ffcccb 0%, #ff9999 100%);
-            z-index: 9999;
-        }
-
-        .login-card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .login-card h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-
-        .login-card p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .login-form input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1em;
-        }
-
-        .login-form input:focus {
-            outline: none;
-            border-color: #ff6b6b;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        .user-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            background: #ffd700;
-            color: #333;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        .btn-logout {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-left: 10px;
         }
 
         header {
@@ -109,10 +20,15 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             border-radius: 15px;
             margin-bottom: 30px;
+            border: 1px solid #e9ecef;
             text-align: center;
         }
 
-        header h1 { font-size: 2em; margin-bottom: 10px; }
+        header h1 { 
+            font-size: 2.2em; 
+            margin-bottom: 10px; 
+            font-weight: 700; 
+        }
 
         .tabs {
             display: flex;
@@ -131,8 +47,15 @@
             transition: all 0.3s;
         }
 
-        .tab:hover { border-color: #B85555; transform: translateY(-2px); }
-        .tab.active { background: #D97B7B; color: white; border-color: #D97B7B; }
+        .tab:hover { 
+            border-color: #B85555; 
+            transform: translateY(-2px); 
+        }
+
+        .tab.active { 
+            background: #D97B7B; 
+            color: white; 
+        }
 
         .section { display: none; }
         .section.active { display: block; }
@@ -164,584 +87,45 @@
         }
 
         .btn-primary { background: #88AB75; color: white; }
-        .btn-primary:hover { background: #6B8E5F; }
-        .btn-secondary { background: #5F9EA0; color: white; }
-        .btn-danger { background: #D97B7B; color: white; }
-
-        .item-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border-left: 4px solid #88AB75;
-        }
-
-        .item-card h3 { color: #2c3e50; margin-bottom: 10px; }
-        .item-card p { color: #666; margin: 5px 0; }
-
-        .lista-vazia {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-            font-style: italic;
-        }
-
-        #visualizadorPDF {
-            margin-top: 30px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        #visualizadorPDF iframe {
-            width: 100%;
-            height: 600px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-        }
+        .btn-primary:hover { background: #6B8E5F; transform: translateY(-2px); }
 
         @media (max-width: 768px) {
             body { padding: 10px; }
+            header { padding: 15px; }
             header h1 { font-size: 1.5em; }
+            .tabs { gap: 8px; }
             .tab { padding: 12px 20px; font-size: 0.9em; }
-            .card { padding: 20px; }
-            .login-card { padding: 30px 20px; }
-            #visualizadorPDF iframe { height: 400px; }
+            .card { padding: 15px; }
         }
     </style>
 </head>
 <body>
-    <!-- TELA DE LOGIN -->
-    <div id="loginScreen">
-        <div class="login-card">
-            <h1>🔐 Login</h1>
-            <p>Equipe 06 - Nossa Senhora da Paz</p>
-            
-            <!-- MENSAGEM DE ERRO -->
-            <div id="loginError" style="display: none; background: #ffebee; color: #c62828; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9em;"></div>
-            
-            <!-- MENSAGEM DE SUCESSO -->
-            <div id="loginSuccess" style="display: none; background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9em;"></div>
-            
-            <form class="login-form" onsubmit="fazerLogin(event)">
-                <input type="email" id="emailLogin" placeholder="E-mail" required>
-                <input type="password" id="senhaLogin" placeholder="Senha (mínimo 6 caracteres)" required minlength="6">
-                <button type="submit" class="btn-login" id="btnEntrar">Entrar</button>
-            </form>
-            <p style="margin-top: 20px; font-size: 0.9em; color: #999;">
-                Primeira vez? Use seu e-mail e crie uma senha.
-            </p>
-        </div>
+    <header>
+        <h1>📅 ENS - Equipe 06</h1>
+        <p>Nossa Senhora da Paz</p>
+    </header>
+
+    <div class="tabs">
+        <div class="tab active" onclick="abrirCalendarioEditavel()">📆 Calendário 2026</div>
     </div>
 
-    <!-- APP PRINCIPAL -->
-    <div id="appPrincipal" style="display: none;">
-        <header>
-            <h1>📅 Equipe 06 - Nossa Senhora da Paz</h1>
-            <p>Movimento de Casais por uma Espiritualidade Conjugal</p>
-            <p style="font-size: 0.9em; margin-top: 10px;">
-                <strong>Província Nordeste I – Região Ceará IV – Setor A – Fortaleza (CE)</strong>
+    <div id="inicio" class="section active">
+        <div class="card">
+            <h2>Bem-vindo!</h2>
+            <p style="font-size: 1.1em; line-height: 1.8; color: #495057;">
+                Clique em <strong>"📆 Calendário 2026"</strong> acima para visualizar e editar os eventos da equipe.
             </p>
-            <div style="margin-top: 15px;">
-                <span id="userInfo"></span>
-                <button class="btn-logout" onclick="fazerLogout()">🚪 Sair</button>
-            </div>
-        </header>
-
-        <div class="tabs">
-            <div class="tab" onclick="abrirCalendarioEditavel()">📆 Calendário 2026</div>
-            <div class="tab active" onclick="mostrarSecao('roteiro')">📋 Roteiro de Reunião</div>
-            <div class="tab" onclick="mostrarSecao('casais')">👥 Casais</div>
-            <div class="tab" onclick="mostrarSecao('conselheiro')">✝️ Conselheiro</div>
-            <div class="tab" onclick="mostrarSecao('formularios')">📝 Formulários</div>
-            <div class="tab" id="tabBackup" onclick="mostrarSecao('backup')">💾 Backup</div>
-        </div>
-
-        <!-- ROTEIRO DE REUNIÃO -->
-        <div id="roteiroSection" class="section active">
-            <div class="card">
-                <h2>📋 Roteiro de Reunião</h2>
-                
-                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>📄 Roteiro Atual:</strong> Clique em "Visualizar" para ver o documento</p>
-                </div>
-
-                <div id="arquivosLista"></div>
-
-                <!-- VISUALIZADOR DE PDF -->
-                <div id="visualizadorPDF" style="display: none;">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px;">
-                        📄 Visualizando: <span id="nomePDFAtual"></span>
-                    </h3>
-                    <div style="margin-bottom: 15px;">
-                        <button class="btn btn-secondary" onclick="fecharVisualizador()">❌ Fechar</button>
-                        <button class="btn btn-primary" onclick="baixarPDFAtual()">⬇️ Baixar</button>
-                    </div>
-                    <iframe id="pdfFrame"></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- CASAIS -->
-        <div id="casaisSection" class="section">
-            <div class="card">
-                <h2>👥 Gestão de Casais</h2>
-                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>👫 Cadastre os casais da equipe</strong></p>
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        Em desenvolvimento - Em breve!
-                    </p>
-                </div>
-                <div class="lista-vazia">👥 Funcionalidade em desenvolvimento</div>
-            </div>
-        </div>
-
-        <!-- CONSELHEIRO -->
-        <div id="conselheiroSection" class="section">
-            <div class="card">
-                <h2>✝️ Conselheiro Espiritual</h2>
-                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>✝️ Dados do Conselheiro Espiritual</strong></p>
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        Em desenvolvimento - Em breve!
-                    </p>
-                </div>
-                <div class="lista-vazia">✝️ Funcionalidade em desenvolvimento</div>
-            </div>
-        </div>
-
-        <!-- FORMULÁRIOS -->
-        <div id="formulariosSection" class="section">
-            <div class="card">
-                <h2>📝 Formulários</h2>
-                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>📋 Formulários Oficiais ENS</strong></p>
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        Vida de Equipe, Reunião Mensal e Reunião Preparatória
-                    </p>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <div style="font-size: 3em;">📊</div>
-                        <h3>Vida de Equipe</h3>
-                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
-                    </div>
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <div style="font-size: 3em;">📅</div>
-                        <h3>Reunião Mensal</h3>
-                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
-                    </div>
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-                        <div style="font-size: 3em;">📋</div>
-                        <h3>Reunião Preparatória</h3>
-                        <p style="color: #666; margin: 10px 0;">Em desenvolvimento</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BACKUP -->
-        <div id="backupSection" class="section">
-            <div class="card">
-                <h2>💾 Backup e Restauração</h2>
-                <div style="background: #FFF9E6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>⚠️ Importante:</strong> Faça backup regular dos seus dados!</p>
-                </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
-                    <button class="btn btn-primary" onclick="exportarDados()">📤 Exportar Dados</button>
-                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Importar Dados</button>
-                    <button class="btn btn-danger" onclick="limparDados()">🗑️ Limpar Tudo</button>
-                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importarDados(event)">
-                </div>
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                    <h3>📊 Estatísticas</h3>
-                    <p><strong>Arquivos no roteiro:</strong> <span id="statArquivos">0</span></p>
-                    <p><strong>Último backup:</strong> <span id="statBackup">Nunca</span></p>
-                </div>
-            </div>
+            <br>
+            <button class="btn btn-primary" onclick="abrirCalendarioEditavel()">
+                📅 Abrir Calendário Completo
+            </button>
         </div>
     </div>
-
-    <!-- RODAPÉ -->
-    <footer style="
-        background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
-        color: #2c3e50;
-        text-align: center;
-        padding: 30px 20px;
-        margin-top: 50px;
-        border-radius: 15px;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    ">
-        <p style="font-weight: bold; font-size: 1.1em; margin-bottom: 10px;">
-            Desenvolvido por:
-        </p>
-        <p style="font-size: 1.2em; color: #1F4E78; font-weight: bold; margin-bottom: 5px;">
-            Nelson Tomaz Catunda Magalhães
-        </p>
-        <p style="margin-bottom: 15px;">
-            <a href="/cdn-cgi/l/email-protection#8de3e8e1fee2e3ecfefee8e0efffe8ffcdeae0ece4e1a3eee2e0" style="color: #5F9EA0; text-decoration: none; font-weight: bold;">
-                📧 <span class="__cf_email__" data-cfemail="a2ccc7ced1cdccc3d1d1c7cfc0d0c7d0e2c5cfc3cbce8cc1cdcf">[email&#160;protected]</span>
-            </a>
-        </p>
-        <p style="color: #666; font-size: 0.9em;">
-            © 2026 - Todos os direitos reservados
-        </p>
-    </footer>
-
-    <!-- Firebase SDK -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // ========================================
-        // CONFIGURAÇÃO FIREBASE - SUAS CREDENCIAIS
-        // ========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyCsqAHzIXVlAdYjSCGvNyRVE1IiIHEcEPc",
-            authDomain: "ens-equipe06.firebaseapp.com",
-            projectId: "ens-equipe06",
-            storageBucket: "ens-equipe06.firebasestorage.app",
-            messagingSenderId: "602404779314",
-            appId: "1:602404779314:web:e8db2bbd6971264060532b"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // ========================================
-        // VARIÁVEIS GLOBAIS
-        // ========================================
-        const EMAIL_PREMIUM = "nelsontcmagalhaes@gmail.com";
-        let usuarioAtual = null;
-        let isPremium = false;
-        let pdfAtualData = null;
-
-        // ========================================
-        // AUTENTICAÇÃO
-        // ========================================
-        function mostrarErro(mensagem) {
-            const errorDiv = document.getElementById('loginError');
-            const successDiv = document.getElementById('loginSuccess');
-            successDiv.style.display = 'none';
-            errorDiv.textContent = mensagem;
-            errorDiv.style.display = 'block';
+        function abrirCalendarioEditavel() {
+            window.open('calendario-2026.html', '_blank');
         }
-
-        function mostrarSucesso(mensagem) {
-            const errorDiv = document.getElementById('loginError');
-            const successDiv = document.getElementById('loginSuccess');
-            errorDiv.style.display = 'none';
-            successDiv.textContent = mensagem;
-            successDiv.style.display = 'block';
-        }
-
-        function fazerLogin(event) {
-            event.preventDefault();
-            
-            const btnEntrar = document.getElementById('btnEntrar');
-            btnEntrar.textContent = 'Aguarde...';
-            btnEntrar.disabled = true;
-            
-            const email = document.getElementById('emailLogin').value;
-            const senha = document.getElementById('senhaLogin').value;
-
-            console.log('Tentando login com:', email);
-
-            // Validações
-            if (senha.length < 6) {
-                mostrarErro('❌ A senha deve ter pelo menos 6 caracteres!');
-                btnEntrar.textContent = 'Entrar';
-                btnEntrar.disabled = false;
-                return;
-            }
-
-            auth.signInWithEmailAndPassword(email, senha)
-                .then(() => {
-                    console.log('Login realizado com sucesso!');
-                    mostrarSucesso('✅ Login realizado! Aguarde...');
-                })
-                .catch((error) => {
-                    console.log('Erro no login:', error.code, error.message);
-                    
-                    if (error.code === 'auth/user-not-found') {
-                        console.log('Usuário não encontrado, criando conta...');
-                        mostrarSucesso('📝 Criando nova conta...');
-                        
-                        auth.createUserWithEmailAndPassword(email, senha)
-                            .then(() => {
-                                console.log('Conta criada com sucesso!');
-                                mostrarSucesso('✅ Conta criada! Entrando...');
-                            })
-                            .catch((err) => {
-                                console.error('Erro ao criar conta:', err);
-                                let mensagemErro = '❌ Erro ao criar conta: ';
-                                
-                                if (err.code === 'auth/email-already-in-use') {
-                                    mensagemErro += 'E-mail já está em uso!';
-                                } else if (err.code === 'auth/invalid-email') {
-                                    mensagemErro += 'E-mail inválido!';
-                                } else if (err.code === 'auth/weak-password') {
-                                    mensagemErro += 'Senha muito fraca!';
-                                } else {
-                                    mensagemErro += err.message;
-                                }
-                                
-                                mostrarErro(mensagemErro);
-                                btnEntrar.textContent = 'Entrar';
-                                btnEntrar.disabled = false;
-                            });
-                    } else if (error.code === 'auth/wrong-password') {
-                        mostrarErro('❌ Senha incorreta!');
-                        btnEntrar.textContent = 'Entrar';
-                        btnEntrar.disabled = false;
-                    } else if (error.code === 'auth/invalid-email') {
-                        mostrarErro('❌ E-mail inválido!');
-                        btnEntrar.textContent = 'Entrar';
-                        btnEntrar.disabled = false;
-                    } else if (error.code === 'auth/network-request-failed') {
-                        mostrarErro('❌ Erro de conexão! Verifique sua internet.');
-                        btnEntrar.textContent = 'Entrar';
-                        btnEntrar.disabled = false;
-                    } else {
-                        mostrarErro('❌ Erro: ' + error.message);
-                        btnEntrar.textContent = 'Entrar';
-                        btnEntrar.disabled = false;
-                    }
-                });
-        }
-
-        function fazerLogout() {
-            if (confirm('Deseja realmente sair?')) {
-                auth.signOut();
-            }
-        }
-
-        // ========================================
-        // OBSERVER DE AUTENTICAÇÃO
-        // ========================================
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                usuarioAtual = user;
-                isPremium = user.email === EMAIL_PREMIUM;
-                
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('appPrincipal').style.display = 'block';
-                
-                const badge = isPremium ? '<span class="user-badge">⭐ PREMIUM</span>' : '<span class="user-badge">👁️ VISUALIZADOR</span>';
-                document.getElementById('userInfo').innerHTML = user.email + badge;
-                
-                // Esconder aba Backup para não-Premium
-                if (!isPremium) {
-                    document.getElementById('tabBackup').style.display = 'none';
-                }
-                
-                carregarArquivos();
-            } else {
-                document.getElementById('loginScreen').style.display = 'flex';
-                document.getElementById('appPrincipal').style.display = 'none';
-            }
-        });
-
-        // ========================================
-        // NAVEGAÇÃO
-        // ========================================
-        function mostrarSecao(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            
-            document.getElementById(id + 'Section').classList.add('active');
-            event.target.classList.add('active');
-            
-            if (id === 'roteiro') carregarArquivos();
-            if (id === 'backup') atualizarEstatisticas();
-        }
-
-        function abrirCalendario() {
-            window.open('calendario_equipe_06_2026.html', '_blank');
-        }
-
-        // ========================================
-        // UPLOAD DE ARQUIVOS
-        // ========================================
-        document.getElementById('fileUpload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            if (file.size > 10 * 1024 * 1024) {
-                alert('❌ Arquivo muito grande! Máximo 10MB');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-                
-                const novoArquivo = {
-                    nome: file.name,
-                    tipo: file.type,
-                    tamanho: (file.size / 1024 / 1024).toFixed(2) + ' MB',
-                    data: new Date().toLocaleDateString('pt-BR'),
-                    conteudo: event.target.result
-                };
-
-                arquivos.push(novoArquivo);
-                localStorage.setItem('arquivos', JSON.stringify(arquivos));
-                
-                carregarArquivos();
-                alert('✅ Arquivo enviado com sucesso!');
-                
-                if (file.name.toLowerCase().endsWith('.pdf')) {
-                    if (confirm('📄 Deseja visualizar o PDF agora?')) {
-                        mostrarPDF(novoArquivo);
-                    }
-                }
-            };
-            reader.readAsDataURL(file);
-            
-            e.target.value = '';
-        });
-
-        // ========================================
-        // LISTAR ARQUIVOS
-        // ========================================
-        function carregarArquivos() {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            const lista = document.getElementById('arquivosLista');
-            
-            if (arquivos.length === 0) {
-                lista.innerHTML = '<div class="lista-vazia">📭 Nenhum roteiro enviado</div>';
-                return;
-            }
-
-            lista.innerHTML = arquivos.map((arq, idx) => `
-                <div class="item-card">
-                    <h3>${arq.nome}</h3>
-                    <p>📅 Data: ${arq.data} | 📦 Tamanho: ${arq.tamanho}</p>
-                    <div style="margin-top: 10px;">
-                        ${arq.nome.toLowerCase().endsWith('.pdf') ? 
-                            `<button class="btn btn-secondary" onclick='mostrarPDFIdx(${idx})'>👁️ Visualizar</button>` : ''}
-                        <button class="btn btn-secondary" onclick="baixarArquivoIdx(${idx})">⬇️ Baixar</button>
-                        <button class="btn btn-danger" onclick="excluirArquivoIdx(${idx})">🗑️ Excluir</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // ========================================
-        // VISUALIZADOR DE PDF
-        // ========================================
-        function mostrarPDFIdx(idx) {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            mostrarPDF(arquivos[idx]);
-        }
-
-        function mostrarPDF(arquivo) {
-            pdfAtualData = arquivo;
-            document.getElementById('nomePDFAtual').textContent = arquivo.nome;
-            document.getElementById('pdfFrame').src = arquivo.conteudo;
-            document.getElementById('visualizadorPDF').style.display = 'block';
-            
-            document.getElementById('visualizadorPDF').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function fecharVisualizador() {
-            document.getElementById('visualizadorPDF').style.display = 'none';
-            document.getElementById('pdfFrame').src = '';
-            pdfAtualData = null;
-        }
-
-        function baixarPDFAtual() {
-            if (!pdfAtualData) return;
-            
-            const link = document.createElement('a');
-            link.href = pdfAtualData.conteudo;
-            link.download = pdfAtualData.nome;
-            link.click();
-        }
-
-        // ========================================
-        // GERENCIAR ARQUIVOS
-        // ========================================
-        function baixarArquivoIdx(idx) {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            const arq = arquivos[idx];
-            const link = document.createElement('a');
-            link.href = arq.conteudo;
-            link.download = arq.nome;
-            link.click();
-        }
-
-        function excluirArquivoIdx(idx) {
-            if (!confirm('Excluir este arquivo?')) return;
-            
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            arquivos.splice(idx, 1);
-            localStorage.setItem('arquivos', JSON.stringify(arquivos));
-            
-            carregarArquivos();
-            fecharVisualizador();
-        }
-
-        // ========================================
-        // BACKUP
-        // ========================================
-        function exportarDados() {
-            const dados = {
-                arquivos: JSON.parse(localStorage.getItem('arquivos') || '[]'),
-                data: new Date().toISOString()
-            };
-
-            const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'backup_equipe06_' + new Date().toISOString().split('T')[0] + '.json';
-            link.click();
-            
-            localStorage.setItem('ultimoBackup', new Date().toLocaleString('pt-BR'));
-            alert('✅ Backup exportado com sucesso!');
-            atualizarEstatisticas();
-        }
-
-        function importarDados(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const dados = JSON.parse(e.target.result);
-                    
-                    if (confirm('⚠️ Isso vai substituir todos os dados atuais. Continuar?')) {
-                        localStorage.setItem('arquivos', JSON.stringify(dados.arquivos || []));
-                        alert('✅ Dados importados com sucesso!');
-                        location.reload();
-                    }
-                } catch (err) {
-                    alert('❌ Arquivo inválido!');
-                }
-            };
-            reader.readAsText(file);
-            
-            event.target.value = '';
-        }
-
-        function limparDados() {
-            if (!confirm('⚠️ ATENÇÃO: Isso vai apagar TODOS os dados! Continuar?')) return;
-            if (!confirm('Tem certeza absoluta? Esta ação não pode ser desfeita!')) return;
-            
-            localStorage.clear();
-            alert('✅ Todos os dados foram apagados!');
-            location.reload();
-        }
-
-        function atualizarEstatisticas() {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            const ultimoBackup = localStorage.getItem('ultimoBackup') || 'Nunca';
-            
-            document.getElementById('statArquivos').textContent = arquivos.length;
-            document.getElementById('statBackup').textContent = ultimoBackup;
-        }
-
-  
+    </script>
+</body>
+</html>
