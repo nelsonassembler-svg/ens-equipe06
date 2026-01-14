@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENS - Equipe 06 - Calendário 2026</title>
+    <title>Calendário 2026 - Equipe 06</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -137,7 +137,7 @@
 
         .mes-body {
             padding: 15px;
-            max-height: 450px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
@@ -167,8 +167,9 @@
 
         .evento-titulo {
             color: #495057;
-            font-size: 0.9em;
-            line-height: 1.4;
+            font-size: 0.88em;
+            line-height: 1.5;
+            white-space: pre-line;
         }
 
         .evento-acoes {
@@ -257,7 +258,7 @@
         }
 
         .form-group textarea {
-            min-height: 80px;
+            min-height: 100px;
             resize: vertical;
         }
 
@@ -292,10 +293,11 @@
                 gap: 15px; 
                 padding: 15px;
             }
-            .mes-body { max-height: 350px; }
+            .mes-body { max-height: 400px; }
             .controles { padding: 15px; }
             .btn { padding: 10px 18px; font-size: 0.9em; }
             .modal-content { padding: 20px; }
+            .evento-titulo { font-size: 0.82em; }
         }
     </style>
 </head>
@@ -309,6 +311,7 @@
         <div class="controles">
             <button class="btn btn-primary" onclick="exportarDados()">💾 Exportar Backup</button>
             <button class="btn btn-success" onclick="document.getElementById('importFile').click()">📥 Importar Backup</button>
+            <button class="btn btn-secondary" onclick="window.close()">← Voltar</button>
             <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDados(event)">
         </div>
 
@@ -350,7 +353,7 @@
 
             <div class="form-group">
                 <label>Título do Evento *</label>
-                <textarea id="eventoTitulo" rows="3" placeholder="Ex: Reunião Formal - Casal Anfitrião"></textarea>
+                <textarea id="eventoTitulo" rows="4" placeholder="Ex: Reunião Formal - Casal Anfitrião"></textarea>
             </div>
 
             <div class="form-actions">
@@ -362,20 +365,20 @@
     </div>
 
     <script>
-        // Dados iniciais do PDF
+        // Dados COMPLETOS extraídos do PDF
         const eventosIniciais = {
             'JANEIRO': [
                 { dia: 1, titulo: 'FERIADO DE ANO NOVO' },
                 { dia: 5, titulo: 'REUNIÃO SETOR A' },
                 { dia: 8, titulo: 'Aniversário Rodrigo (Mazé e Hamilton)' },
-                { dia: 12, titulo: 'REUNIÃO DE CALENDÁRIO - CASAL ANFITRIÃO ANA LUCIA E NELSON' },
+                { dia: 12, titulo: 'REUNIÃO DE CALENDÁRIO\nCASAL ANFITRIÃO ANA LUCIA E NELSON' },
                 { dia: 18, titulo: 'MISSA MENSAL SETOR A' }
             ],
             'FEVEREIRO': [
                 { dia: 1, titulo: 'ANIVERSÁRIOS: PADRE ALEX E BERNADETTE' },
                 { dia: 2, titulo: 'EACRE' },
                 { dia: 8, titulo: 'CARNAVAL' },
-                { dia: 9, titulo: 'MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA\n1ª REUNIÃO FORMAL - CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES - CASAL ANIMADOR: ANA LUCIA E NELSON' },
+                { dia: 9, titulo: 'MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA\n1ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: ANA LUCIA E NELSON' },
                 { dia: 15, titulo: 'MISSA MENSAL SETOR B' },
                 { dia: 16, titulo: 'CARNAVAL' },
                 { dia: 17, titulo: 'CARNAVAL' },
@@ -390,10 +393,10 @@
                 { dia: 14, titulo: 'CASAMENTO DELANE E DEMÓCRITO' },
                 { dia: 15, titulo: 'MISSA MENSAL SETOR C' },
                 { dia: 19, titulo: 'DIA DE SÃO JOSÉ' },
-                { dia: 20, titulo: 'Aniversário THEREZA (LUCINHA E IVAN)' },
-                { dia: 21, titulo: 'RETIRO PARA CASAIS EM MISSÃO\nAniversário IVAN' },
+                { dia: 20, titulo: 'ANIVERSÁRIO THEREZA (LUCINHA E IVAN)' },
+                { dia: 21, titulo: 'RETIRO PARA CASAIS EM MISSÃO\nANIVERSÁRIO IVAN' },
                 { dia: 22, titulo: 'RETIRO PARA CASAIS EM MISSÃO\nANIVERSÁRIO SAMUEL (ANA LUCIA E NELSON)' },
-                { dia: 23, titulo: '2ª REUNIÃO FORMAL - CASAL ANFITRIÃO: BERNADETTE E JACKSON - CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
+                { dia: 23, titulo: '2ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
                 { dia: 26, titulo: 'ANIVERSÁRIO ANA AMÉLIA' },
                 { dia: 27, titulo: 'ANIVERSÁRIO ONASY' },
                 { dia: 28, titulo: 'RETIRO PARA CASAIS EM MISSÃO' },
@@ -413,24 +416,24 @@
                 { dia: 22, titulo: 'ENCONTRO SACERDOTES REGIÃO CE I e IV' },
                 { dia: 23, titulo: 'ENCONTRO SACERDOTES REGIÃO CE I e IV' },
                 { dia: 24, titulo: 'FORMAÇÃO SER MOVIMENTO' },
-                { dia: 27, titulo: '3ª REUNIÃO FORMAL - CASAL ANFITRIÃO: DELANE E DEMÓCRITO - CASAL ANIMADOR: BERNADETTE E JACKSON' },
+                { dia: 27, titulo: '3ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: DELANE E DEMÓCRITO\nCASAL ANIMADOR: BERNADETTE E JACKSON' },
                 { dia: 28, titulo: 'ANIVERSÁRIO MARÍLIA (DELANE E DEMÓCRITO)' },
                 { dia: 29, titulo: 'ANIVERSÁRIO LIA MARIA (BERNADETTE E JACKSON)' },
                 { dia: 30, titulo: 'MISSA MENSAL SETOR CAUCAIA\nSER MOVIMENTO' }
             ],
             'MAIO': [
                 { dia: 1, titulo: 'DIA DO TRABALHO\nANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)' },
-                { dia: 4, titulo: 'REUNIÃO SETOR A' },
-                { dia: 10, titulo: 'DIA DAS MÃES' },
-                { dia: 11, titulo: 'FORMAÇÃO SER IGREJA' },
-                { dia: 17, titulo: 'MISSA MENSAL SETOR A' },
-                { dia: 18, titulo: 'FORMAÇÃO CASAL LIGAÇÃO' },
-                { dia: 19, titulo: 'ANIVERSÁRIO COLLING (JOYCE E ONASY)' },
-                { dia: 23, titulo: 'ANIVERSÁRIO ENS REGIÃO I e IV' },
-                { dia: 24, titulo: 'ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)' },
-                { dia: 25, titulo: '4ª REUNIÃO FORMAL - CASAL ANFITRIÃO: JOYCE E ONASY - CASAL ANIMADOR: DELANE E DEMÓCRITO\n2º COLEGIADO SETOR A' },
-                { dia: 26, titulo: 'REUNIÃO PREPARATÓRIA' },
-                { dia: 29, titulo: 'ANIVERSÁRIO PADRE WATSON' }
+                { dia: 4, titulo: 'REUNIÃO SETOR A\nHORIZONTAL' },
+                { dia: 10, titulo: 'DIA DAS MÃES\nHORIZONTAL' },
+                { dia: 11, titulo: 'FORMAÇÃO SER IGREJA\nHORIZONTAL' },
+                { dia: 17, titulo: 'MISSA MENSAL SETOR A\nHORIZONTAL' },
+                { dia: 18, titulo: 'FORMAÇÃO CASAL LIGAÇÃO\nHORIZONTAL' },
+                { dia: 19, titulo: 'ANIVERSÁRIO COLLING (JOYCE E ONASY)\nHORIZONTAL' },
+                { dia: 23, titulo: 'ANIVERSÁRIO ENS REGIÃO I e IV\nHORIZONTAL' },
+                { dia: 24, titulo: 'ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)\nHORIZONTAL' },
+                { dia: 25, titulo: '4ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: JOYCE E ONASY\nCASAL ANIMADOR: DELANE E DEMÓCRITO\n2º COLEGIADO SETOR A\nHORIZONTAL' },
+                { dia: 26, titulo: 'REUNIÃO PREPARATÓRIA\nHORIZONTAL' },
+                { dia: 29, titulo: 'ANIVERSÁRIO PADRE WATSON\nHORIZONTAL' }
             ],
             'JUNHO': [
                 { dia: 1, titulo: 'ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES)' },
@@ -443,7 +446,7 @@
                 { dia: 13, titulo: 'COMEMORAÇÃO NAMORADOS' },
                 { dia: 15, titulo: 'NOITE DE ORAÇÃO' },
                 { dia: 21, titulo: 'FORMAÇÃO EXPERIÊNCIA COMUNITÁRIA' },
-                { dia: 22, titulo: '5ª REUNIÃO FORMAL - CASAL ANFITRIÃO: LUCINHA E IVAN - CASAL ANIMADOR: JOYCE E ONASY' },
+                { dia: 22, titulo: '5ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: LUCINHA E IVAN\nCASAL ANIMADOR: JOYCE E ONASY' },
                 { dia: 23, titulo: 'ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTON)' },
                 { dia: 24, titulo: 'REUNIÃO PREPARATÓRIA' },
                 { dia: 26, titulo: '2º RETIRO SETOR A 02-09-16-20' },
@@ -465,7 +468,7 @@
                 { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA\nANIVERSÁRIO MARIANA (ANA AMÉLIA E RODRIGUES)' },
                 { dia: 24, titulo: 'CASAMENTO MAZÉ E HAMILTON' },
                 { dia: 26, titulo: 'MISSA MENSAL SETOR C' },
-                { dia: 27, titulo: '6ª REUNIÃO FORMAL - CASAL ANFITRIÃO: MAZÉ E HAMILTON - CASAL ANIMADOR: LUCINHA E IVAN' },
+                { dia: 27, titulo: '6ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: MAZÉ E HAMILTON\nCASAL ANIMADOR: LUCINHA E IVAN' },
                 { dia: 28, titulo: 'ANIVERSÁRIO NASCIMENTO PADRE CAFFAREL' }
             ],
             'AGOSTO': [
@@ -480,7 +483,7 @@
                 { dia: 20, titulo: 'NOITE DE ORAÇÃO' },
                 { dia: 21, titulo: 'ANIVERSÁRIO ANA LUCIA' },
                 { dia: 22, titulo: 'ANIVERSÁRIO DEMÓCRITO' },
-                { dia: 24, titulo: '7ª REUNIÃO FORMAL - CASAL ANFITRIÃO: ANA LUCIA E NELSON - CASAL ANIMADOR: MAZÉ E HAMILTON' },
+                { dia: 24, titulo: '7ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA LUCIA E NELSON\nCASAL ANIMADOR: MAZÉ E HAMILTON' },
                 { dia: 29, titulo: 'MUTIRÃO SETOR A' },
                 { dia: 30, titulo: 'MISSA MENSAL SETOR CAUCAIA' }
             ],
@@ -489,16 +492,17 @@
                 { dia: 7, titulo: 'INDEPENDÊNCIA DO BRASIL\n4º RETIRO SETOR A 07-11-12-21' },
                 { dia: 8, titulo: 'REUNIÃO SETOR A' },
                 { dia: 12, titulo: 'CASAMENTO ANA LUCIA E NELSON\n4º RETIRO SETOR A 07-11-12-21' },
-                { dia: 16, titulo: 'ANIVERSÁRIO RODRIGUES' },
-                { dia: 17, titulo: 'CASAMENTO JOYCE E ONASY' },
-                { dia: 18, titulo: '4º RETIRO SETOR A 07-11-12-21' },
-                { dia: 19, titulo: 'JORNADA PADRE CAFFAREL' },
-                { dia: 20, titulo: 'JORNADA PADRE CAFFAREL' },
-                { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA' },
-                { dia: 23, titulo: 'ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)' },
+                { dia: 13, titulo: 'HORIZONTAL' },
+                { dia: 16, titulo: 'ANIVERSÁRIO RODRIGUES\nHORIZONTAL' },
+                { dia: 17, titulo: 'CASAMENTO JOYCE E ONASY\nHORIZONTAL' },
+                { dia: 18, titulo: '4º RETIRO SETOR A 07-11-12-21\nHORIZONTAL' },
+                { dia: 19, titulo: 'JORNADA PADRE CAFFAREL\nHORIZONTAL' },
+                { dia: 20, titulo: 'JORNADA PADRE CAFFAREL\nHORIZONTAL' },
+                { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA\nHORIZONTAL' },
+                { dia: 23, titulo: 'ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)\nHORIZONTAL' },
                 { dia: 26, titulo: 'JORNADA PADRE CAFFAREL' },
                 { dia: 27, titulo: 'MISSA MENSAL SETOR A\nINTEREQUIPES' },
-                { dia: 28, titulo: '8ª REUNIÃO FORMAL - CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES - CASAL ANIMADOR: ANA LUCIA E NELSON' }
+                { dia: 28, titulo: '8ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: ANA LUCIA E NELSON' }
             ],
             'OUTUBRO': [
                 { dia: 1, titulo: 'INÍCIO DO DISCERNIMENTO DE CRE 2027' },
@@ -507,7 +511,7 @@
                 { dia: 12, titulo: 'NOSSA SENHORA APARECIDA\nCASAMENTO BERNADETTE E JACKSON' },
                 { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA' },
                 { dia: 25, titulo: 'ELEIÇÕES 2026 2º TURNO' },
-                { dia: 26, titulo: '9ª REUNIÃO FORMAL - CASAL ANFITRIÃO: BERNADETTE E JACKSON - CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
+                { dia: 26, titulo: '9ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
                 { dia: 31, titulo: 'FIM DO DISCERNIMENTO DE CRE 2027' }
             ],
             'NOVEMBRO': [
@@ -538,9 +542,8 @@
         let eventos = {};
         let eventoEditando = null;
 
-        // Carregar dados salvos ou usar dados iniciais
         function carregarDados() {
-            const dadosSalvos = localStorage.getItem('calendario2026');
+            const dadosSalvos = localStorage.getItem('calendario2026_completo');
             if (dadosSalvos) {
                 eventos = JSON.parse(dadosSalvos);
             } else {
@@ -550,7 +553,7 @@
         }
 
         function salvarDados() {
-            localStorage.setItem('calendario2026', JSON.stringify(eventos));
+            localStorage.setItem('calendario2026_completo', JSON.stringify(eventos));
         }
 
         function renderizarCalendario() {
@@ -652,7 +655,6 @@
             }
 
             if (eventoEditando) {
-                // Editando evento existente
                 eventos[eventoEditando.mes].splice(eventoEditando.index, 1);
             }
 
@@ -719,17 +721,14 @@
             event.target.value = '';
         }
 
-        // Fechar modal ao clicar fora
         document.getElementById('modalEvento').addEventListener('click', function(e) {
             if (e.target === this) {
                 fecharModal();
             }
         });
 
-        // Inicializar
         carregarDados();
         renderizarCalendario();
     </script>
 </body>
 </html>
-
