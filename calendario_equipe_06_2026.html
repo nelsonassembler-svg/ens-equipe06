@@ -9,53 +9,46 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
 
         header {
-            background: linear-gradient(135deg, #D97B7B 0%, #B85555 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 25px;
             text-align: center;
+        }
+
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            opacity: 0.95;
+        }
+
+        .controles {
             padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .calendario {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .calendario h2 {
-            color: #B85555;
-            border-bottom: 3px solid #E8B4B8;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .evento {
             background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border-left: 4px solid #88AB75;
-        }
-
-        .evento-data {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .evento-descricao {
-            color: #666;
-            white-space: pre-line;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
@@ -64,739 +57,677 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            margin: 5px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .meses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .mes-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: all 0.3s;
         }
 
-        .btn-secondary { background: #5F9EA0; color: white; }
+        .mes-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .mes-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mes-header button {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+        }
+
+        .mes-header button:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .mes-body {
+            padding: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .evento-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .evento-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: #e9ecef;
+        }
+
+        .evento-dia {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 1.05em;
+        }
+
+        .evento-titulo {
+            color: #495057;
+            font-size: 0.88em;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .evento-acoes {
+            display: none;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            gap: 5px;
+        }
+
+        .evento-item:hover .evento-acoes {
+            display: flex;
+        }
+
+        .btn-icon {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            background: #f8f9fa;
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex !important;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .mes-vazio {
+            text-align: center;
+            color: #95a5a6;
+            padding: 40px 20px;
+            font-style: italic;
+        }
 
         footer {
-            background: white;
+            background: #f8f9fa;
+            padding: 15px;
             text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 30px;
+            color: #6c757d;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
             body { padding: 10px; }
-            .calendario { padding: 15px; }
+            header { padding: 20px 15px; }
+            header h1 { font-size: 1.5em; }
+            .meses-grid { 
+                grid-template-columns: 1fr; 
+                gap: 15px; 
+                padding: 15px;
+            }
+            .mes-body { max-height: 400px; }
+            .controles { padding: 15px; }
+            .btn { padding: 10px 18px; font-size: 0.9em; }
+            .modal-content { padding: 20px; }
+            .evento-titulo { font-size: 0.82em; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>📅 Calendário 2026</h1>
-        <p>Equipe 06 - Nossa Senhora da Paz</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>📅 Calendário 2026</h1>
+            <p>Equipe 06 - Nossa Senhora da Paz</p>
+        </header>
 
-    <!-- JANEIRO -->
-    <div class="calendario">
-        <h2>Janeiro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/01/2026 (Quinta)</div>
-            <div class="evento-descricao">FERIADO DE ANO NOVO</div>
+        <div class="controles">
+            <button class="btn btn-primary" onclick="exportarDados()">💾 Exportar Backup</button>
+            <button class="btn btn-success" onclick="document.getElementById('importFile').click()">📥 Importar Backup</button>
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDados(event)">
         </div>
-        <div class="evento">
-            <div class="evento-data">05/01/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/01/2026 (Quinta)</div>
-            <div class="evento-descricao">Aniversário Rodrigo (Mazé e Hamilton)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/01/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO DE CALENDÁRIO
-CASAL ANFITRIÃO ANA LUCIA E NELSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">18/01/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR A</div>
+
+        <div class="meses-grid" id="calendarioContainer"></div>
+
+        <footer>
+            <p>📝 Calendário Editável - Clique nos eventos para editar ou excluir</p>
+            <p>💾 Seus dados são salvos automaticamente no navegador</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="modalEvento" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitulo">Adicionar Evento</h3>
+
+            <div class="form-group">
+                <label>Mês *</label>
+                <select id="eventoMes">
+                    <option value="JANEIRO">Janeiro</option>
+                    <option value="FEVEREIRO">Fevereiro</option>
+                    <option value="MARÇO">Março</option>
+                    <option value="ABRIL">Abril</option>
+                    <option value="MAIO">Maio</option>
+                    <option value="JUNHO">Junho</option>
+                    <option value="JULHO">Julho</option>
+                    <option value="AGOSTO">Agosto</option>
+                    <option value="SETEMBRO">Setembro</option>
+                    <option value="OUTUBRO">Outubro</option>
+                    <option value="NOVEMBRO">Novembro</option>
+                    <option value="DEZEMBRO">Dezembro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Dia *</label>
+                <input type="number" id="eventoDia" min="1" max="31" placeholder="Ex: 15">
+            </div>
+
+            <div class="form-group">
+                <label>Título do Evento *</label>
+                <textarea id="eventoTitulo" rows="4" placeholder="Ex: Reunião Formal - Casal Anfitrião"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="salvarEvento()">💾 Salvar</button>
+                <button class="btn btn-danger" onclick="excluirEvento()" id="btnExcluir" style="display:none">🗑️ Excluir</button>
+                <button class="btn btn-secondary" onclick="fecharModal()">❌ Cancelar</button>
+            </div>
         </div>
     </div>
 
-    <!-- FEVEREIRO -->
-    <div class="calendario">
-        <h2>Fevereiro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/02/2026 (Domingo)</div>
-            <div class="evento-descricao">ANIVERSÁRIOS: PADRE ALEX E BERNADETTE</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">02/02/2026 (Segunda)</div>
-            <div class="evento-descricao">EACRE</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/02/2026 (Domingo)</div>
-            <div class="evento-descricao">CARNAVAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">09/02/2026 (Segunda)</div>
-            <div class="evento-descricao">MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA
-1ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES
-CASAL ANIMADOR: ANA LUCIA E NELSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">15/02/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR B</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">16/02/2026 (Segunda)</div>
-            <div class="evento-descricao">CARNAVAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">17/02/2026 (Terça)</div>
-            <div class="evento-descricao">CARNAVAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">18/02/2026 (Quarta)</div>
-            <div class="evento-descricao">4ª FEIRA DE CINZAS (JEJUM E ABSTINÊNCIA)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/02/2026 (Sábado)</div>
-            <div class="evento-descricao">CASAMENTO LUCINHA E IVAN</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/02/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
-EACRE</div>
-        </div>
-    </div>
+    <script>
+        // Dados COMPLETOS extraídos do PDF
+        const eventosIniciais = {
+            'JANEIRO': [
+                { dia: 1, titulo: 'FERIADO DE ANO NOVO' },
+                { dia: 5, titulo: 'REUNIÃO SETOR A' },
+                { dia: 8, titulo: 'Aniversário Rodrigo (Mazé e Hamilton)' },
+                { dia: 12, titulo: 'REUNIÃO DE CALENDÁRIO\nCASAL ANFITRIÃO ANA LUCIA E NELSON' },
+                { dia: 18, titulo: 'MISSA MENSAL SETOR A' }
+            ],
+            'FEVEREIRO': [
+                { dia: 1, titulo: 'ANIVERSÁRIOS: PADRE ALEX E BERNADETTE' },
+                { dia: 2, titulo: 'EACRE' },
+                { dia: 8, titulo: 'CARNAVAL' },
+                { dia: 9, titulo: 'MISSA ACOLHIMENTO PADRE ALEX NOVA PARÓQUIA\n1ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: ANA LUCIA E NELSON' },
+                { dia: 15, titulo: 'MISSA MENSAL SETOR B' },
+                { dia: 16, titulo: 'CARNAVAL' },
+                { dia: 17, titulo: 'CARNAVAL' },
+                { dia: 18, titulo: '4ª FEIRA DE CINZAS (JEJUM E ABSTINÊNCIA)' },
+                { dia: 21, titulo: 'CASAMENTO LUCINHA E IVAN' },
+                { dia: 23, titulo: 'REUNIÃO PREPARATÓRIA\nEACRE' }
+            ],
+            'MARÇO': [
+                { dia: 1, titulo: 'ENCONTRO DOS JURÁSSICOS' },
+                { dia: 8, titulo: 'FERIADO CARTA MAGNA' },
+                { dia: 9, titulo: 'REUNIÃO PREPARATÓRIA' },
+                { dia: 14, titulo: 'CASAMENTO DELANE E DEMÓCRITO' },
+                { dia: 15, titulo: 'MISSA MENSAL SETOR C' },
+                { dia: 19, titulo: 'DIA DE SÃO JOSÉ' },
+                { dia: 20, titulo: 'ANIVERSÁRIO THEREZA (LUCINHA E IVAN)' },
+                { dia: 21, titulo: 'RETIRO PARA CASAIS EM MISSÃO\nANIVERSÁRIO IVAN' },
+                { dia: 22, titulo: 'RETIRO PARA CASAIS EM MISSÃO\nANIVERSÁRIO SAMUEL (ANA LUCIA E NELSON)' },
+                { dia: 23, titulo: '2ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
+                { dia: 26, titulo: 'ANIVERSÁRIO ANA AMÉLIA' },
+                { dia: 27, titulo: 'ANIVERSÁRIO ONASY' },
+                { dia: 28, titulo: 'RETIRO PARA CASAIS EM MISSÃO' },
+                { dia: 29, titulo: 'PÓS EACRE SETOR A\nNOITE DE ORAÇÃO' },
+                { dia: 30, titulo: '1ª REUNIÃO SETOR A\n1º COLEGIADO SETOR A' }
+            ],
+            'ABRIL': [
+                { dia: 3, titulo: 'SEXTA FEIRA SANTA' },
+                { dia: 4, titulo: 'SÁBADO DE ALELUIA' },
+                { dia: 5, titulo: 'DOMINGO DE PÁSCOA' },
+                { dia: 6, titulo: 'REUNIÃO SETOR A' },
+                { dia: 8, titulo: 'RETIRO SETOR A 01-04-08-22-15' },
+                { dia: 9, titulo: 'RETIRO SETOR A 01-04-08-22-15' },
+                { dia: 12, titulo: 'RETIRO SETOR A 01-04-08-22-15' },
+                { dia: 20, titulo: 'ANIVERSÁRIO LUCINHA' },
+                { dia: 21, titulo: 'FERIADO TIRADENTES' },
+                { dia: 22, titulo: 'ENCONTRO SACERDOTES REGIÃO CE I e IV' },
+                { dia: 23, titulo: 'ENCONTRO SACERDOTES REGIÃO CE I e IV' },
+                { dia: 24, titulo: 'FORMAÇÃO SER MOVIMENTO' },
+                { dia: 27, titulo: '3ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: DELANE E DEMÓCRITO\nCASAL ANIMADOR: BERNADETTE E JACKSON' },
+                { dia: 28, titulo: 'ANIVERSÁRIO MARÍLIA (DELANE E DEMÓCRITO)' },
+                { dia: 29, titulo: 'ANIVERSÁRIO LIA MARIA (BERNADETTE E JACKSON)' },
+                { dia: 30, titulo: 'MISSA MENSAL SETOR CAUCAIA\nSER MOVIMENTO' }
+            ],
+            'MAIO': [
+                { dia: 1, titulo: 'DIA DO TRABALHO\nANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)' },
+                { dia: 4, titulo: 'REUNIÃO SETOR A\nHORIZONTAL' },
+                { dia: 10, titulo: 'DIA DAS MÃES\nHORIZONTAL' },
+                { dia: 11, titulo: 'FORMAÇÃO SER IGREJA\nHORIZONTAL' },
+                { dia: 17, titulo: 'MISSA MENSAL SETOR A\nHORIZONTAL' },
+                { dia: 18, titulo: 'FORMAÇÃO CASAL LIGAÇÃO\nHORIZONTAL' },
+                { dia: 19, titulo: 'ANIVERSÁRIO COLLING (JOYCE E ONASY)\nHORIZONTAL' },
+                { dia: 23, titulo: 'ANIVERSÁRIO ENS REGIÃO I e IV\nHORIZONTAL' },
+                { dia: 24, titulo: 'ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)\nHORIZONTAL' },
+                { dia: 25, titulo: '4ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: JOYCE E ONASY\nCASAL ANIMADOR: DELANE E DEMÓCRITO\n2º COLEGIADO SETOR A\nHORIZONTAL' },
+                { dia: 26, titulo: 'REUNIÃO PREPARATÓRIA\nHORIZONTAL' },
+                { dia: 29, titulo: 'ANIVERSÁRIO PADRE WATSON\nHORIZONTAL' }
+            ],
+            'JUNHO': [
+                { dia: 1, titulo: 'ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES)' },
+                { dia: 2, titulo: 'REUNIÃO SETOR A' },
+                { dia: 3, titulo: 'ANIVERSÁRIO PEDRO (DELANE E DEMÓCRITO)' },
+                { dia: 4, titulo: 'CORPUS CHRISTI' },
+                { dia: 5, titulo: 'SÃO JOÃO REGIÃO CE IV' },
+                { dia: 7, titulo: 'INFORMAL' },
+                { dia: 12, titulo: 'ANIVERSÁRIO MAZÉ' },
+                { dia: 13, titulo: 'COMEMORAÇÃO NAMORADOS' },
+                { dia: 15, titulo: 'NOITE DE ORAÇÃO' },
+                { dia: 21, titulo: 'MISSA MENSAL SETOR A\n5ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: LUCINHA E IVAN\nCASAL ANIMADOR: JOYCE E ONASY' },
+                { dia: 23, titulo: 'ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTON)' },
+                { dia: 24, titulo: 'REUNIÃO PREPARATÓRIA' },
+                { dia: 26, titulo: '2º RETIRO SETOR A 02-09-16-20' },
+                { dia: 27, titulo: '2º RETIRO SETOR A 02-09-16-20' },
+                { dia: 28, titulo: '2º RETIRO SETOR A 02-09-16-20\nMISSA MENSAL B' }
+            ],
+            'JULHO': [
+                { dia: 1, titulo: 'ANIVERSÁRIO MARCOS (JOYCE E ONASY)' },
+                { dia: 2, titulo: 'ANIVERSÁRIO BRUNO (BERNADETTE E JACKSON)' },
+                { dia: 4, titulo: 'ANIVERSÁRIO HAMILTON\nFORMAÇÃO SER CRISTÃO' },
+                { dia: 6, titulo: 'ANIVERSÁRIO DELANE' },
+                { dia: 7, titulo: 'REUNIÃO SETOR A' },
+                { dia: 10, titulo: '3º RETIRO SETOR A 06-05-14-23' },
+                { dia: 11, titulo: '3º RETIRO SETOR A 06-05-14-23' },
+                { dia: 12, titulo: '3º RETIRO SETOR A 06-05-14-23' },
+                { dia: 15, titulo: '46º ANO ENS REGIÃO CE I e IV' },
+                { dia: 17, titulo: 'CASAMENTO ANA AMÉLIA E RODRIGUES' },
+                { dia: 19, titulo: 'ANIVERSÁRIO PAULINHA (LUCINHA E IVAN)' },
+                { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA\nANIVERSÁRIO MARIANA (ANA AMÉLIA E RODRIGUES)' },
+                { dia: 24, titulo: 'CASAMENTO MAZÉ E HAMILTON' },
+                { dia: 26, titulo: 'MISSA MENSAL SETOR C' },
+                { dia: 27, titulo: '6ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: MAZÉ E HAMILTON\nCASAL ANIMADOR: LUCINHA E IVAN' },
+                { dia: 28, titulo: 'ANIVERSÁRIO NASCIMENTO PADRE CAFFAREL' }
+            ],
+            'AGOSTO': [
+                { dia: 2, titulo: 'FESTA DOS SACERDOTES' },
+                { dia: 4, titulo: 'REUNIÃO SETOR A' },
+                { dia: 6, titulo: 'ANIVERSÁRIO JOYCE' },
+                { dia: 8, titulo: 'AE´S REGIÃO CE I e IV' },
+                { dia: 9, titulo: 'DIA DOS PAIS' },
+                { dia: 14, titulo: 'ANIVERSÁRIO JACKSON' },
+                { dia: 17, titulo: '3º COLEGIADO SETOR A' },
+                { dia: 19, titulo: 'REUNIÃO PREPARATÓRIA' },
+                { dia: 20, titulo: 'NOITE DE ORAÇÃO' },
+                { dia: 21, titulo: 'ANIVERSÁRIO ANA LUCIA' },
+                { dia: 22, titulo: 'ANIVERSÁRIO DEMÓCRITO' },
+                { dia: 24, titulo: '7ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA LUCIA E NELSON\nCASAL ANIMADOR: MAZÉ E HAMILTON' },
+                { dia: 29, titulo: 'MUTIRÃO SETOR A' },
+                { dia: 30, titulo: 'MISSA MENSAL SETOR CAUCAIA' }
+            ],
+            'SETEMBRO': [
+                { dia: 6, titulo: 'ANIVERSÁRIO IVAN JUNIOR (LUCINHA E IVAN)' },
+                { dia: 7, titulo: 'INDEPENDÊNCIA DO BRASIL\n4º RETIRO SETOR A 07-11-12-21' },
+                { dia: 8, titulo: 'REUNIÃO SETOR A' },
+                { dia: 12, titulo: 'CASAMENTO ANA LUCIA E NELSON\n4º RETIRO SETOR A 07-11-12-21' },
+                { dia: 13, titulo: 'HORIZONTAL' },
+                { dia: 16, titulo: 'ANIVERSÁRIO RODRIGUES\nHORIZONTAL' },
+                { dia: 17, titulo: 'CASAMENTO JOYCE E ONASY\nHORIZONTAL' },
+                { dia: 18, titulo: '4º RETIRO SETOR A 07-11-12-21\nHORIZONTAL' },
+                { dia: 19, titulo: 'JORNADA PADRE CAFFAREL\nHORIZONTAL' },
+                { dia: 20, titulo: 'JORNADA PADRE CAFFAREL\nHORIZONTAL' },
+                { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA\nHORIZONTAL' },
+                { dia: 23, titulo: 'ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)\nHORIZONTAL' },
+                { dia: 26, titulo: 'JORNADA PADRE CAFFAREL' },
+                { dia: 27, titulo: 'MISSA MENSAL SETOR A\nINTEREQUIPES' },
+                { dia: 28, titulo: '8ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: ANA LUCIA E NELSON' }
+            ],
+            'OUTUBRO': [
+                { dia: 1, titulo: 'INÍCIO DO DISCERNIMENTO DE CRE 2027' },
+                { dia: 4, titulo: 'ELEIÇÕES 2026 1º TURNO' },
+                { dia: 6, titulo: 'REUNIÃO SETOR A' },
+                { dia: 12, titulo: 'NOSSA SENHORA APARECIDA\nCASAMENTO BERNADETTE E JACKSON' },
+                { dia: 21, titulo: 'REUNIÃO PREPARATÓRIA' },
+                { dia: 25, titulo: 'ELEIÇÕES 2026 2º TURNO' },
+                { dia: 26, titulo: '9ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES' },
+                { dia: 31, titulo: 'FIM DO DISCERNIMENTO DE CRE 2027' }
+            ],
+            'NOVEMBRO': [
+                { dia: 2, titulo: 'DIA DE FINADOS' },
+                { dia: 3, titulo: 'REUNIÃO SETOR A' },
+                { dia: 15, titulo: 'PROCLAMAÇÃO DA REPÚBLICA\nPRÉ-EACRE' },
+                { dia: 18, titulo: 'CASAMENTO ÂNGELO E ÉLIDA (CASAL LIGAÇÃO)' },
+                { dia: 19, titulo: 'NOITE DE ORAÇÃO' },
+                { dia: 20, titulo: 'CONSCIÊNCIA NEGRA\nANIVERSÁRIO NELSON\n5º RETIRO SETOR A 03-10-13-19' },
+                { dia: 21, titulo: '5º RETIRO SETOR A 03-10-13-19' },
+                { dia: 22, titulo: '5º RETIRO SETOR A 03-10-13-19' },
+                { dia: 23, titulo: 'ORDENAÇÃO PADRE WATSON' },
+                { dia: 26, titulo: 'ANIVERSÁRIO SÍLVIA (JOYCE E ONASY)' }
+            ],
+            'DEZEMBRO': [
+                { dia: 1, titulo: 'REUNIÃO SETOR A' },
+                { dia: 5, titulo: 'CONFRATERNIZAÇÃO EQUIPE 06' },
+                { dia: 7, titulo: 'REUNIÃO DO SETOR A' },
+                { dia: 11, titulo: 'ANIVERSÁRIO LÚCIO (ANA AMÉLIA E RODRIGUES)' },
+                { dia: 14, titulo: 'ANIVERSÁRIO JÚLIO CÉSAR (ANA AMÉLIA E RODRIGUES)' },
+                { dia: 21, titulo: 'ORDENAÇÃO PADRE ALEX' },
+                { dia: 25, titulo: 'NATAL' },
+                { dia: 26, titulo: 'NATAL' },
+                { dia: 31, titulo: 'REVEILLON' }
+            ]
+        };
 
-    <!-- MARÇO -->
-    <div class="calendario">
-        <h2>Março 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/03/2026 (Domingo)</div>
-            <div class="evento-descricao">ENCONTRO DOS JURÁSSICOS</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/03/2026 (Domingo)</div>
-            <div class="evento-descricao">FERIADO CARTA MAGNA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">09/03/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">14/03/2026 (Sábado)</div>
-            <div class="evento-descricao">CASAMENTO DELANE E DEMÓCRITO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">15/03/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR C</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/03/2026 (Quinta)</div>
-            <div class="evento-descricao">DIA DE SÃO JOSÉ</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">20/03/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO THEREZA (LUCINHA E IVAN)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/03/2026 (Sábado)</div>
-            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO
-ANIVERSÁRIO IVAN</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">22/03/2026 (Domingo)</div>
-            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO
-ANIVERSÁRIO SAMUEL (ANA LUCIA E NELSON)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/03/2026 (Segunda)</div>
-            <div class="evento-descricao">2ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: BERNADETTE E JACKSON
-CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/03/2026 (Quinta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ANA AMÉLIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">27/03/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ONASY</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">28/03/2026 (Sábado)</div>
-            <div class="evento-descricao">RETIRO PARA CASAIS EM MISSÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">29/03/2026 (Domingo)</div>
-            <div class="evento-descricao">PÓS EACRE SETOR A
-NOITE DE ORAÇÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">30/03/2026 (Segunda)</div>
-            <div class="evento-descricao">1ª REUNIÃO SETOR A
-1º COLEGIADO SETOR A</div>
-        </div>
-    </div>
+        let eventos = {};
+        let eventoEditando = null;
 
-    <!-- ABRIL -->
-    <div class="calendario">
-        <h2>Abril 2026</h2>
-        <div class="evento">
-            <div class="evento-data">03/04/2026 (Sexta)</div>
-            <div class="evento-descricao">SEXTA FEIRA SANTA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/04/2026 (Sábado)</div>
-            <div class="evento-descricao">SÁBADO DE ALELUIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">05/04/2026 (Domingo)</div>
-            <div class="evento-descricao">DOMINGO DE PÁSCOA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">06/04/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/04/2026 (Quarta)</div>
-            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">09/04/2026 (Quinta)</div>
-            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/04/2026 (Domingo)</div>
-            <div class="evento-descricao">RETIRO SETOR A 01-04-08-22-15</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">20/04/2026 (Segunda)</div>
-            <div class="evento-descricao">ANIVERSÁRIO LUCINHA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/04/2026 (Terça)</div>
-            <div class="evento-descricao">FERIADO TIRADENTES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">22/04/2026 (Quarta)</div>
-            <div class="evento-descricao">ENCONTRO SACERDOTES REGIÃO CE I e IV</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/04/2026 (Quinta)</div>
-            <div class="evento-descricao">ENCONTRO SACERDOTES REGIÃO CE I e IV</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">24/04/2026 (Sexta)</div>
-            <div class="evento-descricao">FORMAÇÃO SER MOVIMENTO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">27/04/2026 (Segunda)</div>
-            <div class="evento-descricao">3ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: DELANE E DEMÓCRITO
-CASAL ANIMADOR: BERNADETTE E JACKSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">28/04/2026 (Terça)</div>
-            <div class="evento-descricao">ANIVERSÁRIO MARÍLIA (DELANE E DEMÓCRITO)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">29/04/2026 (Quarta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO LIA MARIA (BERNADETTE E JACKSON)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">30/04/2026 (Quinta)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR CAUCAIA
-SER MOVIMENTO</div>
-        </div>
-    </div>
+        function carregarDados() {
+            const dadosSalvos = localStorage.getItem('calendario2026_completo');
+            if (dadosSalvos) {
+                eventos = JSON.parse(dadosSalvos);
+            } else {
+                eventos = JSON.parse(JSON.stringify(eventosIniciais));
+                salvarDados();
+            }
+        }
 
-    <!-- MAIO -->
-    <div class="calendario">
-        <h2>Maio 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/05/2026 (Sexta)</div>
-            <div class="evento-descricao">DIA DO TRABALHO
-ANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/05/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">10/05/2026 (Domingo)</div>
-            <div class="evento-descricao">DIA DAS MÃES
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">11/05/2026 (Segunda)</div>
-            <div class="evento-descricao">FORMAÇÃO SER IGREJA
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">17/05/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR A
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">18/05/2026 (Segunda)</div>
-            <div class="evento-descricao">FORMAÇÃO CASAL LIGAÇÃO
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/05/2026 (Terça)</div>
-            <div class="evento-descricao">ANIVERSÁRIO COLLING (JOYCE E ONASY)
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/05/2026 (Sábado)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ENS REGIÃO I e IV
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">24/05/2026 (Domingo)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">25/05/2026 (Segunda)</div>
-            <div class="evento-descricao">4ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: JOYCE E ONASY
-CASAL ANIMADOR: DELANE E DEMÓCRITO
-2º COLEGIADO SETOR A
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/05/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">29/05/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO PADRE WATSON
-HORIZONTAL</div>
-        </div>
-    </div>
+        function salvarDados() {
+            localStorage.setItem('calendario2026_completo', JSON.stringify(eventos));
+        }
 
-    <!-- JUNHO -->
-    <div class="calendario">
-        <h2>Junho 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/06/2026 (Segunda)</div>
-            <div class="evento-descricao">ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">02/06/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">03/06/2026 (Quarta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO PEDRO (DELANE E DEMÓCRITO)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/06/2026 (Quinta)</div>
-            <div class="evento-descricao">CORPUS CHRISTI</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">05/06/2026 (Sexta)</div>
-            <div class="evento-descricao">SÃO JOÃO REGIÃO CE IV</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">07/06/2026 (Domingo)</div>
-            <div class="evento-descricao">INFORMAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/06/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO MAZÉ</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">13/06/2026 (Sábado)</div>
-            <div class="evento-descricao">COMEMORAÇÃO NAMORADOS</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">15/06/2026 (Segunda)</div>
-            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/06/2026 (Domingo)</div>
-            <div class="evento-descricao">FORMAÇÃO EXPERIÊNCIA COMUNITÁRIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">22/06/2026 (Segunda)</div>
-            <div class="evento-descricao">5ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: LUCINHA E IVAN
-CASAL ANIMADOR: JOYCE E ONASY</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/06/2026 (Terça)</div>
-            <div class="evento-descricao">ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTON)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">24/06/2026 (Quarta)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/06/2026 (Sexta)</div>
-            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">27/06/2026 (Sábado)</div>
-            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">28/06/2026 (Domingo)</div>
-            <div class="evento-descricao">2º RETIRO SETOR A 02-09-16-20
-MISSA MENSAL B</div>
-        </div>
-    </div>
+        function renderizarCalendario() {
+            const container = document.getElementById('calendarioContainer');
+            container.innerHTML = '';
 
-    <!-- JULHO -->
-    <div class="calendario">
-        <h2>Julho 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/07/2026 (Quarta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO MARCOS (JOYCE E ONASY)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">02/07/2026 (Quinta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO BRUNO (BERNADETTE E JACKSON)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/07/2026 (Sábado)</div>
-            <div class="evento-descricao">ANIVERSÁRIO HAMILTON
-FORMAÇÃO SER CRISTÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">06/07/2026 (Segunda)</div>
-            <div class="evento-descricao">ANIVERSÁRIO DELANE</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">07/07/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">10/07/2026 (Sexta)</div>
-            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">11/07/2026 (Sábado)</div>
-            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/07/2026 (Domingo)</div>
-            <div class="evento-descricao">3º RETIRO SETOR A 06-05-14-23</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">15/07/2026 (Quarta)</div>
-            <div class="evento-descricao">46º ANO ENS REGIÃO CE I e IV</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">17/07/2026 (Sexta)</div>
-            <div class="evento-descricao">CASAMENTO ANA AMÉLIA E RODRIGUES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/07/2026 (Domingo)</div>
-            <div class="evento-descricao">ANIVERSÁRIO PAULINHA (LUCINHA E IVAN)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/07/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
-ANIVERSÁRIO MARIANA (ANA AMÉLIA E RODRIGUES)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">24/07/2026 (Sexta)</div>
-            <div class="evento-descricao">CASAMENTO MAZÉ E HAMILTON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/07/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR C</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">27/07/2026 (Segunda)</div>
-            <div class="evento-descricao">6ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: MAZÉ E HAMILTON
-CASAL ANIMADOR: LUCINHA E IVAN</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">28/07/2026 (Terça)</div>
-            <div class="evento-descricao">ANIVERSÁRIO NASCIMENTO PADRE CAFFAREL</div>
-        </div>
-    </div>
+            const meses = ['JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 
+                          'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO'];
 
-    <!-- AGOSTO -->
-    <div class="calendario">
-        <h2>Agosto 2026</h2>
-        <div class="evento">
-            <div class="evento-data">02/08/2026 (Domingo)</div>
-            <div class="evento-descricao">FESTA DOS SACERDOTES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/08/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">06/08/2026 (Quinta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO JOYCE</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/08/2026 (Sábado)</div>
-            <div class="evento-descricao">AE´S REGIÃO CE I e IV</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">09/08/2026 (Domingo)</div>
-            <div class="evento-descricao">DIA DOS PAIS</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">14/08/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO JACKSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">17/08/2026 (Segunda)</div>
-            <div class="evento-descricao">3º COLEGIADO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/08/2026 (Quarta)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">20/08/2026 (Quinta)</div>
-            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/08/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ANA LUCIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">22/08/2026 (Sábado)</div>
-            <div class="evento-descricao">ANIVERSÁRIO DEMÓCRITO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">24/08/2026 (Segunda)</div>
-            <div class="evento-descricao">7ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: ANA LUCIA E NELSON
-CASAL ANIMADOR: MAZÉ E HAMILTON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">29/08/2026 (Sábado)</div>
-            <div class="evento-descricao">MUTIRÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">30/08/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR CAUCAIA</div>
-        </div>
-    </div>
+            meses.forEach(mes => {
+                const mesCard = document.createElement('div');
+                mesCard.className = 'mes-card';
 
-    <!-- SETEMBRO -->
-    <div class="calendario">
-        <h2>Setembro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">06/09/2026 (Domingo)</div>
-            <div class="evento-descricao">ANIVERSÁRIO IVAN JUNIOR (LUCINHA E IVAN)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">07/09/2026 (Segunda)</div>
-            <div class="evento-descricao">INDEPENDÊNCIA DO BRASIL
-4º RETIRO SETOR A 07-11-12-21</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">08/09/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/09/2026 (Sábado)</div>
-            <div class="evento-descricao">CASAMENTO ANA LUCIA E NELSON
-4º RETIRO SETOR A 07-11-12-21</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">13/09/2026 (Domingo)</div>
-            <div class="evento-descricao">HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">16/09/2026 (Quarta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO RODRIGUES
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">17/09/2026 (Quinta)</div>
-            <div class="evento-descricao">CASAMENTO JOYCE E ONASY
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">18/09/2026 (Sexta)</div>
-            <div class="evento-descricao">4º RETIRO SETOR A 07-11-12-21
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/09/2026 (Sábado)</div>
-            <div class="evento-descricao">JORNADA PADRE CAFFAREL
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">20/09/2026 (Domingo)</div>
-            <div class="evento-descricao">JORNADA PADRE CAFFAREL
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/09/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/09/2026 (Quarta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)
-HORIZONTAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/09/2026 (Sábado)</div>
-            <div class="evento-descricao">JORNADA PADRE CAFFAREL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">27/09/2026 (Domingo)</div>
-            <div class="evento-descricao">MISSA MENSAL SETOR A
-INTEREQUIPES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">28/09/2026 (Segunda)</div>
-            <div class="evento-descricao">8ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES
-CASAL ANIMADOR: ANA LUCIA E NELSON</div>
-        </div>
-    </div>
+                const mesHeader = document.createElement('div');
+                mesHeader.className = 'mes-header';
+                mesHeader.innerHTML = `
+                    <span>${mes} 2026</span>
+                    <button onclick="abrirModalNovo('${mes}')">➕ Adicionar</button>
+                `;
 
-    <!-- OUTUBRO -->
-    <div class="calendario">
-        <h2>Outubro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/10/2026 (Quinta)</div>
-            <div class="evento-descricao">INÍCIO DO DISCERNIMENTO DE CRE 2027</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">04/10/2026 (Domingo)</div>
-            <div class="evento-descricao">ELEIÇÕES 2026 1º TURNO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">06/10/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">12/10/2026 (Segunda)</div>
-            <div class="evento-descricao">NOSSA SENHORA APARECIDA
-CASAMENTO BERNADETTE E JACKSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/10/2026 (Quarta)</div>
-            <div class="evento-descricao">REUNIÃO PREPARATÓRIA</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">25/10/2026 (Domingo)</div>
-            <div class="evento-descricao">ELEIÇÕES 2026 2º TURNO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/10/2026 (Segunda)</div>
-            <div class="evento-descricao">9ª REUNIÃO FORMAL
-CASAL ANFITRIÃO: BERNADETTE E JACKSON
-CASAL ANIMADOR: ANA AMÉLIA E RODRIGUES</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">31/10/2026 (Sábado)</div>
-            <div class="evento-descricao">FIM DO DISCERNIMENTO DE CRE 2027</div>
-        </div>
-    </div>
+                const mesBody = document.createElement('div');
+                mesBody.className = 'mes-body';
 
-    <!-- NOVEMBRO -->
-    <div class="calendario">
-        <h2>Novembro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">02/11/2026 (Segunda)</div>
-            <div class="evento-descricao">DIA DE FINADOS</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">03/11/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">15/11/2026 (Domingo)</div>
-            <div class="evento-descricao">PROCLAMAÇÃO DA REPÚBLICA
-PRÉ-EACRE</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">18/11/2026 (Quarta)</div>
-            <div class="evento-descricao">CASAMENTO ÂNGELO E ÉLIDA (CASAL LIGAÇÃO)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">19/11/2026 (Quinta)</div>
-            <div class="evento-descricao">NOITE DE ORAÇÃO</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">20/11/2026 (Sexta)</div>
-            <div class="evento-descricao">CONSCIÊNCIA NEGRA
-ANIVERSÁRIO NELSON
-5º RETIRO SETOR A 03-10-13-19</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/11/2026 (Sábado)</div>
-            <div class="evento-descricao">5º RETIRO SETOR A 03-10-13-19</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">22/11/2026 (Domingo)</div>
-            <div class="evento-descricao">5º RETIRO SETOR A 03-10-13-19</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">23/11/2026 (Segunda)</div>
-            <div class="evento-descricao">ORDENAÇÃO PADRE WATSON</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/11/2026 (Quinta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO SÍLVIA (JOYCE E ONASY)</div>
-        </div>
-    </div>
+                const eventosDoMes = eventos[mes] || [];
 
-    <!-- DEZEMBRO -->
-    <div class="calendario">
-        <h2>Dezembro 2026</h2>
-        <div class="evento">
-            <div class="evento-data">01/12/2026 (Terça)</div>
-            <div class="evento-descricao">REUNIÃO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">05/12/2026 (Sábado)</div>
-            <div class="evento-descricao">CONFRATERNIZAÇÃO EQUIPE 06</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">07/12/2026 (Segunda)</div>
-            <div class="evento-descricao">REUNIÃO DO SETOR A</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">11/12/2026 (Sexta)</div>
-            <div class="evento-descricao">ANIVERSÁRIO LÚCIO (ANA AMÉLIA E RODRIGUES)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">14/12/2026 (Segunda)</div>
-            <div class="evento-descricao">ANIVERSÁRIO JÚLIO CÉSAR (ANA AMÉLIA E RODRIGUES)</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">21/12/2026 (Segunda)</div>
-            <div class="evento-descricao">ORDENAÇÃO PADRE ALEX</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">25/12/2026 (Sexta)</div>
-            <div class="evento-descricao">NATAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">26/12/2026 (Sábado)</div>
-            <div class="evento-descricao">NATAL</div>
-        </div>
-        <div class="evento">
-            <div class="evento-data">31/12/2026 (Quinta)</div>
-            <div class="evento-descricao">REVEILLON</div>
-        </div>
-    </div>
+                if (eventosDoMes.length === 0) {
+                    mesBody.innerHTML = '<div class="mes-vazio">Nenhum evento cadastrado</div>';
+                } else {
+                    eventosDoMes.sort((a, b) => a.dia - b.dia);
 
-    <button class="btn btn-secondary" onclick="window.close()">← Voltar</button>
+                    eventosDoMes.forEach((evento, index) => {
+                        const eventoDiv = document.createElement('div');
+                        eventoDiv.className = 'evento-item';
+                        eventoDiv.onclick = () => abrirModalEditar(mes, index);
 
-    <footer>
-        <p style="font-weight: bold;">Desenvolvido por:</p>
-        <p style="font-size: 1.1em; color: #1F4E78;">Nelson Tomaz Catunda Magalhães</p>
-        <p><a href="mailto:nelsonassembrer@gmail.com" style="color: #5F9EA0; text-decoration: none;">📧 nelsonassembrer@gmail.com</a></p>
-        <p style="color: #666; font-size: 0.9em;">© 2026 - Todos os direitos reservados</p>
-    </footer>
+                        eventoDiv.innerHTML = `
+                            <div class="evento-dia">Dia ${evento.dia}</div>
+                            <div class="evento-titulo">${evento.titulo}</div>
+                            <div class="evento-acoes">
+                                <button class="btn-icon" onclick="event.stopPropagation(); abrirModalEditar('${mes}', ${index})">✏️</button>
+                                <button class="btn-icon" onclick="event.stopPropagation(); confirmarExclusao('${mes}', ${index})">🗑️</button>
+                            </div>
+                        `;
+
+                        mesBody.appendChild(eventoDiv);
+                    });
+                }
+
+                mesCard.appendChild(mesHeader);
+                mesCard.appendChild(mesBody);
+                container.appendChild(mesCard);
+            });
+        }
+
+        function abrirModalNovo(mes) {
+            eventoEditando = null;
+            document.getElementById('modalTitulo').textContent = 'Adicionar Evento';
+            document.getElementById('eventoMes').value = mes;
+            document.getElementById('eventoDia').value = '';
+            document.getElementById('eventoTitulo').value = '';
+            document.getElementById('btnExcluir').style.display = 'none';
+            document.getElementById('modalEvento').classList.add('show');
+        }
+
+        function abrirModalEditar(mes, index) {
+            eventoEditando = { mes, index };
+            const evento = eventos[mes][index];
+
+            document.getElementById('modalTitulo').textContent = 'Editar Evento';
+            document.getElementById('eventoMes').value = mes;
+            document.getElementById('eventoDia').value = evento.dia;
+            document.getElementById('eventoTitulo').value = evento.titulo;
+            document.getElementById('btnExcluir').style.display = 'inline-block';
+            document.getElementById('modalEvento').classList.add('show');
+        }
+
+        function fecharModal() {
+            document.getElementById('modalEvento').classList.remove('show');
+            eventoEditando = null;
+        }
+
+        function salvarEvento() {
+            const mes = document.getElementById('eventoMes').value;
+            const dia = parseInt(document.getElementById('eventoDia').value);
+            const titulo = document.getElementById('eventoTitulo').value.trim();
+
+            if (!dia || dia < 1 || dia > 31) {
+                alert('❌ Digite um dia válido (1-31)');
+                return;
+            }
+
+            if (!titulo) {
+                alert('❌ Digite um título para o evento');
+                return;
+            }
+
+            if (!eventos[mes]) {
+                eventos[mes] = [];
+            }
+
+            if (eventoEditando) {
+                eventos[eventoEditando.mes].splice(eventoEditando.index, 1);
+            }
+
+            eventos[mes].push({ dia, titulo });
+
+            salvarDados();
+            renderizarCalendario();
+            fecharModal();
+
+            alert('✅ Evento salvo com sucesso!');
+        }
+
+        function excluirEvento() {
+            if (!eventoEditando) return;
+
+            if (confirm('🗑️ Tem certeza que deseja excluir este evento?')) {
+                eventos[eventoEditando.mes].splice(eventoEditando.index, 1);
+                salvarDados();
+                renderizarCalendario();
+                fecharModal();
+                alert('✅ Evento excluído!');
+            }
+        }
+
+        function confirmarExclusao(mes, index) {
+            if (confirm('🗑️ Excluir este evento?')) {
+                eventos[mes].splice(index, 1);
+                salvarDados();
+                renderizarCalendario();
+            }
+        }
+
+        function exportarDados() {
+            const dataStr = JSON.stringify(eventos, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `calendario-equipe06-2026-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            alert('✅ Backup exportado com sucesso!');
+        }
+
+        function importarDados(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dadosImportados = JSON.parse(e.target.result);
+                    if (confirm('⚠️ Isso vai substituir todos os dados atuais. Continuar?')) {
+                        eventos = dadosImportados;
+                        salvarDados();
+                        renderizarCalendario();
+                        alert('✅ Dados importados com sucesso!');
+                    }
+                } catch (err) {
+                    alert('❌ Erro ao importar arquivo. Verifique se é um arquivo JSON válido.');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        document.getElementById('modalEvento').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModal();
+            }
+        });
+
+        carregarDados();
+        renderizarCalendario();
+    </script>
 </body>
 </html>
