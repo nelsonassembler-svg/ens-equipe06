@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+calendario_equipe_06_2026.html<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,7 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 400px;
+            max-width: 500px;
             width: 90%;
             text-align: center;
         }
@@ -55,6 +55,42 @@
             font-size: 1em;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        .lgpd-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 2px solid #e0e0e0;
+        }
+
+        .lgpd-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .lgpd-box p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
         }
 
         /* APP */
@@ -120,6 +156,11 @@
         .btn-primary:hover { background: #6B8E5F; transform: translateY(-2px); }
         .btn-secondary { background: #5F9EA0; color: white; }
         .btn-danger { background: #D97B7B; color: white; }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
 
         /* FORMULÁRIOS */
         .form-group {
@@ -149,7 +190,8 @@
         }
 
         #formCasalContainer,
-        #formConselheiroContainer {
+        #formConselheiroContainer,
+        #formUploadContainer {
             margin-top: 20px;
             padding: 30px;
             background: #f8f9fa;
@@ -158,7 +200,8 @@
         }
 
         #formCasalContainer.show,
-        #formConselheiroContainer.show {
+        #formConselheiroContainer.show,
+        #formUploadContainer.show {
             display: block;
         }
 
@@ -195,6 +238,16 @@
             border-radius: 8px;
         }
 
+        .alert-premium {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #856404;
+        }
+
         footer {
             background: white;
             text-align: center;
@@ -216,13 +269,27 @@
         <div class="login-card">
             <h1>🔐 Login</h1>
             <p>Equipe 06 - Nossa Senhora da Paz</p>
+
             <form class="login-form" onsubmit="login(event)">
-                <input type="text" id="nomeLogin" placeholder="Digite seu nome" required>
-                <button type="submit" class="btn-login">Entrar</button>
+                <input type="email" id="emailLogin" placeholder="Digite seu e-mail" required>
+
+                <div class="lgpd-box">
+                    <h3>📋 Termos de Uso e Privacidade (LGPD)</h3>
+                    <p>Ao utilizar este sistema, você concorda com:</p>
+                    <p>• Seus dados pessoais serão armazenados localmente no navegador;</p>
+                    <p>• As informações são de uso exclusivo da Equipe 06 - ENS;</p>
+                    <p>• Você pode solicitar a exclusão dos seus dados a qualquer momento;</p>
+                    <p>• Os dados não serão compartilhados com terceiros;</p>
+                    <p>• Este sistema está em conformidade com a Lei Geral de Proteção de Dados (LGPD).</p>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="aceitoLGPD" required>
+                    <label for="aceitoLGPD" style="font-size: 0.9em;">Li e aceito os termos de uso e privacidade</label>
+                </div>
+
+                <button type="submit" class="btn-login" style="margin-top: 15px;">Entrar</button>
             </form>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
-                Digite <strong>Nelson</strong> para modo Premium
-            </p>
         </div>
     </div>
 
@@ -266,14 +333,35 @@
         <div id="roteiroSection" class="section">
             <div class="card">
                 <h2>📋 Roteiro de Reunião</h2>
-                <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p><strong>📄 Visualize o roteiro</strong></p>
+
+                <div id="alertNaoPremium" class="alert-premium" style="display: none;">
+                    ⚠️ Apenas o usuário Premium pode anexar arquivos PDF
                 </div>
-                <div id="arquivosLista"></div>
+
+                <button class="btn btn-primary" id="btnAnexarPDF" onclick="toggleFormUpload()" style="display: none;">
+                    📎 Anexar PDF
+                </button>
+
+                <!-- Formulário de Upload -->
+                <div id="formUploadContainer">
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Anexar Arquivo PDF</h3>
+
+                    <div class="form-group">
+                        <label>Selecione o arquivo PDF *</label>
+                        <input type="file" id="pdfFile" accept=".pdf" required>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="uploadPDF()">📤 Enviar PDF</button>
+                        <button class="btn btn-danger" onclick="toggleFormUpload()">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <div id="arquivosLista" style="margin-top: 20px;"></div>
+
                 <div id="visualizadorPDF" style="display: none; margin-top: 20px;">
                     <h3 style="color: #2c3e50; margin-bottom: 15px;">📄 <span id="nomePDFAtual"></span></h3>
                     <button class="btn btn-secondary" onclick="fecharVisualizador()">❌ Fechar</button>
-                    <button class="btn btn-primary" onclick="baixarPDFAtual()">⬇️ Baixar</button>
                     <iframe id="pdfFrame"></iframe>
                 </div>
             </div>
@@ -283,7 +371,14 @@
         <div id="casaisSection" class="section">
             <div class="card">
                 <h2>👥 Gestão de Casais</h2>
-                <button class="btn btn-primary" onclick="toggleFormCasal()">➕ Adicionar Casal</button>
+
+                <div id="alertCasaisNaoPremium" class="alert-premium" style="display: none;">
+                    ⚠️ Apenas o usuário Premium pode cadastrar casais
+                </div>
+
+                <button class="btn btn-primary" id="btnAdicionarCasal" onclick="toggleFormCasal()" style="display: none;">
+                    ➕ Adicionar Casal
+                </button>
 
                 <!-- Formulário de Cadastro -->
                 <div id="formCasalContainer">
@@ -386,7 +481,14 @@
         <div id="conselheiroSection" class="section">
             <div class="card">
                 <h2>✝️ Conselheiro Espiritual</h2>
-                <button class="btn btn-primary" onclick="toggleFormConselheiro()">➕ Adicionar Conselheiro</button>
+
+                <div id="alertConselheiroNaoPremium" class="alert-premium" style="display: none;">
+                    ⚠️ Apenas o usuário Premium pode cadastrar conselheiros
+                </div>
+
+                <button class="btn btn-primary" id="btnAdicionarConselheiro" onclick="toggleFormConselheiro()" style="display: none;">
+                    ➕ Adicionar Conselheiro
+                </button>
 
                 <!-- Formulário de Cadastro -->
                 <div id="formConselheiroContainer">
@@ -484,28 +586,61 @@
     </footer>
 
     <script>
+        const EMAIL_PREMIUM = 'nelsontcmagalhaes@gmail.com';
         let isPremium = false;
         let pdfAtual = null;
+        let userEmail = '';
 
         function login(e) {
             e.preventDefault();
-            const nome = document.getElementById('nomeLogin').value.trim();
-            isPremium = nome.toLowerCase().includes('nelson');
+            userEmail = document.getElementById('emailLogin').value.trim().toLowerCase();
+            const aceitouLGPD = document.getElementById('aceitoLGPD').checked;
+
+            if (!aceitouLGPD) {
+                alert('❌ Você precisa aceitar os termos de uso e privacidade para continuar.');
+                return;
+            }
+
+            isPremium = userEmail === EMAIL_PREMIUM;
+
+            // Salvar aceite da LGPD
+            localStorage.setItem('lgpd_aceito_' + userEmail, 'true');
+            localStorage.setItem('ultimo_email', userEmail);
 
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('appPrincipal').style.display = 'block';
 
             const badge = isPremium ? '⭐ PREMIUM' : '👁️ VISUALIZADOR';
-            document.getElementById('userInfo').innerHTML = `${nome} <span style="background: #ffd700; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold;">${badge}</span>`;
+            const badgeColor = isPremium ? '#ffd700' : '#6c757d';
+            document.getElementById('userInfo').innerHTML = `${userEmail} <span style="background: ${badgeColor}; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold; color: white;">${badge}</span>`;
 
-            if (!isPremium) document.getElementById('tabBackup').style.display = 'none';
+            configurarPermissoes();
             carregarArquivos();
             carregarCasais();
             carregarConselheiros();
         }
 
+        function configurarPermissoes() {
+            if (!isPremium) {
+                // Ocultar aba de backup
+                document.getElementById('tabBackup').style.display = 'none';
+
+                // Mostrar alertas
+                document.getElementById('alertNaoPremium').style.display = 'block';
+                document.getElementById('alertCasaisNaoPremium').style.display = 'block';
+                document.getElementById('alertConselheiroNaoPremium').style.display = 'block';
+            } else {
+                // Mostrar botões premium
+                document.getElementById('btnAnexarPDF').style.display = 'inline-block';
+                document.getElementById('btnAdicionarCasal').style.display = 'inline-block';
+                document.getElementById('btnAdicionarConselheiro').style.display = 'inline-block';
+            }
+        }
+
         function sair() {
-            if (confirm('Sair?')) location.reload();
+            if (confirm('Deseja sair do sistema?')) {
+                location.reload();
+            }
         }
 
         function mostrarSecao(id) {
@@ -513,25 +648,129 @@
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.getElementById(id + 'Section').classList.add('active');
             event.target.classList.add('active');
+
             if (id === 'roteiro') carregarArquivos();
             if (id === 'casais') carregarCasais();
             if (id === 'conselheiro') carregarConselheiros();
         }
 
         function abrirCalendario() {
-            window.open('calendario-2026.html', '_blank');
+            window.open('calendario_equipe_06_2026.html', '_blank');
+        }
+
+        // ===== UPLOAD PDF =====
+        function toggleFormUpload() {
+            if (!isPremium) {
+                alert('⛔ Apenas o usuário Premium pode anexar arquivos PDF');
+                return;
+            }
+            document.getElementById('formUploadContainer').classList.toggle('show');
+        }
+
+        function uploadPDF() {
+            const fileInput = document.getElementById('pdfFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('❌ Selecione um arquivo PDF');
+                return;
+            }
+
+            if (file.type !== 'application/pdf') {
+                alert('❌ Apenas arquivos PDF são permitidos');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('❌ Arquivo muito grande! Tamanho máximo: 10MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+
+                const novoArquivo = {
+                    id: Date.now(),
+                    nome: file.name,
+                    tamanho: (file.size / 1024).toFixed(2) + ' KB',
+                    data: new Date().toLocaleDateString('pt-BR'),
+                    conteudo: e.target.result
+                };
+
+                arquivos.push(novoArquivo);
+                localStorage.setItem('arquivos', JSON.stringify(arquivos));
+
+                alert('✅ PDF anexado com sucesso!');
+                fileInput.value = '';
+                toggleFormUpload();
+                carregarArquivos();
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function carregarArquivos() {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            const lista = document.getElementById('arquivosLista');
+
+            if (arquivos.length === 0) {
+                lista.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Nenhum roteiro anexado</div>';
+                return;
+            }
+
+            lista.innerHTML = arquivos.map((arq, i) => `
+                <div class="item-card">
+                    <h3>📄 ${arq.nome}</h3>
+                    <p>📅 ${arq.data} | 📦 ${arq.tamanho}</p>
+                    <div class="item-actions">
+                        <button class="btn btn-secondary" onclick="verPDF(${i})">👁️ Ver</button>
+                        ${isPremium ? `<button class="btn btn-danger" onclick="excluirPDF(${i})">🗑️ Excluir</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function verPDF(i) {
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            pdfAtual = arquivos[i];
+            document.getElementById('nomePDFAtual').textContent = pdfAtual.nome;
+            document.getElementById('pdfFrame').src = pdfAtual.conteudo;
+            document.getElementById('visualizadorPDF').style.display = 'block';
+            document.getElementById('arquivosLista').style.display = 'none';
+        }
+
+        function fecharVisualizador() {
+            document.getElementById('visualizadorPDF').style.display = 'none';
+            document.getElementById('arquivosLista').style.display = 'block';
+        }
+
+        function excluirPDF(i) {
+            if (!isPremium) {
+                alert('⛔ Apenas o usuário Premium pode excluir arquivos');
+                return;
+            }
+
+            if (!confirm('Excluir este arquivo?')) return;
+
+            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
+            arquivos.splice(i, 1);
+            localStorage.setItem('arquivos', JSON.stringify(arquivos));
+            carregarArquivos();
         }
 
         // ===== CASAIS =====
         function toggleFormCasal() {
-            const form = document.getElementById('formCasalContainer');
-            form.classList.toggle('show');
+            if (!isPremium) {
+                alert('⛔ Apenas o usuário Premium pode cadastrar casais');
+                return;
+            }
+            document.getElementById('formCasalContainer').classList.toggle('show');
         }
 
         function toggleMissao() {
             const emMissao = document.getElementById('casalEmMissao').value;
-            const qualMissaoGroup = document.getElementById('qualMissaoGroup');
-            qualMissaoGroup.style.display = emMissao === 'Sim' ? 'block' : 'none';
+            document.getElementById('qualMissaoGroup').style.display = emMissao === 'Sim' ? 'block' : 'none';
         }
 
         function salvarCasal() {
@@ -602,15 +841,19 @@
                     <p><strong>Em Missão:</strong> ${casal.emMissao}${casal.emMissao === 'Sim' ? ' - ' + casal.qualMissao : ''}</p>
                     <p><strong>👰 Esposa:</strong> ${casal.esposa.nome} | 🎂 ${casal.esposa.aniversario} | 📱 ${casal.esposa.celular}</p>
                     <p><strong>🤵 Esposo:</strong> ${casal.esposo.nome} | 🎂 ${casal.esposo.aniversario} | 📱 ${casal.esposo.celular}</p>
+                    ${isPremium ? `
                     <div class="item-actions">
                         <button class="btn btn-danger" onclick="excluirCasal(${index})">🗑️ Excluir</button>
                     </div>
+                    ` : ''}
                 </div>
             `).join('');
         }
 
         function excluirCasal(index) {
+            if (!isPremium) return;
             if (!confirm('Excluir este casal?')) return;
+
             const casais = JSON.parse(localStorage.getItem('casais') || '[]');
             casais.splice(index, 1);
             localStorage.setItem('casais', JSON.stringify(casais));
@@ -619,8 +862,11 @@
 
         // ===== CONSELHEIRO =====
         function toggleFormConselheiro() {
-            const form = document.getElementById('formConselheiroContainer');
-            form.classList.toggle('show');
+            if (!isPremium) {
+                alert('⛔ Apenas o usuário Premium pode cadastrar conselheiros');
+                return;
+            }
+            document.getElementById('formConselheiroContainer').classList.toggle('show');
         }
 
         function salvarConselheiro() {
@@ -672,67 +918,23 @@
                     <p><strong>Aniversário:</strong> ${cons.aniversario}</p>
                     <p><strong>Celular:</strong> ${cons.celular}</p>
                     <p><strong>E-mail:</strong> ${cons.email}</p>
+                    ${isPremium ? `
                     <div class="item-actions">
                         <button class="btn btn-danger" onclick="excluirConselheiro(${index})">🗑️ Excluir</button>
                     </div>
+                    ` : ''}
                 </div>
             `).join('');
         }
 
         function excluirConselheiro(index) {
+            if (!isPremium) return;
             if (!confirm('Excluir este conselheiro?')) return;
+
             const conselheiros = JSON.parse(localStorage.getItem('conselheiros') || '[]');
             conselheiros.splice(index, 1);
             localStorage.setItem('conselheiros', JSON.stringify(conselheiros));
             carregarConselheiros();
-        }
-
-        // ===== ROTEIRO =====
-        function carregarArquivos() {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            const lista = document.getElementById('arquivosLista');
-
-            if (arquivos.length === 0) {
-                lista.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">📭 Sem roteiros</div>';
-                return;
-            }
-
-            lista.innerHTML = arquivos.map((arq, i) => `
-                <div class="item-card">
-                    <h3>${arq.nome}</h3>
-                    <p>📅 ${arq.data} | 📦 ${arq.tamanho}</p>
-                    <button class="btn btn-secondary" onclick="verPDF(${i})">👁️ Ver</button>
-                    <button class="btn btn-secondary" onclick="baixarPDF(${i})">⬇️ Baixar</button>
-                </div>
-            `).join('');
-        }
-
-        function verPDF(i) {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            pdfAtual = arquivos[i];
-            document.getElementById('nomePDFAtual').textContent = pdfAtual.nome;
-            document.getElementById('pdfFrame').src = pdfAtual.conteudo;
-            document.getElementById('visualizadorPDF').style.display = 'block';
-        }
-
-        function fecharVisualizador() {
-            document.getElementById('visualizadorPDF').style.display = 'none';
-        }
-
-        function baixarPDFAtual() {
-            if (!pdfAtual) return;
-            const link = document.createElement('a');
-            link.href = pdfAtual.conteudo;
-            link.download = pdfAtual.nome;
-            link.click();
-        }
-
-        function baixarPDF(i) {
-            const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
-            const link = document.createElement('a');
-            link.href = arquivos[i].conteudo;
-            link.download = arquivos[i].nome;
-            link.click();
         }
 
         // ===== BACKUP =====
@@ -753,6 +955,7 @@
         function importar(e) {
             const file = e.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(evt) {
                 try {
