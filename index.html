@@ -113,11 +113,54 @@
             cursor: pointer;
             font-weight: bold;
             margin: 5px;
+            transition: all 0.3s;
         }
 
         .btn-primary { background: #88AB75; color: white; }
+        .btn-primary:hover { background: #6B8E5F; transform: translateY(-2px); }
         .btn-secondary { background: #5F9EA0; color: white; }
         .btn-danger { background: #D97B7B; color: white; }
+
+        /* FORMULÁRIOS */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        #formCasalContainer,
+        #formConselheiroContainer {
+            margin-top: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: none;
+        }
+
+        #formCasalContainer.show,
+        #formConselheiroContainer.show {
+            display: block;
+        }
 
         .item-card {
             background: #f8f9fa;
@@ -127,6 +170,24 @@
             border-left: 4px solid #88AB75;
         }
 
+        .item-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            color: #666;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .item-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         #visualizadorPDF iframe {
             width: 100%;
             height: 600px;
@@ -134,9 +195,18 @@
             border-radius: 8px;
         }
 
+        footer {
+            background: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 15px;
+        }
+
         @media (max-width: 768px) {
             body { padding: 10px; }
             .card { padding: 20px; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -213,7 +283,102 @@
         <div id="casaisSection" class="section">
             <div class="card">
                 <h2>👥 Gestão de Casais</h2>
-                <p style="text-align: center; padding: 40px; color: #999;">Em desenvolvimento</p>
+                <button class="btn btn-primary" onclick="toggleFormCasal()">➕ Adicionar Casal</button>
+
+                <!-- Formulário de Cadastro -->
+                <div id="formCasalContainer">
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Cadastro de Casal</h3>
+
+                    <div class="form-group">
+                        <label>Número de Inscrição ENS *</label>
+                        <input type="text" id="casalInscricao" placeholder="Ex: ENS2026001" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Casal em Missão? *</label>
+                        <select id="casalEmMissao" onchange="toggleMissao()">
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="qualMissaoGroup" style="display: none;">
+                        <label>Qual Missão?</label>
+                        <input type="text" id="casalQualMissao" placeholder="Ex: Equipe de Formação">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Aniversário de Casamento *</label>
+                        <input type="text" id="casalAniversarioCasamento" placeholder="DD/MM" maxlength="5" required>
+                    </div>
+
+                    <h4 style="color: #B85555; margin: 20px 0 15px 0; border-bottom: 2px solid #E8B4B8; padding-bottom: 5px;">👰 Dados da Esposa</h4>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nome Completo *</label>
+                            <input type="text" id="esposaNome" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Data de Aniversário *</label>
+                            <input type="text" id="esposaAniversario" placeholder="DD/MM" maxlength="5" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CPF *</label>
+                            <input type="text" id="esposaCPF" placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Celular *</label>
+                            <input type="text" id="esposaCelular" placeholder="(00) 00000-0000" maxlength="15" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="esposaEmail" required>
+                    </div>
+
+                    <h4 style="color: #B85555; margin: 20px 0 15px 0; border-bottom: 2px solid #E8B4B8; padding-bottom: 5px;">🤵 Dados do Esposo</h4>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nome Completo *</label>
+                            <input type="text" id="esposoNome" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Data de Aniversário *</label>
+                            <input type="text" id="esposoAniversario" placeholder="DD/MM" maxlength="5" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CPF *</label>
+                            <input type="text" id="esposoCPF" placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Celular *</label>
+                            <input type="text" id="esposoCelular" placeholder="(00) 00000-0000" maxlength="15" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="esposoEmail" required>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="salvarCasal()">💾 Salvar Casal</button>
+                        <button class="btn btn-secondary" onclick="limparFormCasal()">🔄 Limpar</button>
+                        <button class="btn btn-danger" onclick="toggleFormCasal()">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- Lista de Casais -->
+                <div id="listaCasais" style="margin-top: 30px;"></div>
             </div>
         </div>
 
@@ -221,7 +386,58 @@
         <div id="conselheiroSection" class="section">
             <div class="card">
                 <h2>✝️ Conselheiro Espiritual</h2>
-                <p style="text-align: center; padding: 40px; color: #999;">Em desenvolvimento</p>
+                <button class="btn btn-primary" onclick="toggleFormConselheiro()">➕ Adicionar Conselheiro</button>
+
+                <!-- Formulário de Cadastro -->
+                <div id="formConselheiroContainer">
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;">Cadastro de Conselheiro Espiritual</h3>
+
+                    <div class="form-group">
+                        <label>Número de Inscrição ENS *</label>
+                        <input type="text" id="conselheiroInscricao" placeholder="Ex: ENS2026SE001" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Aniversário de Ordenação *</label>
+                        <input type="text" id="conselheiroOrdenacao" placeholder="DD/MM" maxlength="5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="conselheiroNome" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Data de Aniversário *</label>
+                            <input type="text" id="conselheiroAniversario" placeholder="DD/MM" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CPF *</label>
+                            <input type="text" id="conselheiroCPF" placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Celular *</label>
+                            <input type="text" id="conselheiroCelular" placeholder="(00) 00000-0000" maxlength="15" required>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail *</label>
+                            <input type="email" id="conselheiroEmail" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="salvarConselheiro()">💾 Salvar Conselheiro</button>
+                        <button class="btn btn-secondary" onclick="limparFormConselheiro()">🔄 Limpar</button>
+                        <button class="btn btn-danger" onclick="toggleFormConselheiro()">❌ Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- Lista de Conselheiros -->
+                <div id="listaConselheiros" style="margin-top: 30px;"></div>
             </div>
         </div>
 
@@ -284,6 +500,8 @@
 
             if (!isPremium) document.getElementById('tabBackup').style.display = 'none';
             carregarArquivos();
+            carregarCasais();
+            carregarConselheiros();
         }
 
         function sair() {
@@ -296,12 +514,180 @@
             document.getElementById(id + 'Section').classList.add('active');
             event.target.classList.add('active');
             if (id === 'roteiro') carregarArquivos();
+            if (id === 'casais') carregarCasais();
+            if (id === 'conselheiro') carregarConselheiros();
         }
 
         function abrirCalendario() {
             window.open('calendario-2026.html', '_blank');
         }
 
+        // ===== CASAIS =====
+        function toggleFormCasal() {
+            const form = document.getElementById('formCasalContainer');
+            form.classList.toggle('show');
+        }
+
+        function toggleMissao() {
+            const emMissao = document.getElementById('casalEmMissao').value;
+            const qualMissaoGroup = document.getElementById('qualMissaoGroup');
+            qualMissaoGroup.style.display = emMissao === 'Sim' ? 'block' : 'none';
+        }
+
+        function salvarCasal() {
+            const casal = {
+                id: Date.now(),
+                inscricao: document.getElementById('casalInscricao').value,
+                emMissao: document.getElementById('casalEmMissao').value,
+                qualMissao: document.getElementById('casalQualMissao').value,
+                aniversarioCasamento: document.getElementById('casalAniversarioCasamento').value,
+                esposa: {
+                    nome: document.getElementById('esposaNome').value,
+                    aniversario: document.getElementById('esposaAniversario').value,
+                    cpf: document.getElementById('esposaCPF').value,
+                    celular: document.getElementById('esposaCelular').value,
+                    email: document.getElementById('esposaEmail').value
+                },
+                esposo: {
+                    nome: document.getElementById('esposoNome').value,
+                    aniversario: document.getElementById('esposoAniversario').value,
+                    cpf: document.getElementById('esposoCPF').value,
+                    celular: document.getElementById('esposoCelular').value,
+                    email: document.getElementById('esposoEmail').value
+                }
+            };
+
+            const casais = JSON.parse(localStorage.getItem('casais') || '[]');
+            casais.push(casal);
+            localStorage.setItem('casais', JSON.stringify(casais));
+
+            alert('✅ Casal cadastrado com sucesso!');
+            limparFormCasal();
+            toggleFormCasal();
+            carregarCasais();
+        }
+
+        function limparFormCasal() {
+            document.getElementById('casalInscricao').value = '';
+            document.getElementById('casalEmMissao').value = 'Não';
+            document.getElementById('casalQualMissao').value = '';
+            document.getElementById('casalAniversarioCasamento').value = '';
+            document.getElementById('esposaNome').value = '';
+            document.getElementById('esposaAniversario').value = '';
+            document.getElementById('esposaCPF').value = '';
+            document.getElementById('esposaCelular').value = '';
+            document.getElementById('esposaEmail').value = '';
+            document.getElementById('esposoNome').value = '';
+            document.getElementById('esposoAniversario').value = '';
+            document.getElementById('esposoCPF').value = '';
+            document.getElementById('esposoCelular').value = '';
+            document.getElementById('esposoEmail').value = '';
+            toggleMissao();
+        }
+
+        function carregarCasais() {
+            const casais = JSON.parse(localStorage.getItem('casais') || '[]');
+            const lista = document.getElementById('listaCasais');
+
+            if (casais.length === 0) {
+                lista.innerHTML = '<p style="text-align: center; padding: 40px; color: #999;">Nenhum casal cadastrado</p>';
+                return;
+            }
+
+            lista.innerHTML = casais.map((casal, index) => `
+                <div class="item-card">
+                    <h3>👫 ${casal.esposa.nome} & ${casal.esposo.nome}</h3>
+                    <p><strong>Inscrição ENS:</strong> ${casal.inscricao}</p>
+                    <p><strong>Aniversário de Casamento:</strong> ${casal.aniversarioCasamento}</p>
+                    <p><strong>Em Missão:</strong> ${casal.emMissao}${casal.emMissao === 'Sim' ? ' - ' + casal.qualMissao : ''}</p>
+                    <p><strong>👰 Esposa:</strong> ${casal.esposa.nome} | 🎂 ${casal.esposa.aniversario} | 📱 ${casal.esposa.celular}</p>
+                    <p><strong>🤵 Esposo:</strong> ${casal.esposo.nome} | 🎂 ${casal.esposo.aniversario} | 📱 ${casal.esposo.celular}</p>
+                    <div class="item-actions">
+                        <button class="btn btn-danger" onclick="excluirCasal(${index})">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function excluirCasal(index) {
+            if (!confirm('Excluir este casal?')) return;
+            const casais = JSON.parse(localStorage.getItem('casais') || '[]');
+            casais.splice(index, 1);
+            localStorage.setItem('casais', JSON.stringify(casais));
+            carregarCasais();
+        }
+
+        // ===== CONSELHEIRO =====
+        function toggleFormConselheiro() {
+            const form = document.getElementById('formConselheiroContainer');
+            form.classList.toggle('show');
+        }
+
+        function salvarConselheiro() {
+            const conselheiro = {
+                id: Date.now(),
+                inscricao: document.getElementById('conselheiroInscricao').value,
+                ordenacao: document.getElementById('conselheiroOrdenacao').value,
+                nome: document.getElementById('conselheiroNome').value,
+                aniversario: document.getElementById('conselheiroAniversario').value,
+                cpf: document.getElementById('conselheiroCPF').value,
+                celular: document.getElementById('conselheiroCelular').value,
+                email: document.getElementById('conselheiroEmail').value
+            };
+
+            const conselheiros = JSON.parse(localStorage.getItem('conselheiros') || '[]');
+            conselheiros.push(conselheiro);
+            localStorage.setItem('conselheiros', JSON.stringify(conselheiros));
+
+            alert('✅ Conselheiro cadastrado com sucesso!');
+            limparFormConselheiro();
+            toggleFormConselheiro();
+            carregarConselheiros();
+        }
+
+        function limparFormConselheiro() {
+            document.getElementById('conselheiroInscricao').value = '';
+            document.getElementById('conselheiroOrdenacao').value = '';
+            document.getElementById('conselheiroNome').value = '';
+            document.getElementById('conselheiroAniversario').value = '';
+            document.getElementById('conselheiroCPF').value = '';
+            document.getElementById('conselheiroCelular').value = '';
+            document.getElementById('conselheiroEmail').value = '';
+        }
+
+        function carregarConselheiros() {
+            const conselheiros = JSON.parse(localStorage.getItem('conselheiros') || '[]');
+            const lista = document.getElementById('listaConselheiros');
+
+            if (conselheiros.length === 0) {
+                lista.innerHTML = '<p style="text-align: center; padding: 40px; color: #999;">Nenhum conselheiro cadastrado</p>';
+                return;
+            }
+
+            lista.innerHTML = conselheiros.map((cons, index) => `
+                <div class="item-card">
+                    <h3>✝️ ${cons.nome}</h3>
+                    <p><strong>Inscrição ENS:</strong> ${cons.inscricao}</p>
+                    <p><strong>Aniversário de Ordenação:</strong> ${cons.ordenacao}</p>
+                    <p><strong>Aniversário:</strong> ${cons.aniversario}</p>
+                    <p><strong>Celular:</strong> ${cons.celular}</p>
+                    <p><strong>E-mail:</strong> ${cons.email}</p>
+                    <div class="item-actions">
+                        <button class="btn btn-danger" onclick="excluirConselheiro(${index})">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function excluirConselheiro(index) {
+            if (!confirm('Excluir este conselheiro?')) return;
+            const conselheiros = JSON.parse(localStorage.getItem('conselheiros') || '[]');
+            conselheiros.splice(index, 1);
+            localStorage.setItem('conselheiros', JSON.stringify(conselheiros));
+            carregarConselheiros();
+        }
+
+        // ===== ROTEIRO =====
         function carregarArquivos() {
             const arquivos = JSON.parse(localStorage.getItem('arquivos') || '[]');
             const lista = document.getElementById('arquivosLista');
@@ -349,14 +735,19 @@
             link.click();
         }
 
+        // ===== BACKUP =====
         function exportar() {
-            const dados = { arquivos: JSON.parse(localStorage.getItem('arquivos') || '[]') };
+            const dados = {
+                casais: JSON.parse(localStorage.getItem('casais') || '[]'),
+                conselheiros: JSON.parse(localStorage.getItem('conselheiros') || '[]'),
+                arquivos: JSON.parse(localStorage.getItem('arquivos') || '[]')
+            };
             const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'backup.json';
+            link.download = `backup-equipe06-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
-            alert('✅ Exportado!');
+            alert('✅ Backup exportado com sucesso!');
         }
 
         function importar(e) {
@@ -366,10 +757,12 @@
             reader.onload = function(evt) {
                 try {
                     const dados = JSON.parse(evt.target.result);
-                    localStorage.setItem('arquivos', JSON.stringify(dados.arquivos || []));
-                    alert('✅ Importado!');
+                    if (dados.casais) localStorage.setItem('casais', JSON.stringify(dados.casais));
+                    if (dados.conselheiros) localStorage.setItem('conselheiros', JSON.stringify(dados.conselheiros));
+                    if (dados.arquivos) localStorage.setItem('arquivos', JSON.stringify(dados.arquivos));
+                    alert('✅ Dados importados com sucesso!');
                     location.reload();
-                } catch { alert('❌ Erro!'); }
+                } catch { alert('❌ Erro ao importar!'); }
             };
             reader.readAsText(file);
         }
