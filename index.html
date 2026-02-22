@@ -2,678 +2,98 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendário 2026 - Equipe 06</title>
+<title>Teste Login ENS</title>
 <style>
-:root { --r:#c0392b; --r2:#922b21; }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Segoe UI',sans-serif; background:linear-gradient(135deg,var(--r),var(--r2)); min-height:100vh; padding:15px; }
-
-/* LOGIN */
-#pLogin { display:flex; align-items:center; justify-content:center; min-height:100vh; }
-.lbox { background:#fff; border-radius:18px; box-shadow:0 12px 45px rgba(0,0,0,.35); padding:36px 28px; max-width:420px; width:100%; text-align:center; }
-.peixe svg { width:80px; height:80px; margin-bottom:8px; }
-.lbox h2 { color:var(--r); font-size:1.4em; margin-bottom:3px; }
-.lsub { font-size:.83em; color:#888; margin-bottom:22px; }
-.lcampo { margin-bottom:13px; text-align:left; }
-.lcampo label { display:block; font-size:.82em; font-weight:700; color:#444; margin-bottom:5px; }
-.lcampo select, .lcampo input { width:100%; padding:10px 12px; border:2px solid #ddd; border-radius:8px; font-size:.95em; font-family:inherit; }
-.lcampo select:focus, .lcampo input:focus { outline:none; border-color:var(--r); }
-#divSenha { display:none; }
-.lgpd { background:#fff8f8; border:1px solid #f5c6c6; border-radius:8px; padding:12px 14px; margin:14px 0; text-align:left; font-size:.78em; color:#555; line-height:1.55; }
-.lgpd-check { display:flex; align-items:flex-start; gap:8px; margin-top:10px; font-size:.8em; color:#333; cursor:pointer; }
-.lgpd-check input { width:16px; height:16px; margin-top:2px; flex-shrink:0; accent-color:var(--r); }
-.bentrar { width:100%; padding:13px; background:var(--r); color:#fff; border:none; border-radius:8px; font-size:1em; font-weight:700; cursor:pointer; margin-top:6px; font-family:inherit; transition:background .2s; }
-.bentrar:hover { background:var(--r2); }
-.lerro { color:var(--r); font-size:.82em; margin-top:10px; padding:8px 12px; background:#fdecea; border-radius:6px; display:none; }
-.lvers { margin-top:18px; font-size:.73em; color:#bbb; font-style:italic; }
-
-/* APP */
-#pApp { display:none; }
-.cont { max-width:1400px; margin:0 auto; background:#fff; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,.3); overflow:hidden; }
-header { background:linear-gradient(135deg,var(--r),var(--r2)); color:#fff; padding:25px 85px; text-align:center; position:relative; }
-header h1 { font-size:clamp(1.5rem,4vw,2.4rem); margin-bottom:6px; }
-header p { font-size:clamp(.85rem,2vw,1rem); opacity:.93; margin-top:3px; }
-.bsair { position:absolute; top:14px; right:14px; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.5); color:#fff; padding:6px 14px; border-radius:20px; cursor:pointer; font-size:.8em; font-weight:700; font-family:inherit; }
-.bsair:hover { background:rgba(255,255,255,.35); }
-.ubadge { position:absolute; top:14px; left:14px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); color:#fff; padding:5px 11px; border-radius:20px; font-size:.72em; max-width:155px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
-/* ABAS */
-.abas { display:flex; background:#f0f0f0; border-bottom:3px solid var(--r); }
-.abtn { flex:1; padding:13px 8px; border:none; background:transparent; cursor:pointer; font-size:.95em; font-weight:700; color:#555; transition:all .2s; font-family:inherit; }
-.abtn.on { background:#fff; color:var(--r); border-bottom:3px solid #fff; margin-bottom:-3px; }
-.abtn:hover:not(.on) { background:#e8e8e8; }
-.atab { display:none; }
-.atab.on { display:block; }
-
-/* AVISOS */
-.aviso { padding:10px 20px; text-align:center; font-size:.9em; font-weight:600; }
-.av-l { background:#fff3cd; border-bottom:2px solid #ffc107; color:#856404; }
-.av-a { background:#d4edda; border-bottom:2px solid #28a745; color:#155724; }
-
-/* BARRA ADMIN */
-.badmin { display:none; padding:10px 20px; background:#f8f9fa; border-bottom:1px solid #ddd; gap:8px; flex-wrap:wrap; justify-content:center; }
-.badmin.on { display:flex; }
-.badbtn { padding:8px 18px; border:none; border-radius:6px; cursor:pointer; font-size:.87em; font-weight:700; font-family:inherit; background:var(--r); color:#fff; }
-.badbtn:hover { background:var(--r2); }
-
-/* LEGENDA */
-.lgd { padding:16px 20px 0; }
-.lgdt { font-size:.88em; font-weight:700; color:#555; margin-bottom:10px; text-align:center; }
-.lgdg { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-bottom:4px; }
-.lgdi { display:flex; align-items:center; gap:6px; background:#f8f9fa; border-radius:20px; padding:4px 11px; font-size:.78em; color:#495057; border:1px solid #dee2e6; }
-.lgdc { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
-
-/* CALENDÁRIO */
-.mgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:18px; padding:18px; }
-.mcard { background:#fff; border:2px solid #e0e0e0; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.08); transition:all .3s; }
-.mcard:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.14); border-color:var(--r); }
-.mhdr { background:linear-gradient(135deg,var(--r),var(--r2)); color:#fff; padding:13px 15px; font-weight:700; font-size:1.2em; display:flex; justify-content:space-between; align-items:center; }
-.badd-ev { background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.6); color:#fff; padding:3px 9px; border-radius:5px; cursor:pointer; font-size:.72em; font-weight:700; display:none; font-family:inherit; }
-.badd-ev.on { display:inline-block; }
-.mbdy { padding:13px; max-height:500px; overflow-y:auto; }
-.ev { padding:9px 11px; margin-bottom:7px; border-radius:8px; border-left:4px solid var(--r); background:#f8f9fa; transition:transform .15s; position:relative; }
-.ev:hover { transform:translateX(3px); }
-.ev-rf { border-left-color:var(--r);   background:#fdf0ef; }
-.ev-mi { border-left-color:#e67e22; background:#fef5ec; }
-.ev-re { border-left-color:#27ae60; background:#eafaf1; }
-.ev-fe { border-left-color:#7f8c8d; background:#f4f6f7; }
-.ev-an { border-left-color:#f39c12; background:#fef9e7; }
-.ev-ca { border-left-color:#8e44ad; background:#f5eef8; }
-.ev-fo { border-left-color:#2980b9; background:#eaf4fc; }
-.ev-ou { border-left-color:#95a5a6; background:#f8f9fa; }
-.evd { font-weight:700; color:#2c3e50; margin-bottom:3px; font-size:.97em; }
-.evt { color:#495057; font-size:.83em; line-height:1.5; white-space:pre-line; }
-.mv { text-align:center; color:#aaa; padding:35px 15px; font-style:italic; }
-.evac { position:absolute; top:7px; right:7px; gap:4px; display:none; }
-.admin-on .ev:hover .evac { display:flex; }
-.bev { border:none; border-radius:4px; padding:3px 7px; cursor:pointer; font-size:.75em; font-weight:700; font-family:inherit; }
-.bev-ed { background:#f39c12; color:#fff; }
-.bev-ex { background:var(--r); color:#fff; }
-
-/* CARDS DESTAQUE */
-.dw { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:20px; padding:20px 20px 0; }
-.dc { border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.13); transition:all .3s; }
-.dc:hover { transform:translateY(-5px); box-shadow:0 10px 28px rgba(0,0,0,.2); }
-.dc-m .dh { background:linear-gradient(135deg,var(--r),var(--r2)); }
-.dc-p .dh { background:linear-gradient(135deg,#1a6b3a,#27ae60); }
-.dh { color:#fff; padding:17px 20px; text-align:center; }
-.dh h2 { font-size:1.08em; letter-spacing:.8px; text-transform:uppercase; margin-bottom:4px; }
-.dh p { font-size:.79em; opacity:.9; font-style:italic; }
-.dc-m .db { background:#fff7f7; padding:17px 20px; }
-.dc-p .db { background:#f0faf4; padding:17px 20px; }
-.ds { margin-bottom:13px; }
-.ds:last-child { margin-bottom:0; }
-.dst { font-size:.73em; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:#999; margin-bottom:7px; padding-bottom:4px; border-bottom:1px solid #e0e0e0; }
-.dtags { display:flex; flex-wrap:wrap; gap:6px; }
-.dtag { display:inline-flex; align-items:center; gap:5px; background:#fff; border:1px solid #ddd; border-radius:20px; padding:4px 10px; font-size:.8em; color:#2c3e50; box-shadow:0 1px 4px rgba(0,0,0,.06); }
-.tn { display:inline-block; background:var(--r); color:#fff; font-size:.73em; font-weight:700; width:17px; height:17px; border-radius:50%; text-align:center; line-height:17px; flex-shrink:0; }
-.dc-p .tn { background:#27ae60; }
-.dli { list-style:none; }
-.dli li { padding:5px 0 5px 16px; font-size:.84em; color:#495057; border-bottom:1px dashed #eee; position:relative; line-height:1.45; }
-.dli li:last-child { border-bottom:none; }
-.dli li::before { content:'✦'; position:absolute; left:0; color:var(--r); font-size:.68em; top:7px; }
-.dc-p .dli li::before { color:#27ae60; }
-.dver { background:#fff; border-left:4px solid var(--r); border-radius:0 7px 7px 0; padding:9px 13px; font-size:.82em; color:#555; font-style:italic; margin-top:10px; line-height:1.5; }
-.dc-p .dver { border-left-color:#27ae60; }
-
-/* PARTICIPANTES */
-.pgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(295px,1fr)); gap:18px; padding:18px; }
-.pc { background:#fff; border:2px solid #e0e0e0; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.08); transition:all .3s; }
-.pc:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.14); border-color:var(--r); }
-.ph { background:linear-gradient(135deg,var(--r),var(--r2)); color:#fff; padding:13px 15px; font-weight:700; font-size:1.02em; display:flex; align-items:center; gap:8px; }
-.ph.padre { background:linear-gradient(135deg,#6c3483,#8e44ad); }
-.pb { padding:13px 15px; }
-.il { display:flex; gap:8px; margin-bottom:7px; font-size:.85em; color:#495057; align-items:flex-start; }
-.il strong { color:#2c3e50; min-width:88px; flex-shrink:0; }
-.il a { color:var(--r); text-decoration:none; }
-.il a:hover { text-decoration:underline; }
-.cb { display:inline-block; background:rgba(255,255,255,.22); color:#fff; font-size:.72em; padding:2px 8px; border-radius:12px; margin-left:6px; font-weight:700; border:1px solid rgba(255,255,255,.38); }
-.hrc { border:none; border-top:1px dashed #dee2e6; margin:9px 0; }
-
-/* MODAL */
-.mov { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; align-items:center; justify-content:center; padding:20px; }
-.mov.on { display:flex; }
-.mbox { background:#fff; border-radius:14px; padding:26px; max-width:460px; width:100%; max-height:90vh; overflow-y:auto; box-shadow:0 10px 40px rgba(0,0,0,.3); }
-.mbox h3 { color:var(--r); margin-bottom:16px; font-size:1.25em; }
-.fg { margin-bottom:13px; }
-.fg label { display:block; margin-bottom:4px; font-weight:700; font-size:.85em; color:#333; }
-.fg input,.fg select,.fg textarea { width:100%; padding:9px 11px; border:2px solid #ddd; border-radius:7px; font-size:.93em; font-family:inherit; }
-.fg textarea { min-height:85px; resize:vertical; }
-.fg input:focus,.fg select:focus,.fg textarea:focus { outline:none; border-color:var(--r); }
-.fac { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
-.bsv { padding:9px 18px; background:var(--r); color:#fff; border:none; border-radius:7px; cursor:pointer; font-weight:700; font-family:inherit; }
-.bex2 { padding:9px 18px; background:#7f8c8d; color:#fff; border:none; border-radius:7px; cursor:pointer; font-weight:700; font-family:inherit; }
-.bca { padding:9px 18px; background:#ecf0f1; color:#555; border:none; border-radius:7px; cursor:pointer; font-weight:700; font-family:inherit; }
-
-footer { background:#f8f9fa; padding:14px; text-align:center; color:#6c757d; font-size:.88em; border-top:1px solid #e0e0e0; }
-
-@media(max-width:768px){
-  body{padding:8px;}
-  header{padding:20px 70px;}
-  header h1{font-size:1.4em;}
-  .ubadge{font-size:.65em;max-width:110px;}
-  .mgrid,.pgrid{grid-template-columns:1fr;gap:13px;padding:12px;}
-  .dw{grid-template-columns:1fr;padding:12px 12px 0;}
-  .mbdy{max-height:400px;}
-  .abtn{font-size:.8em;padding:11px 4px;}
-}
+  body{font-family:sans-serif;background:#c0392b;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}
+  .box{background:#fff;color:#333;padding:20px 24px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.4);max-width:360px;width:100%;text-align:center;}
+  label{display:block;margin:8px 0 4px;font-size:.85em;font-weight:bold;}
+  select,input{width:100%;padding:8px 10px;border:2px solid #ddd;border-radius:6px;font-size:.95em;}
+  button{margin-top:10px;width:100%;padding:9px;border:none;border-radius:6px;background:#c0392b;color:#fff;font-weight:bold;cursor:pointer;}
+  #erro{color:#c0392b;font-size:.8em;margin-top:6px;display:none;}
+  #ok{color:#155724;font-size:.9em;margin-top:10px;display:none;background:#d4edda;padding:6px 8px;border-radius:6px;}
 </style>
 </head>
 <body>
+<div class="box">
+  <h2>Teste de Login - ENS</h2>
+  <p style="font-size:.85em;color:#666;">Se isso funcionar, o app vai funcionar.</p>
+  <label for="nome">Nome</label>
+  <select id="nome">
+    <option value="">-- Selecione --</option>
+    <option value="ADMIN">★ Nelson (Admin)</option>
+    <option value="Ana Lucia e Nelson">Ana Lucia e Nelson</option>
+  </select>
 
-<!-- ═══ TELA LOGIN ═══ -->
-<div id="pLogin">
-  <div class="lbox">
-    <div class="peixe">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="58" cy="40" rx="36" ry="20" fill="none" stroke="#c0392b" stroke-width="3.5"/>
-        <polyline points="22,40 6,22 6,58 22,40" fill="none" stroke="#c0392b" stroke-width="3.5" stroke-linejoin="round"/>
-        <circle cx="80" cy="34" r="3.5" fill="#c0392b"/>
-        <text x="56" y="45" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#c0392b" text-anchor="middle">&#935;&#937;</text>
-      </svg>
-    </div>
-    <h2>Equipes de Nossa Senhora</h2>
-    <p class="lsub">Equipe 06 &ndash; Nossa Senhora da Paz &nbsp;&middot;&nbsp; 2026</p>
-
-    <div class="lcampo">
-      <label for="selNome">Nome do casal / Sacerdote</label>
-      <select id="selNome">
-        <option value="">&#8212; Selecione &#8212;</option>
-        <option value="ADMIN">&#11088; Nelson (Administrador)</option>
-        <option value="Ana Lucia e Nelson">Ana Lucia e Nelson</option>
-        <option value="Ana Amélia e Rodrigues">Ana Amélia e Rodrigues</option>
-        <option value="Padre Alex">Padre Alex</option>
-        <option value="Delane e Demócrito">Delane e Demócrito</option>
-        <option value="Joyce e Onasy">Joyce e Onasy</option>
-        <option value="Lucinha e Ivan">Lucinha e Ivan</option>
-        <option value="Bernadette e Jackson">Bernadette e Jackson</option>
-        <option value="Mazé e Hamilton">Mazé e Hamilton</option>
-      </select>
-    </div>
-
-    <div class="lcampo" id="divSenha">
-      <label for="inpSenha">Senha do administrador</label>
-      <input type="password" id="inpSenha" placeholder="Digite a senha">
-    </div>
-
-    <div class="lgpd">
-      <strong>&#128274; Pol&iacute;tica de Privacidade &ndash; LGPD</strong><br><br>
-      Este aplicativo coleta e armazena dados pessoais dos membros da Equipe 06
-      (nomes, contatos, datas) exclusivamente para fins de organiza&ccedil;&atilde;o interna da equipe,
-      em conformidade com a <strong>Lei Geral de Prote&ccedil;&atilde;o de Dados Pessoais
-      (Lei n&ordm; 13.709/2018 &ndash; LGPD)</strong>.<br><br>
-      Os dados s&atilde;o utilizados apenas pelos membros autorizados da equipe, n&atilde;o sendo
-      compartilhados com terceiros. O acesso &eacute; protegido por autentica&ccedil;&atilde;o individual.
-      Voc&ecirc; pode solicitar a revis&atilde;o ou exclus&atilde;o dos seus dados a qualquer momento
-      ao administrador da equipe.
-      <label class="lgpd-check">
-        <input type="checkbox" id="chkLgpd">
-        <span>Li e aceito os termos da Pol&iacute;tica de Privacidade (LGPD)</span>
-      </label>
-    </div>
-
-    <button class="bentrar" id="btnEntrar">&#128274; Entrar</button>
-    <div class="lerro" id="divErro"></div>
-    <p class="lvers">&ldquo;Eu sei em quem coloquei minha confian&ccedil;a&rdquo; &mdash; 2Tm 1,12</p>
-  </div>
-</div>
-
-<!-- ═══ TELA APP ═══ -->
-<div id="pApp">
-<div class="cont" id="appCont">
-
-  <header>
-    <span class="ubadge" id="ubadge">&#128100;</span>
-    <h1>&#128197; Calend&aacute;rio 2026</h1>
-    <p>Equipe 06 &ndash; Nossa Senhora da Paz &nbsp;|&nbsp; Setor A &ndash; Nossa Senhora de Todas as Alegrias</p>
-    <p style="font-size:.8em;margin-top:5px;opacity:.82;">C&oacute;digo: 02 01 06 &nbsp;&middot;&nbsp; &ldquo;Eu sei em quem coloquei minha confian&ccedil;a&rdquo; (2Tm 1,12)</p>
-    <button class="bsair" id="btnSair">Sair &#128682;</button>
-  </header>
-
-  <div class="abas">
-    <button class="abtn on" id="abtn0">&#128197; Calend&aacute;rio</button>
-    <button class="abtn"    id="abtn1">&#128101; Participantes</button>
+  <div id="campoSenha" style="display:none;">
+    <label for="senha">Senha do admin</label>
+    <input id="senha" type="password" placeholder="ENS@2026">
   </div>
 
-  <div class="aviso" id="divAviso"></div>
-
-  <!-- ABA CALENDÁRIO -->
-  <div class="atab on" id="atab0">
-    <div class="lgd">
-      <div class="lgdt">&#128193; LEGENDA DE EVENTOS</div>
-      <div class="lgdg">
-        <div class="lgdi"><div class="lgdc" style="background:var(--r)"></div>Reuni&atilde;o Formal</div>
-        <div class="lgdi"><div class="lgdc" style="background:#e67e22"></div>Missa</div>
-        <div class="lgdi"><div class="lgdc" style="background:#27ae60"></div>Retiro</div>
-        <div class="lgdi"><div class="lgdc" style="background:#7f8c8d"></div>Feriado</div>
-        <div class="lgdi"><div class="lgdc" style="background:#f39c12"></div>Anivers&aacute;rio</div>
-        <div class="lgdi"><div class="lgdc" style="background:#8e44ad"></div>Casamento</div>
-        <div class="lgdi"><div class="lgdc" style="background:#2980b9"></div>Forma&ccedil;&atilde;o</div>
-        <div class="lgdi"><div class="lgdc" style="background:#95a5a6"></div>Outros</div>
-      </div>
-    </div>
-    <div class="badmin" id="barraAdmin">
-      <button class="badbtn" id="btnNovoEv">&#10133; Novo Evento</button>
-    </div>
-    <div class="mgrid" id="calCont"></div>
+  <div style="margin-top:8px;font-size:.8em;text-align:left;">
+    <label style="display:flex;align-items:center;gap:6px;">
+      <input type="checkbox" id="lgpd">
+      <span>Li e aceito a LGPD</span>
+    </label>
   </div>
 
-  <!-- ABA PARTICIPANTES -->
-  <div class="atab" id="atab1">
-    <div class="dw">
-      <div class="dc dc-m">
-        <div class="dh"><h2>&#10024; M&iacute;stica & Espiritualidade</h2><p>Equipes de Nossa Senhora &ndash; Espiritualidade Conjugal</p></div>
-        <div class="db">
-          <div class="ds"><div class="dst">O Carisma</div>
-            <ul class="dli"><li>A Espiritualidade Conjugal</li><li>Movimento de Espiritualidade Conjugal</li></ul>
-          </div>
-          <div class="ds"><div class="dst">A M&iacute;stica</div>
-            <ul class="dli"><li>Reunidos em Nome de Cristo (Equipe)</li><li>O Aux&iacute;lio M&uacute;tuo</li><li>O Testemunho</li></ul>
-          </div>
-          <div class="ds"><div class="dst">Atitudes</div>
-            <div class="dtags">
-              <span class="dtag"><span class="tn">1</span>Procura ass&iacute;dua da Vontade de Deus</span>
-              <span class="dtag"><span class="tn">2</span>Desenvolver a capacidade para a Verdade</span>
-              <span class="dtag"><span class="tn">3</span>Viv&ecirc;ncia do Encontro e da Comunh&atilde;o</span>
-            </div>
-          </div>
-          <div class="dver">&ldquo;Eu sei em quem coloquei minha confian&ccedil;a&rdquo; &mdash; 2Tm 1,12<br><span style="font-style:normal;color:var(--r);font-size:.9em;">Caminhando Juntos na F&eacute;</span></div>
-        </div>
-      </div>
-      <div class="dc dc-p">
-        <div class="dh"><h2>&#128203; PCE &ndash; Pontos Concretos de Esfor&ccedil;o</h2><p>Seis Compromissos da Equipe</p></div>
-        <div class="db">
-          <div class="ds"><div class="dst">Os Seis Compromissos</div>
-            <div class="dtags">
-              <span class="dtag"><span class="tn">1</span>Escuta</span>
-              <span class="dtag"><span class="tn">2</span>Medita&ccedil;&atilde;o</span>
-              <span class="dtag"><span class="tn">3</span>Ora&ccedil;&atilde;o Conjugal</span>
-              <span class="dtag"><span class="tn">4</span>Di&aacute;logo</span>
-              <span class="dtag"><span class="tn">5</span>Regra de Vida</span>
-              <span class="dtag"><span class="tn">6</span>Retiro</span>
-            </div>
-          </div>
-          <div class="ds" style="margin-top:12px"><div class="dst">Detalhamento</div>
-            <ul class="dli">
-              <li><strong>Escuta:</strong> Escuta ass&iacute;dua da Palavra de Deus</li>
-              <li><strong>Medita&ccedil;&atilde;o:</strong> Medita&ccedil;&atilde;o pessoal e conjugal</li>
-              <li><strong>Ora&ccedil;&atilde;o:</strong> Ora&ccedil;&atilde;o Conjugal di&aacute;ria</li>
-              <li><strong>Di&aacute;logo:</strong> Dever de Sentar-se regularmente</li>
-              <li><strong>Regra:</strong> Regra de Vida do casal</li>
-              <li><strong>Retiro:</strong> Retiro anual do casal</li>
-            </ul>
-          </div>
-          <div class="dver">&#128591; Nossa Senhora, rogai por n&oacute;s</div>
-        </div>
-      </div>
-    </div>
-    <div class="pgrid" id="partCont"></div>
-  </div>
-
-  <footer>
-    <p>&#128221; Calend&aacute;rio Equipe 06 &ndash; 2026</p>
-    <p style="margin-top:4px;">&#128146; Equipes de Nossa Senhora &nbsp;&middot;&nbsp; &ldquo;Eu sei em quem coloquei minha confian&ccedil;a&rdquo; (2Tm 1,12)</p>
-  </footer>
-</div>
-</div>
-
-<!-- ═══ MODAL EVENTO ═══ -->
-<div class="mov" id="modalEv">
-  <div class="mbox">
-    <h3 id="mTit">Evento</h3>
-    <div class="fg"><label>M&ecirc;s</label>
-      <select id="mMes">
-        <option value="JANEIRO">Janeiro</option><option value="FEVEREIRO">Fevereiro</option>
-        <option value="MARÇO">Mar&ccedil;o</option><option value="ABRIL">Abril</option>
-        <option value="MAIO">Maio</option><option value="JUNHO">Junho</option>
-        <option value="JULHO">Julho</option><option value="AGOSTO">Agosto</option>
-        <option value="SETEMBRO">Setembro</option><option value="OUTUBRO">Outubro</option>
-        <option value="NOVEMBRO">Novembro</option><option value="DEZEMBRO">Dezembro</option>
-      </select>
-    </div>
-    <div class="fg"><label>Dia</label><input type="number" id="mDia" min="1" max="31" placeholder="Ex: 15"></div>
-    <div class="fg"><label>Categoria</label>
-      <select id="mCat">
-        <option value="rf">Reuni&atilde;o Formal</option><option value="mi">Missa</option>
-        <option value="re">Retiro</option><option value="fe">Feriado</option>
-        <option value="an">Anivers&aacute;rio</option><option value="ca">Casamento</option>
-        <option value="fo">Forma&ccedil;&atilde;o</option><option value="ou">Outros</option>
-      </select>
-    </div>
-    <div class="fg"><label>Descri&ccedil;&atilde;o</label><textarea id="mDesc" placeholder="Texto do evento..."></textarea></div>
-    <div class="fac">
-      <button class="bsv" id="btnSalvEv">&#128190; Salvar</button>
-      <button class="bex2" id="btnExcEv" style="display:none">&#128465; Excluir</button>
-      <button class="bca" id="btnCancEv">Cancelar</button>
-    </div>
-  </div>
+  <button id="btnEntrar">Entrar</button>
+  <div id="erro"></div>
+  <div id="ok"></div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-//  TODA A LÓGICA AQUI — sem dependência externa
-// ═══════════════════════════════════════════════
+  const selNome   = document.getElementById('nome');
+  const campoSenha= document.getElementById('campoSenha');
+  const senhaInp  = document.getElementById('senha');
+  const lgpd      = document.getElementById('lgpd');
+  const btn       = document.getElementById('btnEntrar');
+  const erro      = document.getElementById('erro');
+  const ok        = document.getElementById('ok');
+  const SENHA_ADMIN = 'ENS@2026';
 
-var SENHA_ADMIN = 'ENS@2026';
-var isAdmin = false;
-var usuAtual = '';
-var editando = null;
+  selNome.addEventListener('change', function(){
+    campoSenha.style.display = (this.value === 'ADMIN') ? 'block' : 'none';
+    erro.style.display = 'none';
+    ok.style.display   = 'none';
+  });
 
-// Mapa categoria → classe CSS
-var CATS = {rf:'ev-rf',mi:'ev-mi',re:'ev-re',fe:'ev-fe',an:'ev-an',ca:'ev-ca',fo:'ev-fo',ou:'ev-ou'};
+  btn.addEventListener('click', function(){
+    erro.style.display = 'none';
+    ok.style.display   = 'none';
 
-// ─── PARTICIPANTES ───────────────────────────
-var PARTS = [
-  { tipo:'padre', icone:'✝️', titulo:'Padre Alex de Brito Sátiro', sub:'Conselheiro Espiritual',
-    dados:[
-      {l:'Celular',   v:'(85) 99677-1893', h:'tel:+5585996771893'},
-      {l:'Aniversário',v:'03/fev'},
-      {l:'Ordenação', v:'22/dez/2014'},
-      {l:'Cód. SCE',  v:'56041'},
-      {l:'Endereço',  v:'Rua Juvenal Gondim, 971 – Pindoretama CE'},
-      {l:'E-mail',    v:'alexbsatiro@yahoo.com.br', h:'mailto:alexbsatiro@yahoo.com.br'}
-    ]
-  },
-  { tipo:'casal', icone:'💑', titulo:'Ana Amélia e Rodrigues', cod:'16115',
-    m1:{n:'Ana Amélia Sá Silveira Lima',      a:'26/mar', c:'(85) 98899-2078', mat:'16/set'},
-    m2:{n:'Antônio Rodrigues de Lima',         a:'12/jul', c:'(85) 98841-8028', t:'(85) 3242-9630'},
-    end:'Rua Barbosa de Freitas, 555, Ap 1200, Meireles – CEP 60170-020',
-    emails:['anaameliasa6@gmail.com','arodrigueslimadv@gmail.com']
-  },
-  { tipo:'casal', icone:'💑', titulo:'Ana Lucia e Nelson', cod:'67713',
-    m1:{n:'Ana Lucia de Lima Magalhães',       a:'20/ago', c:'(85) 98899-6066', mat:'02/set'},
-    m2:{n:'Nelson Tomaz Catunda Magalhães',    a:'19/nov', c:'(85) 99825-1219'},
-    end:'Rua Francisco Holanda, 595, Ap 201, Dionísio Torres – CEP 60135-215',
-    emails:['analuciamagalhaes@gmail.com','nelsontcmagalhaes@gmail.com']
-  },
-  { tipo:'casal', icone:'💑', titulo:'Delane e Demócrito', cod:'52726',
-    m1:{n:'Francisca Delane Carvalho Crisóstomo', a:'06/jul', c:'(85) 99990-5631', mat:'11/mar'},
-    m2:{n:'Demócrito Rocha Crisóstomo',            a:'21/ago', c:'(85) 99984-9559'},
-    end:'Rua Carolina Sucupira, 1985, Ap 903, Aldeota – CEP 60140-120',
-    emails:['delanedemocrito@gmail.com']
-  },
-  { tipo:'casal', icone:'💑', titulo:'Joyce e Onasy', cod:'16122',
-    m1:{n:'Joyce Coling Lima',  a:'06/ago', c:'(85) 99994-2484', mat:'17/set'},
-    m2:{n:'José Onasy Lima',    a:'27/mar'},
-    end:'Rua Barbosa de Freitas, 650, Ap 302, Meireles – CEP 60170-020',
-    emails:[]
-  },
-  { tipo:'casal', icone:'💑', titulo:'Lucinha e Ivan', cod:'16117',
-    m1:{n:'Lúcia Helena Soares da Graça Marcelo', a:'19/abr', c:'(85) 99989-9944', mat:'19/fev'},
-    m2:{n:'Francisco Ivan Pinto Marcelo',          a:'10/mar', c:'(85) 99982-1955'},
-    end:'Av. Beira Mar, 3100, Ap 500, Meireles – CEP 60165-121',
-    emails:['luciagmarcelo@yahoo.com.br','ivan.marcelo@normatel.com.br']
-  },
-  { tipo:'casal', icone:'💑', titulo:'Bernadette e Jackson', cod:'89173',
-    m1:{n:'Maria Bernadette Frota Amora Silva',  a:'03/fev', c:'(85) 99982-7414', mat:'11/out'},
-    m2:{n:'Jackson Savio de Vasconcelos Silva',  a:'10/ago', c:'(85) 99981-5388'},
-    end:'Av. Padre Antônio Tomás, 3433, Ap 1500, Cocó – CEP 60192-120',
-    emails:['bernadetteamora@gmail.com','jacksonsavio@hotmail.com']
-  },
-  { tipo:'casal', icone:'💑', titulo:'Mazé e Hamilton', cod:'16118',
-    m1:{n:'Maria José Azevedo da Graça',   a:'12/jun', c:'(85) 98862-2691', mat:'22/jul'},
-    m2:{n:'Hamilton José Soares da Graça', a:'03/jul', c:'(85) 98858-2691'},
-    end:'Rua Nunes Valente, 1450, Ap 701, Aldeota – CEP 60125-070',
-    emails:['mazehamilton@gmail.com']
-  }
-];
+    const nome = selNome.value;
+    const s    = senhaInp.value;
 
-// ─── EVENTOS BASE ────────────────────────────
-var EVBASE = {
-  'JANEIRO':[
-    {dia:1,cat:'fe',t:'FERIADO DE ANO NOVO'},
-    {dia:5,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:8,cat:'an',t:'ANIVERSÁRIO RODRIGO (MAZÉ E HAMILTON)'},
-    {dia:12,cat:'ou',t:'REUNIÃO DE CALENDÁRIO\nCASAL ANFITRIÃO: ANA LUCIA E NELSON'},
-    {dia:13,cat:'fo',t:'FORMAÇÃO CASAL PILOTO\nVALE DO CURU – URUBURETAMA'},
-    {dia:25,cat:'mi',t:'MISSA MENSAL SETOR A'}
-  ],
-  'FEVEREIRO':[
-    {dia:1,cat:'an',t:'ANIVERSÁRIOS: PADRE ALEX E BERNADETTE\nINFORMAL: ANIVERSÁRIOS PADRE ALEX E BERNADETTE'},
-    {dia:2,cat:'ou',t:'EACRE'},
-    {dia:8,cat:'fe',t:'CARNAVAL'},
-    {dia:9,cat:'mi',t:'MISSA ACOLHIMENTO PADRE ALEX – NOVA PARÓQUIA'},
-    {dia:15,cat:'mi',t:'MISSA MENSAL SETOR B'},
-    {dia:16,cat:'fe',t:'CARNAVAL'},
-    {dia:17,cat:'fe',t:'CARNAVAL'},
-    {dia:18,cat:'fe',t:'4ª FEIRA DE CINZAS (JEJUM E ABSTINÊNCIA)'},
-    {dia:21,cat:'ca',t:'CASAMENTO LUCINHA E IVAN'},
-    {dia:22,cat:'rf',t:'1ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA LUCIA E NELSON\nTEMA: TEXTO SRB'},
-    {dia:23,cat:'ou',t:'REUNIÃO PREPARATÓRIA\nEACRE'}
-  ],
-  'MARÇO':[
-    {dia:1,cat:'ou',t:'PÓS EACRE SETOR A'},
-    {dia:2,cat:'ou',t:'1ª REUNIÃO SETOR A\n1º COLEGIADO SETOR A'},
-    {dia:3,cat:'re',t:'RETIRO PARA CASAIS EM MISSÃO'},
-    {dia:4,cat:'re',t:'RETIRO PARA CASAIS EM MISSÃO'},
-    {dia:8,cat:'ou',t:'NOITE DE ORAÇÃO'},
-    {dia:9,cat:'ou',t:'ENCONTRO DOS JURÁSSICOS\nREUNIÃO PREPARATÓRIA'},
-    {dia:14,cat:'ca',t:'CASAMENTO DELANE E DEMÓCRITO'},
-    {dia:15,cat:'mi',t:'MISSA MENSAL SETOR C\nFERIADO CARTA MAGNA'},
-    {dia:19,cat:'fe',t:'DIA DE SÃO JOSÉ'},
-    {dia:20,cat:'an',t:'ANIVERSÁRIO THEREZA (LUCINHA E IVAN)'},
-    {dia:21,cat:'an',t:'ANIVERSÁRIO SAMUEL (ANA LUCIA E NELSON)\nRETIRO PARA CASAIS EM MISSÃO\nANIVERSÁRIO IVAN'},
-    {dia:22,cat:'rf',t:'2ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: BERNADETTE E JACKSON\n1º CAP. – TEMA DE ESTUDO'},
-    {dia:26,cat:'an',t:'ANIVERSÁRIO ANA AMÉLIA'},
-    {dia:27,cat:'an',t:'ANIVERSÁRIO ONASY'}
-  ],
-  'ABRIL':[
-    {dia:3,cat:'fe',t:'SEXTA-FEIRA SANTA'},
-    {dia:4,cat:'fe',t:'SÁBADO DE ALELUIA'},
-    {dia:5,cat:'fe',t:'DOMINGO DE PÁSCOA'},
-    {dia:6,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:7,cat:'re',t:'1º RETIRO SETOR A (01-04-08-15-22)'},
-    {dia:8,cat:'re',t:'1º RETIRO SETOR A (01-04-08-15-22)'},
-    {dia:12,cat:'re',t:'1º RETIRO SETOR A (01-04-08-15-22)'},
-    {dia:19,cat:'an',t:'ANIVERSÁRIO LUCINHA\nINFORMAL'},
-    {dia:20,cat:'ou',t:'ENCONTRO SACERDOTES REGIÃO CE I e IV'},
-    {dia:21,cat:'fe',t:'FERIADO TIRADENTES\nENCONTRO SACERDOTES REGIÃO CE I e IV\nREUNIÃO PREPARATÓRIA'},
-    {dia:26,cat:'fo',t:'FORMAÇÃO SER MOVIMENTO'},
-    {dia:27,cat:'rf',t:'3ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: DELANE E DEMÓCRITO\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES\n2º CAP. – TEMA DE ESTUDO'},
-    {dia:28,cat:'an',t:'ANIVERSÁRIO MARÍLIA (DELANE E DEMÓCRITO)'},
-    {dia:29,cat:'an',t:'ANIVERSÁRIO LIA MARIA (BERNADETTE E JACKSON)'},
-    {dia:30,cat:'mi',t:'MISSA MENSAL SETOR CAUCAIA\nFORMAÇÃO SER MOVIMENTO'}
-  ],
-  'MAIO':[
-    {dia:1,cat:'fe',t:'DIA DO TRABALHO\nANIVERSÁRIO MATEUS (ANA LUCIA E NELSON)'},
-    {dia:4,cat:'ou',t:'REUNIÃO SETOR A\nHORIZONTAL'},
-    {dia:10,cat:'fe',t:'DIA DAS MÃES\nHORIZONTAL'},
-    {dia:11,cat:'fo',t:'FORMAÇÃO SER IGREJA\nREUNIÃO EXPANSÃO REGIÃO CE IV\nHORIZONTAL'},
-    {dia:17,cat:'mi',t:'MISSA MENSAL SETOR A\nANIVERSÁRIO ENS REGIÃO I e IV\nHORIZONTAL'},
-    {dia:18,cat:'fo',t:'FORMAÇÃO CASAL LIGAÇÃO\nHORIZONTAL'},
-    {dia:19,cat:'an',t:'ANIVERSÁRIO COLLING (JOYCE E ONASY)\nHORIZONTAL'},
-    {dia:24,cat:'an',t:'ANIVERSÁRIO ÂNGELO (CASAL LIGAÇÃO)\nHORIZONTAL'},
-    {dia:25,cat:'rf',t:'4ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: JOYCE E ONASY\nCASAL ANIMADOR: DELANE E DEMÓCRITO\n3º CAP. – TEMA DE ESTUDO\n2º COLEGIADO SETOR A\nHORIZONTAL'},
-    {dia:26,cat:'ou',t:'REUNIÃO PREPARATÓRIA\nHORIZONTAL'},
-    {dia:29,cat:'an',t:'ANIVERSÁRIO PADRE WATSON\nHORIZONTAL'}
-  ],
-  'JUNHO':[
-    {dia:1,cat:'an',t:'ANIVERSÁRIO LEONARDO (ANA AMÉLIA E RODRIGUES)\nANIVERSÁRIO PEDRO (DELANE E DEMÓCRITO)'},
-    {dia:2,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:4,cat:'fe',t:'CORPUS CHRISTI'},
-    {dia:5,cat:'ou',t:'SÃO JOÃO REGIÃO CE IV'},
-    {dia:7,cat:'ou',t:'INFORMAL\nCOMEMORAÇÃO NAMORADOS'},
-    {dia:12,cat:'an',t:'ANIVERSÁRIO MAZÉ'},
-    {dia:15,cat:'ou',t:'NOITE DE ORAÇÃO\nFORMAÇÃO EXPERIÊNCIA COMUNITÁRIA'},
-    {dia:16,cat:'ou',t:'REUNIÃO VALE DO CURU – REGIÃO CE IV'},
-    {dia:21,cat:'rf',t:'5ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: LUCINHA E IVAN\nCASAL ANIMADOR: JOYCE E ONASY\n4º CAP. – TEMA DE ESTUDO\nMISSA MENSAL SETOR A'},
-    {dia:23,cat:'an',t:'ANIVERSÁRIO CAROLINA (MAZÉ E HAMILTON)'},
-    {dia:24,cat:'ou',t:'REUNIÃO PREPARATÓRIA'},
-    {dia:26,cat:'re',t:'2º RETIRO SETOR A (02-09-16-20)'},
-    {dia:27,cat:'re',t:'2º RETIRO SETOR A (02-09-16-20)'},
-    {dia:28,cat:'re',t:'2º RETIRO SETOR A (02-09-16-20)\nMISSA MENSAL B'}
-  ],
-  'JULHO':[
-    {dia:1,cat:'an',t:'ANIVERSÁRIO MARCOS (JOYCE E ONASY)\nANIVERSÁRIO BRUNO (BERNADETTE E JACKSON)'},
-    {dia:3,cat:'an',t:'ANIVERSÁRIO HAMILTON'},
-    {dia:4,cat:'fo',t:'FORMAÇÃO SER CRISTÃO'},
-    {dia:6,cat:'an',t:'ANIVERSÁRIO DELANE'},
-    {dia:7,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:8,cat:'re',t:'3º RETIRO SETOR A (05-06-14-23)'},
-    {dia:9,cat:'re',t:'3º RETIRO SETOR A (05-06-14-23)'},
-    {dia:13,cat:'re',t:'3º RETIRO SETOR A (05-06-14-23)'},
-    {dia:15,cat:'ou',t:'46º ANO ENS REGIÃO CE I e IV'},
-    {dia:17,cat:'ca',t:'CASAMENTO ANA AMÉLIA E RODRIGUES'},
-    {dia:19,cat:'an',t:'ANIVERSÁRIO PAULINHA (LUCINHA E IVAN)'},
-    {dia:21,cat:'ou',t:'REUNIÃO PREPARATÓRIA\nANIVERSÁRIO MARIANA (ANA AMÉLIA E RODRIGUES)'},
-    {dia:24,cat:'ca',t:'CASAMENTO MAZÉ E HAMILTON'},
-    {dia:26,cat:'mi',t:'MISSA MENSAL SETOR C'},
-    {dia:27,cat:'rf',t:'6ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: MAZÉ E HAMILTON\nCASAL ANIMADOR: LUCINHA E IVAN\n5º CAP. – TEMA DE ESTUDO'},
-    {dia:28,cat:'ou',t:'ANIVERSÁRIO NASCIMENTO PADRE CAFFAREL'}
-  ],
-  'AGOSTO':[
-    {dia:2,cat:'ou',t:'FESTA DOS SACERDOTES'},
-    {dia:3,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:6,cat:'an',t:'ANIVERSÁRIO JOYCE'},
-    {dia:8,cat:'ou',t:"AE'S REGIÃO CE I e IV"},
-    {dia:9,cat:'fe',t:'DIA DOS PAIS'},
-    {dia:14,cat:'an',t:'ANIVERSÁRIO JACKSON'},
-    {dia:17,cat:'ou',t:'3º COLEGIADO SETOR A'},
-    {dia:18,cat:'ou',t:'REUNIÃO PREPARATÓRIA'},
-    {dia:19,cat:'ou',t:'NOITE DE ORAÇÃO'},
-    {dia:20,cat:'an',t:'ANIVERSÁRIO ANA LUCIA'},
-    {dia:21,cat:'an',t:'ANIVERSÁRIO DEMÓCRITO'},
-    {dia:24,cat:'rf',t:'7ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA LUCIA E NELSON\nCASAL ANIMADOR: MAZÉ E HAMILTON\n6º CAP. – TEMA DE ESTUDO'},
-    {dia:28,cat:'ou',t:'MUTIRÃO SETOR A'},
-    {dia:30,cat:'mi',t:'MISSA MENSAL SETOR CAUCAIA'}
-  ],
-  'SETEMBRO':[
-    {dia:1,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:2,cat:'ca',t:'CASAMENTO ANA LUCIA E NELSON\nINTEREQUIPES'},
-    {dia:7,cat:'fe',t:'INDEPENDÊNCIA DO BRASIL\n4º RETIRO SETOR A (07-11-12-21)'},
-    {dia:8,cat:'re',t:'4º RETIRO SETOR A (07-11-12-21)\nENCONTRO DE EQUIPES NOVAS REGIÃO CE IV'},
-    {dia:12,cat:'re',t:'4º RETIRO SETOR A (07-11-12-21)'},
-    {dia:13,cat:'ou',t:'HORIZONTAL\nENCONTRO DE EQUIPES NOVAS REGIÃO CE IV'},
-    {dia:14,cat:'ou',t:'HORIZONTAL'},
-    {dia:15,cat:'ou',t:'HORIZONTAL'},
-    {dia:16,cat:'an',t:'ANIVERSÁRIO RODRIGUES\nHORIZONTAL'},
-    {dia:17,cat:'ca',t:'CASAMENTO JOYCE E ONASY\nHORIZONTAL'},
-    {dia:18,cat:'ou',t:'JORNADA PADRE CAFFAREL\nHORIZONTAL'},
-    {dia:19,cat:'ou',t:'JORNADA PADRE CAFFAREL\nHORIZONTAL'},
-    {dia:20,cat:'ou',t:'HORIZONTAL'},
-    {dia:21,cat:'ou',t:'REUNIÃO PREPARATÓRIA\nHORIZONTAL'},
-    {dia:23,cat:'an',t:'ANIVERSÁRIO ÉMERSON (JOYCE E ONASY)\nHORIZONTAL'},
-    {dia:26,cat:'ou',t:'JORNADA PADRE CAFFAREL'},
-    {dia:27,cat:'mi',t:'MISSA MENSAL SETOR A\nINTEREQUIPES'},
-    {dia:28,cat:'rf',t:'8ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: ANA AMÉLIA E RODRIGUES\nCASAL ANIMADOR: ANA LUCIA E NELSON\n7º CAP. – TEMA DE ESTUDO'}
-  ],
-  'OUTUBRO':[
-    {dia:1,cat:'ou',t:'INÍCIO DO DISCERNIMENTO DE CRE 2027'},
-    {dia:4,cat:'fe',t:'ELEIÇÕES 2026 – 1º TURNO'},
-    {dia:6,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:12,cat:'ca',t:'CASAMENTO BERNADETTE E JACKSON\nNOSSA SENHORA APARECIDA'},
-    {dia:18,cat:'mi',t:'MISSA MENSAL SETOR B'},
-    {dia:20,cat:'ou',t:'REUNIÃO PREPARATÓRIA'},
-    {dia:25,cat:'fe',t:'ELEIÇÕES 2026 – 2º TURNO'},
-    {dia:26,cat:'rf',t:'9ª REUNIÃO FORMAL\nCASAL ANFITRIÃO: BERNADETTE E JACKSON\nCASAL ANIMADOR: ANA AMÉLIA E RODRIGUES\n8º CAP. – TEMA DE ESTUDO\nDISCERNIMENTO CRE 2027'},
-    {dia:31,cat:'ou',t:'FIM DO DISCERNIMENTO DE CRE 2027'}
-  ],
-  'NOVEMBRO':[
-    {dia:2,cat:'fe',t:'DIA DE FINADOS'},
-    {dia:3,cat:'ou',t:'REUNIÃO SETOR A\nREUNIÃO VALE DO CURU – REGIÃO CE IV'},
-    {dia:15,cat:'fe',t:'PROCLAMAÇÃO DA REPÚBLICA\nPRÉ-EACRE'},
-    {dia:18,cat:'ca',t:'CASAMENTO ÂNGELO E ÉLIDA (CASAL LIGAÇÃO)'},
-    {dia:19,cat:'ou',t:'NOITE DE ORAÇÃO'},
-    {dia:20,cat:'an',t:'CONSCIÊNCIA NEGRA\nANIVERSÁRIO NELSON\n5º RETIRO SETOR A (03-10-13-19)'},
-    {dia:21,cat:'re',t:'5º RETIRO SETOR A (03-10-13-19)'},
-    {dia:22,cat:'re',t:'BALANÇO\nCASAL ANIMADOR: BERNADETTE E JACKSON\n5º RETIRO SETOR A (03-10-13-19)'},
-    {dia:23,cat:'ou',t:'ORDENAÇÃO PADRE WATSON'},
-    {dia:26,cat:'an',t:'ANIVERSÁRIO SÍLVIA (JOYCE E ONASY)'},
-    {dia:29,cat:'mi',t:'MISSA MENSAL SETOR C'}
-  ],
-  'DEZEMBRO':[
-    {dia:1,cat:'ou',t:'REUNIÃO SETOR A'},
-    {dia:5,cat:'ou',t:'CONFRATERNIZAÇÃO EQUIPE 06'},
-    {dia:7,cat:'ou',t:'REUNIÃO DO SETOR A'},
-    {dia:11,cat:'an',t:'ANIVERSÁRIO LÚCIO (ANA AMÉLIA E RODRIGUES)'},
-    {dia:13,cat:'mi',t:'MISSA MENSAL NATAL'},
-    {dia:14,cat:'an',t:'ANIVERSÁRIO JÚLIO CÉSAR (ANA AMÉLIA E RODRIGUES)'},
-    {dia:21,cat:'ou',t:'ORDENAÇÃO PADRE ALEX'},
-    {dia:25,cat:'fe',t:'NATAL'},
-    {dia:26,cat:'fe',t:'NATAL'},
-    {dia:31,cat:'fe',t:'RÉVEILLON'}
-  ]
-};
-
-var eventos = {};
-
-function carregarDados() {
-  var s = localStorage.getItem('ens_ev06');
-  if (s) { try { eventos = JSON.parse(s); } catch(e) { eventos = clonarBase(); } }
-  else { eventos = clonarBase(); }
-}
-
-function clonarBase() {
-  var r = {};
-  var ks = Object.keys(EVBASE);
-  for (var i=0;i<ks.length;i++) {
-    r[ks[i]] = EVBASE[ks[i]].map(function(e){ return {dia:e.dia,cat:e.cat,t:e.t}; });
-  }
-  return r;
-}
-
-function salvarLS() {
-  localStorage.setItem('ens_ev06', JSON.stringify(eventos));
-}
-
-// ─── LOGIN ────────────────────────────────────
-document.getElementById('selNome').onchange = function() {
-  document.getElementById('divSenha').style.display = this.value === 'ADMIN' ? 'block' : 'none';
-  document.getElementById('divErro').style.display = 'none';
-};
-
-document.getElementById('btnEntrar').onclick = function() {
-  var sel   = document.getElementById('selNome').value;
-  var senha = document.getElementById('inpSenha').value;
-  var aceite= document.getElementById('chkLgpd').checked;
-  var eEl   = document.getElementById('divErro');
-
-  eEl.style.display = 'none';
-
-  if (!sel) {
-    eEl.textContent = '❌ Por favor, selecione seu nome na lista.';
-    eEl.style.display = 'block'; return;
-  }
-  if (!aceite) {
-    eEl.textContent = '❌ Você precisa aceitar os termos de privacidade (LGPD) para continuar.';
-    eEl.style.display = 'block'; return;
-  }
-  if (sel === 'ADMIN') {
-    if (!senha) {
-      eEl.textContent = '❌ Digite a senha do administrador.';
-      eEl.style.display = 'block'; return;
+    if (!nome) {
+      erro.textContent = '❌ Selecione um nome.';
+      erro.style.display = 'block';
+      return;
     }
-    if (senha !== SENHA_ADMIN) {
-      eEl.textContent = '❌ Senha incorreta. Tente novamente.';
-      eEl.style.display = 'block'; return;
+    if (!lgpd.checked) {
+      erro.textContent = '❌ Marque que aceita a LGPD.';
+      erro.style.display = 'block';
+      return;
     }
-    isAdmin = true;
-    usuAtual = 'Nelson (Admin)';
-  } else {
-    isAdmin = false;
-    usuAtual = sel;
-  }
-  iniciarApp();
-};
+    if (nome === 'ADMIN') {
+      if (!s) {
+        erro.textContent = '❌ Digite a senha do admin.';
+        erro.style.display = 'block';
+        return;
+      }
+      if (s !== SENHA_ADMIN) {
+        erro.textContent = '❌ Senha incorreta. Use: ' + SENHA_ADMIN;
+        erro.style.display = 'block';
+        return;
+      }
+      ok.textContent = '✅ Login OK como ADMIN (Nelson).';
+      ok.style.display = 'block';
+      return;
+    }
 
-// Enter no campo senha também faz login
-document.getElementById('inpSenha').onkeydown = function(e) {
-  if (e.key === 'Enter') document.getElementById('btnEntrar').onclick();
-};
-
-function iniciarApp() {
-  document.getElementById('pLogin').style.display = 'none';
-  document.getElementById('pApp').style.display   = 'block';
-  document.getElementById('ubadge').textContent   = '👤 ' + usuAtual;
-
-  var av = document.getElementById('divAviso');
-  if (isAdmin) {
-    av.className = 'aviso av-a';
-    av.textContent = '✅ Modo Administrador – você pode adicionar, editar e excluir eventos.';
-    document.getElementById('barraAdmin').classList.add('on');
-    document.getElementById('appCont').classList.add('admin-on');
-  } else {
-    av.className = 'aviso av-l';
-
-
+    // qualquer outro nome entra sem senha
+    ok.textContent = '✅ Login OK como ' + nome + ' (somente leitura).';
+    ok.style.display = 'block';
+  });
+</script>
+</body>
+</html>
