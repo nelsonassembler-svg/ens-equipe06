@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário 2026 - Equipe 06</title>
+    <title>Calendário 2026 - Equipe 06 (Somente Leitura)</title>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,49 +42,12 @@
         }
 
         .controles {
-            padding: 20px;
+            padding: 10px 20px;
             background: #f8f9fa;
             border-bottom: 2px solid #e0e0e0;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: 0.95em;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
+            text-align: center;
+            font-size: 0.92em;
+            color: #555;
         }
 
         .meses-grid {
@@ -116,24 +79,6 @@
             text-align: center;
             font-weight: bold;
             font-size: 1.3em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .mes-header button {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid white;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: all 0.2s;
-        }
-
-        .mes-header button:hover {
-            background: rgba(255,255,255,0.4);
         }
 
         .mes-body {
@@ -148,15 +93,6 @@
             margin-bottom: 10px;
             border-radius: 8px;
             border-left: 4px solid #667eea;
-            transition: all 0.2s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .evento-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            background: #e9ecef;
         }
 
         .evento-dia {
@@ -171,103 +107,6 @@
             font-size: 0.88em;
             line-height: 1.5;
             white-space: pre-line;
-        }
-
-        .evento-acoes {
-            display: none;
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            gap: 5px;
-        }
-
-        .evento-item:hover .evento-acoes {
-            display: flex;
-        }
-
-        .btn-icon {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85em;
-            transition: all 0.2s;
-        }
-
-        .btn-icon:hover {
-            background: #f8f9fa;
-            transform: scale(1.1);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.show {
-            display: flex !important;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .modal-content h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: inherit;
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
         }
 
         .mes-vazio {
@@ -295,9 +134,7 @@
                 padding: 15px;
             }
             .mes-body { max-height: 400px; }
-            .controles { padding: 15px; }
-            .btn { padding: 10px 18px; font-size: 0.9em; }
-            .modal-content { padding: 20px; }
+            .controles { padding: 10px 15px; }
             .evento-titulo { font-size: 0.82em; }
         }
     </style>
@@ -310,62 +147,18 @@
         </header>
 
         <div class="controles">
-            <button class="btn btn-primary" onclick="exportarDados()">💾 Exportar Backup</button>
-            <button class="btn btn-success" onclick="document.getElementById('importFile').click()">📥 Importar Backup</button>
-            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importarDados(event)">
+            Visualização somente leitura – eventos definidos pela Equipe 06 (não é possível editar, excluir ou adicionar itens nesta versão).
         </div>
 
         <div class="meses-grid" id="calendarioContainer"></div>
 
         <footer>
-            <p>📝 Calendário Editável - Clique nos eventos para editar ou excluir</p>
-            <p>💾 Seus dados são salvos automaticamente no navegador</p>
+            <p>📝 Calendário da Equipe 06 para 2026 – versão para consulta</p>
         </footer>
     </div>
 
-    <!-- Modal de Edição -->
-    <div id="modalEvento" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitulo">Adicionar Evento</h3>
-
-            <div class="form-group">
-                <label>Mês *</label>
-                <select id="eventoMes">
-                    <option value="JANEIRO">Janeiro</option>
-                    <option value="FEVEREIRO">Fevereiro</option>
-                    <option value="MARÇO">Março</option>
-                    <option value="ABRIL">Abril</option>
-                    <option value="MAIO">Maio</option>
-                    <option value="JUNHO">Junho</option>
-                    <option value="JULHO">Julho</option>
-                    <option value="AGOSTO">Agosto</option>
-                    <option value="SETEMBRO">Setembro</option>
-                    <option value="OUTUBRO">Outubro</option>
-                    <option value="NOVEMBRO">Novembro</option>
-                    <option value="DEZEMBRO">Dezembro</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Dia *</label>
-                <input type="number" id="eventoDia" min="1" max="31" placeholder="Ex: 15">
-            </div>
-
-            <div class="form-group">
-                <label>Título do Evento *</label>
-                <textarea id="eventoTitulo" rows="4" placeholder="Ex: Reunião Formal - Casal Anfitrião"></textarea>
-            </div>
-
-            <div class="form-actions">
-                <button class="btn btn-primary" onclick="salvarEvento()">💾 Salvar</button>
-                <button class="btn btn-danger" onclick="excluirEvento()" id="btnExcluir" style="display:none">🗑️ Excluir</button>
-                <button class="btn btn-secondary" onclick="fecharModal()">❌ Cancelar</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Dados COMPLETOS extraídos do PDF
+        // MESMOS DADOS QUE VOCÊ JÁ TEM, APENAS SEM EDIÇÃO
         const eventosIniciais = {
             'JANEIRO': [
                 { dia: 1, titulo: 'FERIADO DE ANO NOVO' },
@@ -538,29 +331,11 @@
             ]
         };
 
-        let eventos = {};
-        let eventoEditando = null;
-
-        function carregarDados() {
-            const dadosSalvos = localStorage.getItem('calendario2026_completo');
-            if (dadosSalvos) {
-                eventos = JSON.parse(dadosSalvos);
-            } else {
-                eventos = JSON.parse(JSON.stringify(eventosIniciais));
-                salvarDados();
-            }
-        }
-
-        function salvarDados() {
-            localStorage.setItem('calendario2026_completo', JSON.stringify(eventos));
-        }
-
         function renderizarCalendario() {
             const container = document.getElementById('calendarioContainer');
             container.innerHTML = '';
 
-            const meses = ['JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 
-                          'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO'];
+            const meses = ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'];
 
             meses.forEach(mes => {
                 const mesCard = document.createElement('div');
@@ -568,37 +343,30 @@
 
                 const mesHeader = document.createElement('div');
                 mesHeader.className = 'mes-header';
-                mesHeader.innerHTML = `
-                    <span>${mes} 2026</span>
-                    <button onclick="abrirModalNovo('${mes}')">➕ Adicionar</button>
-                `;
+                mesHeader.textContent = `${mes} 2026`;
 
                 const mesBody = document.createElement('div');
                 mesBody.className = 'mes-body';
 
-                const eventosDoMes = eventos[mes] || [];
+                const eventosDoMes = eventosIniciais[mes] || [];
 
                 if (eventosDoMes.length === 0) {
                     mesBody.innerHTML = '<div class="mes-vazio">Nenhum evento cadastrado</div>';
                 } else {
-                    eventosDoMes.sort((a, b) => a.dia - b.dia);
+                    eventosDoMes
+                        .slice()
+                        .sort((a, b) => a.dia - b.dia)
+                        .forEach(evento => {
+                            const eventoDiv = document.createElement('div');
+                            eventoDiv.className = 'evento-item';
 
-                    eventosDoMes.forEach((evento, index) => {
-                        const eventoDiv = document.createElement('div');
-                        eventoDiv.className = 'evento-item';
-                        eventoDiv.onclick = () => abrirModalEditar(mes, index);
+                            eventoDiv.innerHTML = `
+                                <div class="evento-dia">Dia ${evento.dia}</div>
+                                <div class="evento-titulo">${evento.titulo}</div>
+                            `;
 
-                        eventoDiv.innerHTML = `
-                            <div class="evento-dia">Dia ${evento.dia}</div>
-                            <div class="evento-titulo">${evento.titulo}</div>
-                            <div class="evento-acoes">
-                                <button class="btn-icon" onclick="event.stopPropagation(); abrirModalEditar('${mes}', ${index})">✏️</button>
-                                <button class="btn-icon" onclick="event.stopPropagation(); confirmarExclusao('${mes}', ${index})">🗑️</button>
-                            </div>
-                        `;
-
-                        mesBody.appendChild(eventoDiv);
-                    });
+                            mesBody.appendChild(eventoDiv);
+                        });
                 }
 
                 mesCard.appendChild(mesHeader);
@@ -607,126 +375,6 @@
             });
         }
 
-        function abrirModalNovo(mes) {
-            eventoEditando = null;
-            document.getElementById('modalTitulo').textContent = 'Adicionar Evento';
-            document.getElementById('eventoMes').value = mes;
-            document.getElementById('eventoDia').value = '';
-            document.getElementById('eventoTitulo').value = '';
-            document.getElementById('btnExcluir').style.display = 'none';
-            document.getElementById('modalEvento').classList.add('show');
-        }
-
-        function abrirModalEditar(mes, index) {
-            eventoEditando = { mes, index };
-            const evento = eventos[mes][index];
-
-            document.getElementById('modalTitulo').textContent = 'Editar Evento';
-            document.getElementById('eventoMes').value = mes;
-            document.getElementById('eventoDia').value = evento.dia;
-            document.getElementById('eventoTitulo').value = evento.titulo;
-            document.getElementById('btnExcluir').style.display = 'inline-block';
-            document.getElementById('modalEvento').classList.add('show');
-        }
-
-        function fecharModal() {
-            document.getElementById('modalEvento').classList.remove('show');
-            eventoEditando = null;
-        }
-
-        function salvarEvento() {
-            const mes = document.getElementById('eventoMes').value;
-            const dia = parseInt(document.getElementById('eventoDia').value);
-            const titulo = document.getElementById('eventoTitulo').value.trim();
-
-            if (!dia || dia < 1 || dia > 31) {
-                alert('❌ Digite um dia válido (1-31)');
-                return;
-            }
-
-            if (!titulo) {
-                alert('❌ Digite um título para o evento');
-                return;
-            }
-
-            if (!eventos[mes]) {
-                eventos[mes] = [];
-            }
-
-            if (eventoEditando) {
-                eventos[eventoEditando.mes].splice(eventoEditando.index, 1);
-            }
-
-            eventos[mes].push({ dia, titulo });
-
-            salvarDados();
-            renderizarCalendario();
-            fecharModal();
-
-            alert('✅ Evento salvo com sucesso!');
-        }
-
-        function excluirEvento() {
-            if (!eventoEditando) return;
-
-            if (confirm('🗑️ Tem certeza que deseja excluir este evento?')) {
-                eventos[eventoEditando.mes].splice(eventoEditando.index, 1);
-                salvarDados();
-                renderizarCalendario();
-                fecharModal();
-                alert('✅ Evento excluído!');
-            }
-        }
-
-        function confirmarExclusao(mes, index) {
-            if (confirm('🗑️ Excluir este evento?')) {
-                eventos[mes].splice(index, 1);
-                salvarDados();
-                renderizarCalendario();
-            }
-        }
-
-        function exportarDados() {
-            const dataStr = JSON.stringify(eventos, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `calendario-equipe06-2026-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            alert('✅ Backup exportado com sucesso!');
-        }
-
-        function importarDados(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const dadosImportados = JSON.parse(e.target.result);
-                    if (confirm('⚠️ Isso vai substituir todos os dados atuais. Continuar?')) {
-                        eventos = dadosImportados;
-                        salvarDados();
-                        renderizarCalendario();
-                        alert('✅ Dados importados com sucesso!');
-                    }
-                } catch (err) {
-                    alert('❌ Erro ao importar arquivo. Verifique se é um arquivo JSON válido.');
-                }
-            };
-            reader.readAsText(file);
-            event.target.value = '';
-        }
-
-        document.getElementById('modalEvento').addEventListener('click', function(e) {
-            if (e.target === this) {
-                fecharModal();
-            }
-        });
-
-        carregarDados();
         renderizarCalendario();
     </script>
 </body>
